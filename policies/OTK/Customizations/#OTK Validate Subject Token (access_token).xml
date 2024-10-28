@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK Validate Subject Token (access_token)"/>
+        </L7p:CommentAssertion>
+        <L7p:ComparisonAssertion>
+            <L7p:Expression1 stringValue="${subject_token_type}"/>
+            <L7p:Expression2 stringValue="urn:ietf:params:oauth:token-type:access_token"/>
+            <L7p:Predicates predicates="included">
+                <L7p:item binary="included">
+                    <L7p:RightValue stringValue="urn:ietf:params:oauth:token-type:access_token"/>
+                </L7p:item>
+            </L7p:Predicates>
+        </L7p:ComparisonAssertion>
+        <L7p:AddHeader>
+            <L7p:HeaderName stringValue="Authorization"/>
+            <L7p:HeaderValue stringValue=""/>
+            <L7p:Operation operation="REMOVE"/>
+            <L7p:RemoveExisting booleanValue="true"/>
+        </L7p:AddHeader>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="393bcb93-82ad-4b55-8333-1119f607a560"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Require OAuth 2.0 Token"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="any_resource_required"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="cache_lifetime"/>
+                    <L7p:value stringValue="30"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="custom"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="disable_audience_check"/>
+                    <L7p:value stringValue="true"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="disallow_query"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="given_access_token"/>
+                    <L7p:value stringValue="${subject_token}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="onetime"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="resource_required"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="scope_fail"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="scope_required"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtzZXNzaW9uLnNjb3BlfQ=="/>
+            <L7p:VariableToSet stringValue="scope.permitted"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtzZXNzaW9uLmFjdF9jbGFpbX0="/>
+            <L7p:VariableToSet stringValue="act_claim"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtzZXNzaW9uLm1heV9hY3RfY2xhaW19"/>
+            <L7p:VariableToSet stringValue="may_act_claim"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtzZXNzaW9uLnN1YnNjcmliZXJfaWR9"/>
+            <L7p:VariableToSet stringValue="owner"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

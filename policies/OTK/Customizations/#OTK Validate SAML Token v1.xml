@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="== Target Policy:  &quot;OTK grant_type=TOKEN_EXCHANGE&quot;"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="============================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="========== Validate the SAML Token v1 ======================"/>
+        </L7p:CommentAssertion>
+        <L7p:ValidateNonSoapSamlToken>
+            <L7p:AudienceRestriction stringValue="${conditions}"/>
+            <L7p:AuthenticationStatement samlAuthenticationInfo="included">
+                <L7p:AuthenticationMethods stringArrayValue="included">
+                    <L7p:item stringValue="urn:ietf:rfc:1510"/>
+                    <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:am:unspecified"/>
+                    <L7p:item stringValue="urn:ietf:rfc:2246"/>
+                    <L7p:item stringValue="urn:ietf:rfc:2945"/>
+                    <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:am:PGP"/>
+                    <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:am:SPKI"/>
+                    <L7p:item stringValue="urn:ietf:rfc:3075"/>
+                    <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:am:X509-PKI"/>
+                    <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:am:password"/>
+                </L7p:AuthenticationMethods>
+            </L7p:AuthenticationStatement>
+            <L7p:MaxExpiry longValue="3600000"/>
+            <L7p:NameFormats stringArrayValue="included">
+                <L7p:item stringValue="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"/>
+            </L7p:NameFormats>
+            <L7p:NameQualifier stringValue=""/>
+            <L7p:OtherTargetMessageVariable stringValue="bearerToken"/>
+            <L7p:SubjectConfirmationDataCheckValidity booleanValue="false"/>
+            <L7p:SubjectConfirmations stringArrayValue="included">
+                <L7p:item stringValue="urn:oasis:names:tc:SAML:1.0:cm:bearer"/>
+            </L7p:SubjectConfirmations>
+            <L7p:Target target="OTHER"/>
+            <L7p:Version boxedIntegerValue="1"/>
+        </L7p:ValidateNonSoapSamlToken>
+        <L7p:ResponseXpathAssertion>
+            <L7p:VariablePrefix stringValue=""/>
+            <L7p:XmlMsgSrc stringValue="bearerToken"/>
+            <L7p:XpathExpression xpathExpressionValue="included">
+                <L7p:Expression stringValue="/saml:Assertion/saml:AuthenticationStatement/saml:Subject/saml:NameIdentifier"/>
+                <L7p:Namespaces mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="saml"/>
+                        <L7p:value stringValue="urn:oasis:names:tc:SAML:1.0:assertion"/>
+                    </L7p:entry>
+                </L7p:Namespaces>
+                <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+            </L7p:XpathExpression>
+        </L7p:ResponseXpathAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtyZXNwb25zZVhwYXRoLnJlc3VsdH0="/>
+            <L7p:VariableToSet stringValue="owner"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

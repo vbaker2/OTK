@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK Generate TRL Response"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:DataType variableDataType="dateTime"/>
+            <L7p:DateOffsetExpression stringValue=""/>
+            <L7p:VariableToSet stringValue="now"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//Default jwt expiration in seconds"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue="MzYwMA=="/>
+            <L7p:VariableToSet stringValue="jwt_exp_sec"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:DataType variableDataType="dateTime"/>
+            <L7p:DateFormat stringValue="&lt;Second Timestamp>"/>
+            <L7p:DateOffsetExpression stringValue="${jwt_exp_sec}"/>
+            <L7p:VariableToSet stringValue="exp"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtleHAuc2Vjb25kc30="/>
+            <L7p:VariableToSet stringValue="at_jwt_exp"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="ew0KICAiaXNzIjogIiR7aXNzfSIsDQogICJpYXQiOiAke25vdy5zZWNvbmRzfSwNCiAgImV4cCI6ICR7ZXhwLnNlY29uZHN9LA0KICAicmV2X3Rva2VuX2lkcyI6ICR7cmVzcC5tYWlucGFydH0NCn0="/>
+            <L7p:VariableToSet stringValue="payload"/>
+        </L7p:SetVariable>
+        <L7p:EncodeJsonWebToken>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//Sign jwt"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:EncryptionSourceType intValue="2"/>
+            <L7p:HeaderAction stringValue="Merge to Generated Header"/>
+            <L7p:KeyAlias stringValue="ssl"/>
+            <L7p:KeyGoid goidValue="00000000000000000000000000000002"/>
+            <L7p:SignPayload booleanValue="true"/>
+            <L7p:SignatureAlgorithm stringValue="RS256"/>
+            <L7p:SignatureSourceType intValue="1"/>
+            <L7p:SourceHeaders stringValue="{&quot;kid&quot;:&quot;default_ssl_key&quot;}"/>
+            <L7p:SourceVariable stringValue="${payload}"/>
+            <L7p:TargetVariable stringValue="trl_jwt"/>
+        </L7p:EncodeJsonWebToken>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHt0cmxfand0LmNvbXBhY3R9"/>
+            <L7p:VariableToSet stringValue="trl_jwt"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

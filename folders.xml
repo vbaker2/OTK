@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><l7:Export xmlns:l7="http://ns.l7tech.com/2010/04/gateway-management">
+    <l7:Folders>
+      <l7:Folder id="0000000000000000ffffffffffffec76" version="0">
+        <l7:Name>Root Node</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="0000000000000000ffffffffffffec76" id="e001cfd0c1c1ffaa18e187b5e72fc718" version="0">
+        <l7:Name>OTK</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc718" id="161861da3a78c5dcdc62696d16914781" version="0">
+        <l7:Name>Customizations</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc718" id="e001cfd0c1c1ffaa18e187b5e72fc758" version="0">
+        <l7:Name>Server</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc718" id="e001cfd0c1c1ffaa18e187b5e72fc818" version="0">
+        <l7:Name>Policy Fragments</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="161861da3a78c5dcdc62696d169147d0" version="0">
+        <l7:Name>caching</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="179717febe0e5ae0526cd27fa90029b7" version="0">
+        <l7:Name>Configuration</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="24e6fd7c5b6fb3a96690246c8ac49170" version="0">
+        <l7:Name>Authorization Server</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="24e6fd7c5b6fb3a96690246c8ac4922c" version="0">
+        <l7:Name>oauth manager</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="75d97bfe87badb85dee9ea06efceffda" version="0">
+        <l7:Name>persistence</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="798f19000dd25ef4d6d8ff59a60eec6b" version="0">
+        <l7:Name>Tools</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="83fd2534ef7918b71010530c536a70ca" version="0">
+        <l7:Name>Discovery Endpoint</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="83fd2534ef7918b71010530c536a7114" version="0">
+        <l7:Name>JWKs Endpoint</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="bc9a31b7578652a08a514d7d4fef25f3" version="0">
+        <l7:Name>id_token</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="bc9a31b7578652a08a514d7d4fef309b" version="0">
+        <l7:Name>authentication</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="bc9a31b7578652a08a514d7d4fef346c" version="0">
+        <l7:Name>Token Server</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="e04ad90cfcec38e51fbe3ed9fe092aef" version="0">
+        <l7:Name>grant_types</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="161861da3a78c5dcdc62696d16914781" id="e04ad90cfcec38e51fbe3ed9fe093acd" version="0">
+        <l7:Name>cors</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc758" id="179717febe0e5ae0526cd27fa90013bb" version="0">
+        <l7:Name>Configuration</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc758" id="e001cfd0c1c1ffaa18e187b5e72fc798" version="0">
+        <l7:Name>Internal</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc758" id="e001cfd0c1c1ffaa18e187b5e72fd4a8" version="0">
+        <l7:Name>DMZ</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="161861da3a78c5dcdc62696d1691481a" version="0">
+        <l7:Name>caching</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="c4bc0de10c1b6cad6bdb4e564db836fa" version="0">
+        <l7:Name>maintenance</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="e001cfd0c1c1ffaa18e187b5e72fc858" version="0">
+        <l7:Name>configuration</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="e001cfd0c1c1ffaa18e187b5e72fc898" version="0">
+        <l7:Name>pof</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="e001cfd0c1c1ffaa18e187b5e72fc8d8" version="0">
+        <l7:Name>persistence</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="e001cfd0c1c1ffaa18e187b5e72fcf8e" version="0">
+        <l7:Name>manage</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="e001cfd0c1c1ffaa18e187b5e72fd08e" version="0">
+        <l7:Name>validation - verification</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="e001cfd0c1c1ffaa18e187b5e72fd628" version="0">
+        <l7:Name>response_types</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="e001cfd0c1c1ffaa18e187b5e72fd668" version="0">
+        <l7:Name>grant_types</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="e001cfd0c1c1ffaa18e187b5e72fd6e8" version="0">
+        <l7:Name>authentication</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc818" id="e14f301db8b58e742466dc49801add1f" version="0">
+        <l7:Name>manager</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="83fd2534ef7918b71010530c536a70ca" id="83fd2534ef7918b71010530c536a746f" version="0">
+        <l7:Name>OPTIONAL</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="83fd2534ef7918b71010530c536a70ca" id="83fd2534ef7918b71010530c536a7561" version="0">
+        <l7:Name>RECOMMENDED</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="83fd2534ef7918b71010530c536a70ca" id="83fd2534ef7918b71010530c536a75aa" version="0">
+        <l7:Name>REQUIRED</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="bc9a31b7578652a08a514d7d4fef309b" id="e5bae5339f26208b6f26dad4e83cc966" version="0">
+        <l7:Name>thirdParty</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc798" id="e001cfd0c1c1ffaa18e187b5e72fc7d8" version="0">
+        <l7:Name>SecureZone - Storage</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc798" id="e001cfd0c1c1ffaa18e187b5e72fcf4e" version="0">
+        <l7:Name>SecureZone - OVP</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc798" id="e001cfd0c1c1ffaa18e187b5e72fedd0" version="0">
+        <l7:Name>Tools</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc798" id="f2b26bfeaabb0821a8089e0054454132" version="0">
+        <l7:Name>Documentation</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fd4a8" id="e001cfd0c1c1ffaa18e187b5e72fd4e8" version="0">
+        <l7:Name>OAuth 2.0</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc858" id="620c4be582d79f371cd50591a082f0d0" version="0">
+        <l7:Name>JWKs Endpoint</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc858" id="83fd2534ef7918b71010530c536a71d6" version="0">
+        <l7:Name>Discovery Endpoint</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc858" id="e001cfd0c1c1ffaa18e187b5e72fe8c3" version="0">
+        <l7:Name>oauth manager</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc858" id="e7dbb9b46e8f153f8653b0b72105685c" version="0">
+        <l7:Name>Authorization Server</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc8d8" id="44456a7ffb5e659f10fac58b6798d467" version="0">
+        <l7:Name>par</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc8d8" id="cf2fff86949d540e60591e1f6a714b2a" version="0">
+        <l7:Name>maintenance</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc8d8" id="e001cfd0c1c1ffaa18e187b5e72fc918" version="0">
+        <l7:Name>client</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc8d8" id="e001cfd0c1c1ffaa18e187b5e72fcb8d" version="0">
+        <l7:Name>id_token</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc8d8" id="e001cfd0c1c1ffaa18e187b5e72fcbcd" version="0">
+        <l7:Name>token</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc8d8" id="e001cfd0c1c1ffaa18e187b5e72fd6a8" version="0">
+        <l7:Name>session</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc8d8" id="e1168ac712849b6ecf8330b1c84e7db9" version="0">
+        <l7:Name>trl</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fc8d8" id="f6b0867f9dd395f4d60fd72224830039" version="0">
+        <l7:Name>apiKey</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fcf8e" id="44456a7ffb5e659f10fac58b6798d3f8" version="0">
+        <l7:Name>par</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fcf8e" id="5144b40049f43558c0c65f8a32de55de" version="0">
+        <l7:Name>analyse</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fcf8e" id="e001cfd0c1c1ffaa18e187b5e72fcfce" version="0">
+        <l7:Name>token</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fcf8e" id="e001cfd0c1c1ffaa18e187b5e72fd00e" version="0">
+        <l7:Name>id_token</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fcf8e" id="e001cfd0c1c1ffaa18e187b5e72fd04e" version="0">
+        <l7:Name>client</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fcf8e" id="e001cfd0c1c1ffaa18e187b5e72fd5e8" version="0">
+        <l7:Name>session</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fcf8e" id="e1168ac712849b6ecf8330b1c84eea76" version="0">
+        <l7:Name>trl</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fcf8e" id="f6b0867f9dd395f4d60fd7222482f315" version="0">
+        <l7:Name>apiKey</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e14f301db8b58e742466dc49801add1f" id="e14f301db8b58e742466dc49801add87" version="0">
+        <l7:Name>manage</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e14f301db8b58e742466dc49801add1f" id="e14f301db8b58e742466dc49801addc9" version="0">
+        <l7:Name>persistence</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fedd0" id="e001cfd0c1c1ffaa18e187b5e72fe445" version="0">
+        <l7:Name>OAuth 2.0 Test Clients</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fedd0" id="e001cfd0c1c1ffaa18e187b5e72fe883" version="0">
+        <l7:Name>OAuth Manager</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fd4e8" id="69354892160d5ec1adefbad3f1d7e50b" version="0">
+        <l7:Name>Health</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fd4e8" id="af166f3fe1c8bff95a5fff928eace0ac" version="0">
+        <l7:Name>AuthorizationServer</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fd4e8" id="e001cfd0c1c1ffaa18e187b5e72fd568" version="0">
+        <l7:Name>ResourceServer</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fd4e8" id="e7dbb9b46e8f153f8653b0b7210568a0" version="0">
+        <l7:Name>TokenServer</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fd4e8" id="efc6a765ba66b41f4bb7b1fc58c526b3" version="0">
+        <l7:Name>documentation</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e14f301db8b58e742466dc49801add87" id="ace8cb8325144efc97fea34285da4b19" version="0">
+        <l7:Name>token</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e14f301db8b58e742466dc49801add87" id="e14f301db8b58e742466dc49801aedef" version="0">
+        <l7:Name>client</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e14f301db8b58e742466dc49801addc9" id="ace8cb8325144efc97fea34285da4b5d" version="0">
+        <l7:Name>token</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e14f301db8b58e742466dc49801addc9" id="e14f301db8b58e742466dc49801aee38" version="0">
+        <l7:Name>client</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fe445" id="e001cfd0c1c1ffaa18e187b5e72fe505" version="0">
+        <l7:Name>configuration</l7:Name>
+      </l7:Folder>
+      <l7:Folder folderId="e001cfd0c1c1ffaa18e187b5e72fd568" id="e001cfd0c1c1ffaa18e187b5e72fd5a8" version="0">
+        <l7:Name>demo</l7:Name>
+      </l7:Folder>
+    </l7:Folders>
+  </l7:Export>

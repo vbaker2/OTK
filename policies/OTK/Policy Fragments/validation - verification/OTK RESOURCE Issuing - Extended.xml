@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK RESOURCE Issuing - Extended"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Input: resource.permitted - permitted resources"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Input: resource.requested - requested resources"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Output: resource.granted - granted resources"/>
+        </L7p:CommentAssertion>
+        <L7p:Include>
+            <L7p:PolicyGuid stringValue="23f92900-d19d-4929-a8f1-e152f7fd71ea"/>
+            <L7p:PolicyName stringValue="#OTK RESOURCE Issuing"/>
+        </L7p:Include>
+    </wsp:All>
+</wsp:Policy>

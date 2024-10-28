@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Validate Redirect URI"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === ***  THIS POLICY IS READ ONLY ***"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === If you have the need to customize this policy"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === please contact CA APIM Support so we can improve customization capability"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy can be found and should be used as 'Encapsulated Assertion'!"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${redirect_uris}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${redirect_uris}"/>
+                <L7p:Expression2 stringValue="oob"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:RightValue stringValue="oob"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:Regex>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// remove unnecessary spaces"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="redirect_uris"/>
+                    <L7p:Regex stringValue=",\s*"/>
+                    <L7p:Replace booleanValue="true"/>
+                    <L7p:Replacement stringValue=","/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:Split>
+                    <L7p:IgnoreEmptyValues booleanValue="true"/>
+                    <L7p:InputVariable stringValue="redirect_uris"/>
+                    <L7p:OutputVariable stringValue="redirect_uris"/>
+                </L7p:Split>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${oauth2_profile.fapi_baseline}"/>
+                        <L7p:Expression2 stringValue="false"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:RightValue stringValue="false"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ForEachLoop L7p:Usage="Required"
+                        loopVariable="redirect_uris" variablePrefix="uri">
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${uri.current}"/>
+                            <L7p:Expression2 stringValue="#"/>
+                            <L7p:Negate booleanValue="true"/>
+                            <L7p:Operator operator="CONTAINS"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="#"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:Regex>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// only https scheme accepted"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:AutoTarget booleanValue="false"/>
+                            <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                            <L7p:OtherTargetMessageVariable stringValue="uri.current"/>
+                            <L7p:Regex stringValue="^https://.*"/>
+                            <L7p:Replacement stringValue=""/>
+                            <L7p:Target target="OTHER"/>
+                        </L7p:Regex>
+                    </L7p:ForEachLoop>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//allow https only when fapi baseline is enabled"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <L7p:ForEachLoop L7p:Usage="Required"
+                    loopVariable="redirect_uris" variablePrefix="uri">
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${allow_port_agnostic_redirect_uris}"/>
+                            <L7p:Expression2 stringValue="true"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="true"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:Regex>
+                            <L7p:AutoTarget booleanValue="false"/>
+                            <L7p:OtherTargetMessageVariable stringValue="uri.current"/>
+                            <L7p:ProceedIfPatternMatches booleanValue="false"/>
+                            <L7p:Regex stringValue="^(http://(localhost|127[.]0[.]0[.]1|[\[]::1[\]])):\*"/>
+                            <L7p:Replacement stringValue=""/>
+                            <L7p:Target target="OTHER"/>
+                        </L7p:Regex>
+                    </wsp:OneOrMore>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//restrict wildcard port in loopback url if CWP otk.allow_port_agnostic_redirect_uris is not enabled"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </L7p:ForEachLoop>
+            </wsp:All>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

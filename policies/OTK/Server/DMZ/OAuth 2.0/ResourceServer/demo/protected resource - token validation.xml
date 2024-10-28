@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: protected resource - token validation"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:Expression stringValue="$.active"/>
+                    <L7p:OtherTargetMessageVariable stringValue="introspectResponse"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="activePath"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${activePath.result}"/>
+                    <L7p:Expression2 stringValue="true"/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="true"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+            </wsp:All>
+            <L7p:Encapsulated>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// error code produced in previous assertion"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="56bd8147-3ab4-4d09-9460-8b2de02b7a9e"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="OTK Fail with error message"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="apiPrefix"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="custom"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="givenErrorCode"/>
+                        <L7p:value stringValue="990"/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Active or not?"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:Expression stringValue="$.aud"/>
+                    <L7p:OtherTargetMessageVariable stringValue="introspectResponse"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="audPath"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:CustomAssertion>
+                    <L7p:base64SerializedValue>rO0ABXNyADFjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uQ3VzdG9tQXNzZXJ0aW9uSG9sZGVyZtcreFwddTICAAlaAAxpc1VpQXV0b09wZW5MAApjYXRlZ29yaWVzdAAPTGphdmEvdXRpbC9TZXQ7TAAIY2F0ZWdvcnl0ACpMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DYXRlZ29yeTtMAA9jdXN0b21Bc3NlcnRpb250ADFMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DdXN0b21Bc3NlcnRpb247TAAUY3VzdG9tTW9kdWxlRmlsZU5hbWV0ABJMamF2YS9sYW5nL1N0cmluZztMAA9kZXNjcmlwdGlvblRleHRxAH4ABEwAD3BhbGV0dGVOb2RlTmFtZXEAfgAETAAOcG9saWN5Tm9kZU5hbWVxAH4ABEwAHnJlZ2lzdGVyZWRDdXN0b21GZWF0dXJlU2V0TmFtZXEAfgAEeHIAJWNvbS5sN3RlY2gucG9saWN5LmFzc2VydGlvbi5Bc3NlcnRpb27bX2OZPL2isQIAAloAB2VuYWJsZWRMABBhc3NlcnRpb25Db21tZW50dAAvTGNvbS9sN3RlY2gvcG9saWN5L2Fzc2VydGlvbi9Bc3NlcnRpb24kQ29tbWVudDt4cAFwAXNyABFqYXZhLnV0aWwuSGFzaFNldLpEhZWWuLc0AwAAeHB3DAAAAAI/QAAAAAAAAXNyAChjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uZXh0LkNhdGVnb3J5WrCcZaFE/jUCAAJJAAVteUtleUwABm15TmFtZXEAfgAEeHAAAAALdAAQQ3VzdG9tQXNzZXJ0aW9uc3hwc3IAOGNvbS5sN3RlY2guY3VzdG9tLmF1dGgycmVzLlJlc291cmNlVmVyaWZpY2F0aW9uQXNzZXJ0aW9uCZy1lkGJbjcCAANMABNhbnlSZXNvdXJjZVJlcXVpcmVkcQB+AARMAA9yZXNvdXJjZUdyYW50ZWRxAH4ABEwAEHJlc291cmNlUmVxdWlyZWRxAH4ABHhwdAAAdAASJHthdWRQYXRoLnJlc3VsdHN9dAAVJHtyZXNvdXJjZV9pbmRpY2F0b3J9dAA0ZWYyYTMyZGY1OGVkZTQ1ZDI0MmM5ZmM5MzQwNmI3YmY1YTIyMWQyNmM1MzhkMDlhLmphcnQAdVZhbGlkYXRlcyB0aGUgZ3JhbnRlZCBSRVNPVVJDRSBhZ2FpbnN0IHRoZSByZXF1aXJlZCBSRVNPVVJDRSBjb25maWd1cmVkIGluIHRoZSBhc3NlcnRpb24uIEl0IHdpbGwgZmFpbCBpZiBub25lIG1hdGNoLnQAGU9USyBSRVNPVVJDRSBWZXJpZmljYXRpb250ABlPVEsgUkVTT1VSQ0UgVmVyaWZpY2F0aW9ucA==</L7p:base64SerializedValue>
+                </L7p:CustomAssertion>
+            </wsp:All>
+            <L7p:Encapsulated>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// error code produced in previous assertion"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="56bd8147-3ab4-4d09-9460-8b2de02b7a9e"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="OTK Fail with error message"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="apiPrefix"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="custom"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="givenErrorCode"/>
+                        <L7p:value stringValue="990"/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Audience"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:TrueAssertion/>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Others"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

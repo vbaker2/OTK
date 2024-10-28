@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK Token Revocation List"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy provides option to add any logic to determine whether the token to be revoked should be added to token revocation list or not"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="For an example, Get the token details using token parameter and override token_revocation_list_enabled based on the token scope"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Input: token - token to be revoked"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtnYXRld2F5Lm90ay50b2tlbl9yZXZvY2F0aW9uX2xpc3QuZW5hYmxlZH0="/>
+            <L7p:VariableToSet stringValue="token_revocation_list_enabled"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

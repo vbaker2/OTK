@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Apply Ratelimit Extension"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=== The below Map Value Assertion contains OTK uris &amp; configuration with default values ==="/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=== 1. Request per second for each uri  ==="/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=== 2. Key to configure custom limit for each uri  ==="/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=== Set custom values for Rate limits by modifying the Map Value Assertion  ==="/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${gateway.otk.enforce_ratelimit}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="NE"/>
+                        <L7p:RightValue stringValue="true"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="2e6e2ef3-a36f-4548-a2c4-7b369b7ae184"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK Variable Configuration"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="custom"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:MapValue>
+                    <L7p:InputExpr stringValue="${request.url.path}"/>
+                    <L7p:Mappings nameValuePairArray="included">
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="oauth/manager/clients"/>
+                            <L7p:Value stringValue="10"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="oauth/manager/tokens"/>
+                            <L7p:Value stringValue="10"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="oauth/manager"/>
+                            <L7p:Value stringValue="10"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_token_revocation_list_path}"/>
+                            <L7p:Value stringValue="10"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_token_path}"/>
+                            <L7p:Value stringValue="100"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="auth/oauth/v2/client/export"/>
+                            <L7p:Value stringValue="10"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${userinfo_path}"/>
+                            <L7p:Value stringValue="10"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_device_authorization_path}"/>
+                            <L7p:Value stringValue="10"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_device_verification_path}"/>
+                            <L7p:Value stringValue="10"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_health_check_path}"/>
+                            <L7p:Value stringValue="1"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_backchannel_authentication_path}"/>
+                            <L7p:Value stringValue="10"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_par_authorization_path}"/>
+                            <L7p:Value stringValue="100"/>
+                        </L7p:item>
+                    </L7p:Mappings>
+                    <L7p:OutputVar stringValue="requests_per_second"/>
+                </L7p:MapValue>
+                <L7p:MapValue>
+                    <L7p:InputExpr stringValue="${request.url.path}"/>
+                    <L7p:Mappings nameValuePairArray="included">
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="oauth/manager/clients"/>
+                            <L7p:Value stringValue="oauth/manager/clients-${current.username}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="oauth/manager/tokens"/>
+                            <L7p:Value stringValue="oauth/manager/tokens-${current.username}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="oauth/manager"/>
+                            <L7p:Value stringValue="oauth/manager-${current.username}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_token_revocation_list_path}"/>
+                            <L7p:Value stringValue="${oauth2_token_revocation_list_path}-${access_token}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_token_path}"/>
+                            <L7p:Value stringValue="${oauth2_token_path}-${client_id}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="auth/oauth/v2/client/export"/>
+                            <L7p:Value stringValue="auth/oauth/v2/client/export-${current.username}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${userinfo_path}"/>
+                            <L7p:Value stringValue="${userinfo_path}-${access_token}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_device_authorization_path}"/>
+                            <L7p:Value stringValue="${oauth2_device_authorization_path}-${client_id}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_device_verification_path}"/>
+                            <L7p:Value stringValue="${oauth2_device_verification_path}-${current.username}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_health_check_path}"/>
+                            <L7p:Value stringValue="${request.http.parameter.apikey}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_backchannel_authentication_path}"/>
+                            <L7p:Value stringValue="${oauth2_backchannel_authentication_path}-${client_id}"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="${oauth2_par_authorization_path}"/>
+                            <L7p:Value stringValue="${oauth2_par_authorization_path}-${client_id}"/>
+                        </L7p:item>
+                    </L7p:Mappings>
+                    <L7p:OutputVar stringValue="custom_limit_key"/>
+                </L7p:MapValue>
+                <L7p:RateLimit>
+                    <L7p:CounterName stringValue="${custom_limit_key}"/>
+                    <L7p:MaxRequestsPerSecond stringValue="${requests_per_second}"/>
+                </L7p:RateLimit>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:Encapsulated>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="111"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="56bd8147-3ab4-4d09-9460-8b2de02b7a9e"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK Fail with error message"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="apiPrefix"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="givenErrorCode"/>
+                            <L7p:value stringValue="111"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:SetVariable>
+                        <L7p:AssertionComment assertionComment="included">
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="== OVERRIDE"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// This is here in case the gateway has both MAG and OTK installed, because MAG also has error code 111 and that results in different error.msg"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:AssertionComment>
+                        <L7p:Base64Expression stringValue="ew0KICAiZXJyb3IiOiJpbnZhbGlkX3JlcXVlc3QiLA0KICAiZXJyb3JfZGVzY3JpcHRpb24iOiJUaGUgc2VydmljZSBpcyB0ZW1wb3JhcmlseSBub3QgYXZhaWxhYmxlIg0KfQ=="/>
+                        <L7p:VariableToSet stringValue="error.msg"/>
+                    </L7p:SetVariable>
+                    <L7p:FalseAssertion/>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

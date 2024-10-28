@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Decode CIBA Request Object"/>
+        </L7p:CommentAssertion>
+        <L7p:Include>
+            <L7p:PolicyGuid stringValue="e1bb8d4a-8f5c-4563-ba36-c949324809de"/>
+            <L7p:PolicyName stringValue="#OTK Decode CIBA Request Object"/>
+        </L7p:Include>
+        <L7p:CustomAssertion>
+            <L7p:base64SerializedValue>rO0ABXNyADFjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uQ3VzdG9tQXNzZXJ0aW9uSG9sZGVyZtcreFwddTICAAlaAAxpc1VpQXV0b09wZW5MAApjYXRlZ29yaWVzdAAPTGphdmEvdXRpbC9TZXQ7TAAIY2F0ZWdvcnl0ACpMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DYXRlZ29yeTtMAA9jdXN0b21Bc3NlcnRpb250ADFMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DdXN0b21Bc3NlcnRpb247TAAUY3VzdG9tTW9kdWxlRmlsZU5hbWV0ABJMamF2YS9sYW5nL1N0cmluZztMAA9kZXNjcmlwdGlvblRleHRxAH4ABEwAD3BhbGV0dGVOb2RlTmFtZXEAfgAETAAOcG9saWN5Tm9kZU5hbWVxAH4ABEwAHnJlZ2lzdGVyZWRDdXN0b21GZWF0dXJlU2V0TmFtZXEAfgAEeHIAJWNvbS5sN3RlY2gucG9saWN5LmFzc2VydGlvbi5Bc3NlcnRpb27bX2OZPL2isQIAAloAB2VuYWJsZWRMABBhc3NlcnRpb25Db21tZW50dAAvTGNvbS9sN3RlY2gvcG9saWN5L2Fzc2VydGlvbi9Bc3NlcnRpb24kQ29tbWVudDt4cAFwAXNyABFqYXZhLnV0aWwuSGFzaFNldLpEhZWWuLc0AwAAeHB3DAAAAAI/QAAAAAAAAXNyAChjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uZXh0LkNhdGVnb3J5WrCcZaFE/jUCAAJJAAVteUtleUwABm15TmFtZXEAfgAEeHAAAAALdAAQQ3VzdG9tQXNzZXJ0aW9uc3hwc3IAMmNvbS5sN3RlY2guY3VzdG9tLmp3dC5kZWNvZGVqd3QuRGVjb2RlSldUQXNzZXJ0aW9uxl6qBXO//LkCAAVaAAlleHBvcnRBbGxaABJ2YWxpZGF0ZUV4cGlyYXRpb25MAAxleHBvcnRDbGFpbXNxAH4ABEwAB3BheWxvYWRxAH4ABEwADnJlcXVpcmVkQ2xhaW1zcQB+AAR4cAAAdABzYXVkLGlzcyxleHAsaWF0LG5iZixqdGksc2NvcGUsbG9naW5faGludCxsb2dpbl9oaW50X3Rva2VuLGlkX3Rva2VuX2hpbnQsYWNyX3ZhbHVlcyxiaW5kaW5nX21lc3NhZ2UscmVxdWVzdGVkX2V4cGlyeXQAGyR7YXV0aG9yaXplUmVxdWVzdC5wYXlsb2FkfXQAAHQANGVmMmEzMmRmNThlZGU0NWQyNDJjOWZjOTM0MDZiN2JmMTk5ZGY0MGZlMDBiYWJlZi5qYXJ0ADBEZWNvZGVzIGEgSldUIFBheWxvYWQgcGFzc2VkIGluIGFzIEpTT04gbWVzc2FnZS50ABJEZWNvZGUgSldUIFBheWxvYWR0ABJEZWNvZGUgSldUIFBheWxvYWRw</L7p:base64SerializedValue>
+        </L7p:CustomAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${exp}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="NDEx"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//exp claim is required"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${jti}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MzU5"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//jti claim is required"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${aud}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MzYw"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//aud claim is required"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${iss}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MzYx"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//iss claim is required"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${iat}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MzYy"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//iat claim is required"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${nbf}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="NDE0"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// nbf claim is required"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${scope}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTgx"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//scope is not empty"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtleHB9"/>
+            <L7p:DataType variableDataType="dateTime"/>
+            <L7p:DateOffsetExpression stringValue=""/>
+            <L7p:VariableToSet stringValue="exp_formatted"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtuYmZ9"/>
+            <L7p:DataType variableDataType="dateTime"/>
+            <L7p:DateOffsetExpression stringValue=""/>
+            <L7p:VariableToSet stringValue="nbf_formatted"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:DataType variableDataType="dateTime"/>
+            <L7p:DateOffsetExpression stringValue="-3600"/>
+            <L7p:VariableToSet stringValue="one_hour_before"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtuYmZ9"/>
+            <L7p:DataType variableDataType="dateTime"/>
+            <L7p:DateOffsetExpression stringValue="3600"/>
+            <L7p:VariableToSet stringValue="one_hour_after_nbf"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:DataType variableDataType="dateTime"/>
+            <L7p:DateOffsetExpression stringValue=""/>
+            <L7p:VariableToSet stringValue="now"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${exp_formatted.seconds}"/>
+                <L7p:Expression2 stringValue="${now.seconds}"/>
+                <L7p:Operator operator="GT"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="GT"/>
+                        <L7p:RightValue stringValue="${now.seconds}"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="NDEy"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//exp check"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${nbf_formatted.seconds}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="dateTime"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="LE"/>
+                        <L7p:RightValue stringValue="${now.seconds}"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="NDE1"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//nbf should be less than or equal to current time"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${oauth2_profile.fapi_advanced}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${exp_formatted.seconds}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="dateTime"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:Operator operator="LE"/>
+                                <L7p:RightValue stringValue="${one_hour_after_nbf.seconds}"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="NDEz"/>
+                            <L7p:VariableToSet stringValue="error.code"/>
+                        </L7p:SetVariable>
+                        <L7p:FalseAssertion/>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//exp check"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${nbf_formatted.seconds}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="dateTime"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:Operator operator="GE"/>
+                                <L7p:RightValue stringValue="${one_hour_before.seconds}"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="MTg3"/>
+                            <L7p:VariableToSet stringValue="error.code"/>
+                        </L7p:SetVariable>
+                        <L7p:FalseAssertion/>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//nbf over 60 min in the past"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//fapi advanced checks"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${iss}"/>
+                <L7p:Expression2 stringValue="${client_id}"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:RightValue stringValue="${client_id}"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MzYz"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//client_id should match with iss claim"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:Regex>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// replace &quot;,&quot;  with space"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:AutoTarget booleanValue="false"/>
+            <L7p:OtherTargetMessageVariable stringValue="aud"/>
+            <L7p:Regex stringValue="&quot;,&quot;"/>
+            <L7p:Replace booleanValue="true"/>
+            <L7p:Replacement stringValue=" "/>
+            <L7p:Target target="OTHER"/>
+        </L7p:Regex>
+        <L7p:Regex>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// replace &quot; ] [ with empty"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:AutoTarget booleanValue="false"/>
+            <L7p:OtherTargetMessageVariable stringValue="aud"/>
+            <L7p:Regex stringValue="[&quot;|\[|\]|]"/>
+            <L7p:Replace booleanValue="true"/>
+            <L7p:Replacement stringValue=""/>
+            <L7p:Target target="OTHER"/>
+        </L7p:Regex>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:CustomAssertion>
+                <L7p:base64SerializedValue>rO0ABXNyADFjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uQ3VzdG9tQXNzZXJ0aW9uSG9sZGVyZtcreFwddTICAAlaAAxpc1VpQXV0b09wZW5MAApjYXRlZ29yaWVzdAAPTGphdmEvdXRpbC9TZXQ7TAAIY2F0ZWdvcnl0ACpMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DYXRlZ29yeTtMAA9jdXN0b21Bc3NlcnRpb250ADFMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DdXN0b21Bc3NlcnRpb247TAAUY3VzdG9tTW9kdWxlRmlsZU5hbWV0ABJMamF2YS9sYW5nL1N0cmluZztMAA9kZXNjcmlwdGlvblRleHRxAH4ABEwAD3BhbGV0dGVOb2RlTmFtZXEAfgAETAAOcG9saWN5Tm9kZU5hbWVxAH4ABEwAHnJlZ2lzdGVyZWRDdXN0b21GZWF0dXJlU2V0TmFtZXEAfgAEeHIAJWNvbS5sN3RlY2gucG9saWN5LmFzc2VydGlvbi5Bc3NlcnRpb27bX2OZPL2isQIAAloAB2VuYWJsZWRMABBhc3NlcnRpb25Db21tZW50dAAvTGNvbS9sN3RlY2gvcG9saWN5L2Fzc2VydGlvbi9Bc3NlcnRpb24kQ29tbWVudDt4cAFzcgAtY29tLmw3dGVjaC5wb2xpY3kuYXNzZXJ0aW9uLkFzc2VydGlvbiRDb21tZW50wRemdwvAdqYCAAFMAApwcm9wZXJ0aWVzdAAPTGphdmEvdXRpbC9NYXA7eHBzcgARamF2YS51dGlsLkhhc2hNYXAFB9rBwxZg0QMAAkYACmxvYWRGYWN0b3JJAAl0aHJlc2hvbGR4cD9AAAAAAAAMdwgAAAAQAAAAAXQADVJJR0hULkNPTU1FTlR0ADYvLyBBdWRpZW5jZSBzaG91bGQgY29udGFpbiBpc3MgYXMgb25lIG9mIHRoZSByZXNvdXJjZXN4AXNyABFqYXZhLnV0aWwuSGFzaFNldLpEhZWWuLc0AwAAeHB3DAAAAAI/QAAAAAAAAXNyAChjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uZXh0LkNhdGVnb3J5WrCcZaFE/jUCAAJJAAVteUtleUwABm15TmFtZXEAfgAEeHAAAAALdAAQQ3VzdG9tQXNzZXJ0aW9uc3hwc3IAOGNvbS5sN3RlY2guY3VzdG9tLmF1dGgycmVzLlJlc291cmNlVmVyaWZpY2F0aW9uQXNzZXJ0aW9uCZy1lkGJbjcCAANMABNhbnlSZXNvdXJjZVJlcXVpcmVkcQB+AARMAA9yZXNvdXJjZUdyYW50ZWRxAH4ABEwAEHJlc291cmNlUmVxdWlyZWRxAH4ABHhwdAAAdAAGJHthdWR9dAATJHtvYXV0aF9zZXJ2ZXJfdXJsfXQANGVmMmEzMmRmNThlZGU0NWQyNDJjOWZjOTM0MDZiN2JmOWM5N2IxNmNjNGFhY2NmNC5qYXJ0AHVWYWxpZGF0ZXMgdGhlIGdyYW50ZWQgUkVTT1VSQ0UgYWdhaW5zdCB0aGUgcmVxdWlyZWQgUkVTT1VSQ0UgY29uZmlndXJlZCBpbiB0aGUgYXNzZXJ0aW9uLiBJdCB3aWxsIGZhaWwgaWYgbm9uZSBtYXRjaC50ABlPVEsgUkVTT1VSQ0UgVmVyaWZpY2F0aW9udAAZT1RLIFJFU09VUkNFIFZlcmlmaWNhdGlvbnA=</L7p:base64SerializedValue>
+            </L7p:CustomAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTg1"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// Audience should contain iss as one of the resources"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK DCR Read Locale Fields"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Add logic to extract if locale-specific values have been provided in the request"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="An example has been provided below. The values set below should be used in #OTK DCR Response Compose Locale Fields "/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Any error generated here is not being handled."/>
+        </L7p:CommentAssertion>
+        <L7p:EvaluateJsonPathExpression>
+            <L7p:Enabled booleanValue="false"/>
+            <L7p:Expression stringValue="client_name#ja-Jpan-JP"/>
+            <L7p:OtherTargetMessageVariable stringValue="client_request"/>
+            <L7p:Target target="OTHER"/>
+            <L7p:VariablePrefix stringValue="client_name_locale"/>
+        </L7p:EvaluateJsonPathExpression>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtjbGllbnRfbmFtZV9sb2NhbGUucmVzdWx0fQ=="/>
+            <L7p:Enabled booleanValue="false"/>
+            <L7p:VariableToSet stringValue="client_name_locale"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Generate JWT OAuth Token"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === ***  THIS POLICY IS READ ONLY ***"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === If you have the need to customize this policy"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === please add your implementation in #OTK Generate JWT OAuth Token"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// initialize"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="error.code"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// initialize"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="at_jwt"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// initialize"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="at_jwt_exp"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtjdXN0b219"/>
+            <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+            <L7p:DataType variableDataType="message"/>
+            <L7p:VariableToSet stringValue="custom_data"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:Encapsulated>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// get the KID and the KID header"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="fa365e52-dc76-467a-8a31-c921ed54fffb"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK id_token KID Configuration"/>
+                </L7p:Encapsulated>
+                <L7p:Encapsulated>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// Use to get 'iss'"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="21b101c5-5701-4ca2-9206-237f8b37bfe8"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK id_token configuration"/>
+                </L7p:Encapsulated>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${access_token_enable_jwt}"/>
+                        <L7p:Expression2 stringValue="false"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="false"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:Include>
+                        <L7p:PolicyGuid stringValue="fe475474-1138-4e2f-895b-885cc49748f4"/>
+                        <L7p:PolicyName stringValue="#OTK Generate JWT OAuth Token"/>
+                    </L7p:Include>
+                </wsp:OneOrMore>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="generate"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="The JWT based access_token can not be created!"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTIy"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

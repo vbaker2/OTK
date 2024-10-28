@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: Portal API Key Record Cache Upsert"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: API Key Record Insert Update"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="-------------------------------------------------------------------------------------"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="INPUT:  ${idlist} = ${apiKey}#${apiId}#${apiPlan},${apiKey-1}#${apiId-1}#${apiPlan-1}, ... "/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="OUTPUT:  ${error.code}"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="-------------------------------------------------------------------------------------"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="error.code"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${idlist}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="Idlist is empty"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTAz"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// validate input"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:Split>
+                    <L7p:InputVariable stringValue="idlist"/>
+                    <L7p:OutputVariable stringValue="keyIdPair"/>
+                </L7p:Split>
+                <L7p:ForEachLoop L7p:Usage="Required"
+                    loopVariable="keyIdPair" variablePrefix="keyId">
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtrZXlJZC5jdXJyZW50fQ=="/>
+                        <L7p:VariableToSet stringValue="apiKey_apiId_planId"/>
+                    </L7p:SetVariable>
+                    <L7p:Split>
+                        <L7p:InputVariable stringValue="apiKey_apiId_planId"/>
+                        <L7p:OutputVariable stringValue="targetIds"/>
+                        <L7p:SplitPattern stringValue="#"/>
+                    </L7p:Split>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHt0YXJnZXRJZHNbMF19IyR7dGFyZ2V0SWRzWzFdfQ=="/>
+                        <L7p:VariableToSet stringValue="cacheKey"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHt0YXJnZXRJZHNbMl19"/>
+                        <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                        <L7p:DataType variableDataType="message"/>
+                        <L7p:VariableToSet stringValue="planIdMsg"/>
+                    </L7p:SetVariable>
+                    <L7p:Encapsulated>
+                        <L7p:AssertionComment assertionComment="included">
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// Write cache of apiKey record"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:AssertionComment>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="e5ee8bcf-1796-4297-88dd-c838031a6f6a"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK Cache Store"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="cacheID"/>
+                                <L7p:value stringValue="${gateway.cluster.apiplan.cacheid}"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="cacheKey"/>
+                                <L7p:value stringValue="${cacheKey}"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="maxEntries"/>
+                                <L7p:value stringValue="10000"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="maxEntryAge"/>
+                                <L7p:value stringValue="${gateway.cluster.apiplan.cache.age}"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="maxEntrySize"/>
+                                <L7p:value stringValue="1000"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="msg"/>
+                                <L7p:value stringValue="planIdMsg"/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                </L7p:ForEachLoop>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// upsert one or more ${apiKey}#${apiId}"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${error.code}"/>
+                            <L7p:Expression2 stringValue=""/>
+                            <L7p:Negate booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="Cache Error: ${error.msg}."/>
+                        </L7p:AuditDetailAssertion>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="Invalid idlist content, neither not bulk nor with # sign as separator."/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="MTAz"/>
+                            <L7p:VariableToSet stringValue="error.code"/>
+                        </L7p:SetVariable>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// If no error code and error msg set by cache assertion, set error code as 103"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

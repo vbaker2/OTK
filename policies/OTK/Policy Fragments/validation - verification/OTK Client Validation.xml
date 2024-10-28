@@ -1,0 +1,1850 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === ***  THIS POLICY IS READ ONLY ***"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === If you have the need to customize this policy"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === please contact CA APIM Support so we can improve customization capability"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy can be found and should be used as 'Encapsulated Assertion'!"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="IMPORTANT:"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This fragment expects the result of the clientstore that was generated using the operation 'getAll'!"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtjbGllbnRfaW5mby5tYWlucGFydH0="/>
+            <L7p:ContentType stringValue="text/xml;charset=UTF-8"/>
+            <L7p:DataType variableDataType="message"/>
+            <L7p:VariableToSet stringValue="client_info"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="dGV4dC94bWw7Y2hhcnNldD11dGYtOA=="/>
+            <L7p:VariableToSet stringValue="content-type"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="NDAw"/>
+            <L7p:VariableToSet stringValue="status"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="initialize"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="will be overwritten in the case of an error"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="error.code"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="ZmFsc2U="/>
+            <L7p:VariableToSet stringValue="certificateValidated"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ResponseXpathAssertion>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// select the client type. If 'confidential' a client secret MUST be provided"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:VariablePrefix stringValue="xpathClientType"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:clients/ns:values/ns:value/ns:type/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// select the client secret. For 'public' clients the secret has to be looked up"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:VariablePrefix stringValue="xpathClientSecret"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:secret/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// select client_key_custom"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:VariablePrefix stringValue="xpathClientAuthMethod"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:client_key_custom/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHt4cGF0aENsaWVudFR5cGUucmVzdWx0fQ=="/>
+                    <L7p:VariableToSet stringValue="registered_client_type"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHt4cGF0aENsaWVudFNlY3JldC5yZXN1bHR9"/>
+                    <L7p:VariableToSet stringValue="registered_client_secret"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHt4cGF0aENsaWVudEF1dGhNZXRob2QucmVzdWx0fQ=="/>
+                    <L7p:VariableToSet stringValue="registered_client_key_custom"/>
+                </L7p:SetVariable>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:SetVariable>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// create json to extract values"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:Base64Expression stringValue="JHtyZWdpc3RlcmVkX2NsaWVudF9rZXlfY3VzdG9tfQ=="/>
+                            <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                            <L7p:DataType variableDataType="message"/>
+                            <L7p:VariableToSet stringValue="client_key_custom_json"/>
+                        </L7p:SetVariable>
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="openid_registration.response.token_endpoint_auth_method"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_key_custom_json"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="auth_method"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHthdXRoX21ldGhvZC5yZXN1bHR9"/>
+                            <L7p:VariableToSet stringValue="token_endpoint_auth_method"/>
+                        </L7p:SetVariable>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// given"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:All>
+                    <L7p:SetVariable>
+                        <L7p:AssertionComment assertionComment="included">
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// default"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:AssertionComment>
+                        <L7p:Base64Expression stringValue=""/>
+                        <L7p:VariableToSet stringValue="token_endpoint_auth_method"/>
+                    </L7p:SetVariable>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// extract auth_method if given"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="success"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="error: invalid_request, error_description: invalid client_id or invalid registration: client_id: '${client_id}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MjAx"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// unknown client_id or incomplete registration"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Look up"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// Look up type and secret"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathClientKey"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:client_key/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="Verify the client is not using a master key."/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:VariablePrefix stringValue="xpathMasterKeyFlag"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:masterkey_flag"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${xpathMasterKeyFlag.result}"/>
+                    <L7p:Expression2 stringValue="0"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="0"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="success"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="error: invalid_request, error_description: invalid client_key, given key: '${xpathClientKey.result}', secret: '${client_secret}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MjAx"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="check client_key"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="It cannot be a master-key"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="355ca731-f92a-4d64-b41a-8533eedfa651"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Profile Configuration"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="client_id"/>
+                    <L7p:value stringValue="${client_id}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="client_key_custom"/>
+                    <L7p:value stringValue="${registered_client_key_custom}"/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${oauth2_profile.fapi_baseline}"/>
+                <L7p:Expression2 stringValue="false"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${registered_client_type}"/>
+                <L7p:Expression2 stringValue="confidential"/>
+                <L7p:Operator operator="NE"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="NE"/>
+                        <L7p:RightValue stringValue="confidential"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${client_cert_base64}"/>
+                <L7p:Expression2 stringValue="true"/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue="true"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${client_assertion}"/>
+                <L7p:Expression2 stringValue="true"/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue="true"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="error: invalid_request, error_description: invalid registration: client_id: '${client_id}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MjAx"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="ERROR"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// specific authentication methods required for fapi"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="65c052ce-ddd4-4b30-9608-8566fadcd6d3"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK Validate mTLS"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="registered_custom"/>
+                            <L7p:value stringValue="${registered_client_key_custom}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="token_endpoint_auth_method"/>
+                            <L7p:value stringValue="${token_endpoint_auth_method}"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="success"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="error: invalid_request, error_description: invalid client_certificate or invalid registration: client_id: '${client_id}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MjAx"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="MTLS"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${client_secret}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${registered_client_type}"/>
+                            <L7p:Expression2 stringValue="public"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="public"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <wsp:OneOrMore wsp:Usage="Required">
+                            <wsp:All wsp:Usage="Required">
+                                <L7p:EncodeDecode>
+                                    <L7p:CharacterEncoding stringValueNull="null"/>
+                                    <L7p:SourceVariableName stringValue="client_cert_base64"/>
+                                    <L7p:TargetDataType variableDataType="cert"/>
+                                    <L7p:TargetVariableName stringValue="client_cert"/>
+                                    <L7p:TransformType transformType="BASE64_DECODE"/>
+                                </L7p:EncodeDecode>
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="JHtjbGllbnRfY2VydC50aHVtYnByaW50U0hBMjU2fQ=="/>
+                                    <L7p:VariableToSet stringValue="mTLS_certificate_thumbprint"/>
+                                </L7p:SetVariable>
+                            </wsp:All>
+                            <L7p:TrueAssertion/>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="//extract thumbprint if available for public clients"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:OneOrMore>
+                    </wsp:All>
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${client_assertion_type}"/>
+                        <L7p:Expression2 stringValue="urn:ietf:params:oauth:client-assertion-type:jwt-bearer"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="urn:ietf:params:oauth:client-assertion-type:jwt-bearer"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                </wsp:OneOrMore>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// ignore the logic for mtls requests"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression1 stringValue="${certificateValidated}"/>
+                    <L7p:Expression2 stringValue="true"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="true"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${device_authorization_grant_flow}"/>
+                        <L7p:Expression2 stringValue="true"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="true"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${registered_client_type}"/>
+                        <L7p:Expression2 stringValue="public"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="public"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${client_secret}"/>
+                        <L7p:Expression2 stringValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue="true"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:TrueAssertion/>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//Skip validation for public clients in DAG flow."/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="ZmFsc2U="/>
+                            <L7p:VariableToSet stringValue="clientSecretHashed"/>
+                        </L7p:SetVariable>
+                        <L7p:ResponseXpathAssertion>
+                            <L7p:VariablePrefix stringValue="xpathHashingMetadata"/>
+                            <L7p:XmlMsgSrc stringValue="client_info"/>
+                            <L7p:XpathExpression xpathExpressionValue="included">
+                                <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:hashing_metadata"/>
+                                <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="ns"/>
+                                    <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                </L7p:Namespaces>
+                                <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                            </L7p:XpathExpression>
+                        </L7p:ResponseXpathAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHt4cGF0aEhhc2hpbmdNZXRhZGF0YS5yZXN1bHR9"/>
+                            <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                            <L7p:DataType variableDataType="message"/>
+                            <L7p:VariableToSet stringValue="hashing_metadata"/>
+                        </L7p:SetVariable>
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${hashing_metadata.mainpart}"/>
+                            <L7p:Expression2 stringValue="client_secret_basic"/>
+                            <L7p:Negate booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue="client_secret_basic"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="dHJ1ZQ=="/>
+                            <L7p:VariableToSet stringValue="clientSecretHashed"/>
+                        </L7p:SetVariable>
+                        <L7p:Encapsulated>
+                            <L7p:EncapsulatedAssertionConfigGuid stringValue="6ff16fb5-0eeb-449b-9811-b4a11a3668e9"/>
+                            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Read Hashed Metadata"/>
+                        </L7p:Encapsulated>
+                        <L7p:Encapsulated>
+                            <L7p:EncapsulatedAssertionConfigGuid stringValue="b1324b61-1d6f-4dc9-a355-32e6b64d9f34"/>
+                            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Create Hash"/>
+                            <L7p:Parameters mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="algorithm"/>
+                                    <L7p:value stringValue="${algorithm.result}"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="inputPlaintext"/>
+                                    <L7p:value stringValue="${client_secret}"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="salt"/>
+                                    <L7p:value stringValue="${salt.result}"/>
+                                </L7p:entry>
+                            </L7p:Parameters>
+                        </L7p:Encapsulated>
+                        <L7p:ResponseXpathAssertion>
+                            <L7p:VariablePrefix stringValue="xpathSecret"/>
+                            <L7p:XmlMsgSrc stringValue="client_info"/>
+                            <L7p:XpathExpression xpathExpressionValue="included">
+                                <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:secret=$hashedValue"/>
+                                <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="ns"/>
+                                    <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                </L7p:Namespaces>
+                                <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                            </L7p:XpathExpression>
+                        </L7p:ResponseXpathAssertion>
+                        <wsp:OneOrMore wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${token_endpoint_auth_method}"/>
+                                <L7p:Expression2 stringValue="client_secret_basic"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="client_secret_basic"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${token_endpoint_auth_method}"/>
+                                <L7p:Expression2 stringValue="client_secret_post"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="client_secret_post"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${token_endpoint_auth_method}"/>
+                                <L7p:Expression2 stringValue=""/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                        </wsp:OneOrMore>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ResponseXpathAssertion>
+                                <L7p:VariablePrefix stringValue="xpathSecretExpiration"/>
+                                <L7p:XmlMsgSrc stringValue="client_info"/>
+                                <L7p:XpathExpression xpathExpressionValue="included">
+                                    <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:secret_expiration/text()"/>
+                                    <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="ns"/>
+                                    <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    </L7p:Namespaces>
+                                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                                </L7p:XpathExpression>
+                            </L7p:ResponseXpathAssertion>
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${xpathSecretExpiration.result}"/>
+                                    <L7p:Expression2 stringValue="0"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="0"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                </L7p:ComparisonAssertion>
+                                <wsp:OneOrMore wsp:Usage="Required">
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue=""/>
+                                    <L7p:DataType variableDataType="dateTime"/>
+                                    <L7p:DateOffsetExpression stringValue=""/>
+                                    <L7p:VariableToSet stringValue="now"/>
+                                    </L7p:SetVariable>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${now.seconds}"/>
+                                    <L7p:Expression2 stringValue="${xpathSecretExpiration.result}"/>
+                                    <L7p:Operator operator="LE"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="LE"/>
+                                    <L7p:RightValue stringValue="${xpathSecretExpiration.result}"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    </wsp:All>
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:AuditDetailAssertion>
+                                    <L7p:Detail stringValue="error: invalid_request, error_description: the client_secret has expired! Expiration date: '${xpathSecretExpiration.result}'"/>
+                                    </L7p:AuditDetailAssertion>
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="MTM3"/>
+                                    <L7p:VariableToSet stringValue="error.code"/>
+                                    </L7p:SetVariable>
+                                    <L7p:FalseAssertion/>
+                                    </wsp:All>
+                                </wsp:OneOrMore>
+                                <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="check expiration date"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:assertionComment>
+                            </wsp:OneOrMore>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="expiry"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${clientSecretHashed}"/>
+                            <L7p:Expression2 stringValue="false"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="false"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ResponseXpathAssertion>
+                            <L7p:VariablePrefix stringValue="xpathSecret"/>
+                            <L7p:XmlMsgSrc stringValue="client_info"/>
+                            <L7p:XpathExpression xpathExpressionValue="included">
+                                <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:secret=$client_secret"/>
+                                <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="ns"/>
+                                    <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                </L7p:Namespaces>
+                                <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                            </L7p:XpathExpression>
+                        </L7p:ResponseXpathAssertion>
+                        <wsp:OneOrMore wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${token_endpoint_auth_method}"/>
+                                <L7p:Expression2 stringValue="client_secret_basic"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="client_secret_basic"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${token_endpoint_auth_method}"/>
+                                <L7p:Expression2 stringValue="client_secret_post"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="client_secret_post"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${token_endpoint_auth_method}"/>
+                                <L7p:Expression2 stringValue=""/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                        </wsp:OneOrMore>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:ResponseXpathAssertion>
+                                <L7p:VariablePrefix stringValue="xpathSecretExpiration"/>
+                                <L7p:XmlMsgSrc stringValue="client_info"/>
+                                <L7p:XpathExpression xpathExpressionValue="included">
+                                    <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:secret_expiration/text()"/>
+                                    <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="ns"/>
+                                    <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                    </L7p:Namespaces>
+                                    <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                                </L7p:XpathExpression>
+                            </L7p:ResponseXpathAssertion>
+                            <wsp:OneOrMore wsp:Usage="Required">
+                                <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${xpathSecretExpiration.result}"/>
+                                    <L7p:Expression2 stringValue="0"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:RightValue stringValue="0"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                </L7p:ComparisonAssertion>
+                                <wsp:OneOrMore wsp:Usage="Required">
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue=""/>
+                                    <L7p:DataType variableDataType="dateTime"/>
+                                    <L7p:DateOffsetExpression stringValue=""/>
+                                    <L7p:VariableToSet stringValue="now"/>
+                                    </L7p:SetVariable>
+                                    <L7p:ComparisonAssertion>
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Expression1 stringValue="${now.seconds}"/>
+                                    <L7p:Expression2 stringValue="${xpathSecretExpiration.result}"/>
+                                    <L7p:Operator operator="LE"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="LE"/>
+                                    <L7p:RightValue stringValue="${xpathSecretExpiration.result}"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                    </L7p:ComparisonAssertion>
+                                    </wsp:All>
+                                    <wsp:All wsp:Usage="Required">
+                                    <L7p:AuditDetailAssertion>
+                                    <L7p:Detail stringValue="error: invalid_request, error_description: the client_secret has expired! Expiration date: '${xpathSecretExpiration.result}'"/>
+                                    </L7p:AuditDetailAssertion>
+                                    <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="MTM3"/>
+                                    <L7p:VariableToSet stringValue="error.code"/>
+                                    </L7p:SetVariable>
+                                    <L7p:FalseAssertion/>
+                                    </wsp:All>
+                                </wsp:OneOrMore>
+                                <L7p:assertionComment>
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="check expiration date"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:assertionComment>
+                            </wsp:OneOrMore>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="expiry"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                    </wsp:All>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${error.code}"/>
+                            <L7p:Expression2 stringValue=""/>
+                            <L7p:Negate booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:FalseAssertion/>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="error: invalid_request, error_description: given client_secret is wrong or a confidential client did not provide a secret, given secret: '${client_secret}', client_type: '${registered_client_type}'"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="MjAx"/>
+                            <L7p:VariableToSet stringValue="error.code"/>
+                        </L7p:SetVariable>
+                        <L7p:FalseAssertion/>
+                    </wsp:All>
+                </wsp:OneOrMore>
+            </wsp:OneOrMore>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="secret"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${client_status}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathStatus"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:status/text()=$client_status"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:AuditDetailAssertion>
+                        <L7p:Detail stringValue="error: invalid_request, error_description: given status is not as expected, given status: '${client_status}'"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MTI2"/>
+                        <L7p:VariableToSet stringValue="error.code"/>
+                    </L7p:SetVariable>
+                    <L7p:FalseAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="status"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${expiration}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathExpiration"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:expiration/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${xpathExpiration.result}"/>
+                        <L7p:Expression2 stringValue="0"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:RightValue stringValue="0"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue=""/>
+                                <L7p:DataType variableDataType="dateTime"/>
+                                <L7p:DateOffsetExpression stringValue=""/>
+                                <L7p:VariableToSet stringValue="now"/>
+                            </L7p:SetVariable>
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${now.seconds}"/>
+                                <L7p:Expression2 stringValue="${xpathExpiration.result}"/>
+                                <L7p:Operator operator="LE"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="LE"/>
+                                    <L7p:RightValue stringValue="${xpathExpiration.result}"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:AuditDetailAssertion>
+                                <L7p:Detail stringValue="error: invalid_request, error_description: the client_id has expired! Expiration date: '${xpathExpiration.result}'"/>
+                            </L7p:AuditDetailAssertion>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="MTI3"/>
+                                <L7p:VariableToSet stringValue="error.code"/>
+                            </L7p:SetVariable>
+                            <L7p:FalseAssertion/>
+                        </wsp:All>
+                    </wsp:OneOrMore>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="check expiration date"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="expiration"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${client_name}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathClientName"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:clients/ns:values/ns:value/ns:name/text()=$client_name"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:AuditDetailAssertion>
+                        <L7p:Detail stringValue="error: invalid_request, error_description: given client_name is not as expected, given client_name: '${client_name}'"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MTI4"/>
+                        <L7p:VariableToSet stringValue="error.code"/>
+                    </L7p:SetVariable>
+                    <L7p:FalseAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="client name"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${environment}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathEnvironment"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:environment/text()=$environment"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:AuditDetailAssertion>
+                        <L7p:Detail stringValue="error: invalid_request, error_description: given environment is not as expected, given environment: '${environment}'"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MTI5"/>
+                        <L7p:VariableToSet stringValue="error.code"/>
+                    </L7p:SetVariable>
+                    <L7p:FalseAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="environment"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${scope}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ResponseXpathAssertion>
+                        <L7p:VariablePrefix stringValue="xpathScope"/>
+                        <L7p:XmlMsgSrc stringValue="client_info"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:scope/text()"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="ns"/>
+                                    <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:ResponseXpathAssertion>
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="f78f0f85-00e2-49b1-95e4-e520df255c9c"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK SCOPE Verification"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="any"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="fail"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope.granted"/>
+                                <L7p:value stringValue="${xpathScope.result}"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope.required"/>
+                                <L7p:value stringValue="${scope}"/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:AuditDetailAssertion>
+                        <L7p:Detail stringValue="error: invalid_request, error_description: given SCOPE is not as expected, given SCOPE: '${scope}', granted SCOPE: ${xpathScope.result}"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MTE1"/>
+                        <L7p:VariableToSet stringValue="error.code"/>
+                    </L7p:SetVariable>
+                    <L7p:FalseAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="scope"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${client_type}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${registered_client_type}"/>
+                    <L7p:Expression2 stringValue="${client_type}"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="${client_type}"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:AuditDetailAssertion>
+                        <L7p:Detail stringValue="error: invalid_request, error_description: given client_type is not as expected, given client_type: '${client_type}'"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MTMw"/>
+                        <L7p:VariableToSet stringValue="error.code"/>
+                    </L7p:SetVariable>
+                    <L7p:FalseAssertion/>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="client type"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${client_secret}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHtyZWdpc3RlcmVkX2NsaWVudF9zZWNyZXR9"/>
+                <L7p:VariableToSet stringValue="client_secret"/>
+            </L7p:SetVariable>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Set secret"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// set the secret to be exported"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${client_assertion_type}"/>
+                <L7p:Expression2 stringValue="urn:ietf:params:oauth:client-assertion-type:jwt-bearer"/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:RightValue stringValue="urn:ietf:params:oauth:client-assertion-type:jwt-bearer"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="3046fe5d-5eb7-44f0-b6c5-241c0fdf3f57"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="OTK Client JWT Validation"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="audience"/>
+                        <L7p:value stringValue="${audience}"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="client_assertion"/>
+                        <L7p:value stringValue="${client_assertion}"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="client_id"/>
+                        <L7p:value stringValue="${client_id}"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="client_key_custom"/>
+                        <L7p:value stringValue="${registered_client_key_custom}"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="client_secret"/>
+                        <L7p:value stringValue="${client_secret}"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="custom"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <wsp:All wsp:Usage="Required">
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${error.code}"/>
+                        <L7p:Expression2 stringValue=""/>
+                        <L7p:Negate booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:SetVariable>
+                        <L7p:AssertionComment assertionComment="included">
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// invalid client"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:AssertionComment>
+                        <L7p:Base64Expression stringValue="MzA2"/>
+                        <L7p:VariableToSet stringValue="error.code"/>
+                    </L7p:SetVariable>
+                </wsp:OneOrMore>
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="error: Invalid client jwt for client authentication"/>
+                    <L7p:Level stringValue="FINE"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Client JWT"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// Validate client jwt"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="68ad78a1-f4a1-4568-91e1-0980d95c75cd"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK Cache Look Up"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheID"/>
+                            <L7p:value stringValue="allClientValidationValuesCache"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheKey"/>
+                            <L7p:value stringValue="${xpathClientKey.result}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="maxAcceptableAge"/>
+                            <L7p:value stringValue="30"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="maxEntryAge"/>
+                            <L7p:value stringValue="30"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${resp.mainpart}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="cache"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// find values in cache"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathClientType"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:clients/ns:values/ns:value/ns:type"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathName"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:clients/ns:values/ns:value/ns:name"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathClient"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:clients/ns:values/ns:value/ns:client_ident"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathClientCustom"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:clients/ns:values/ns:value/ns:client_custom"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathScope"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:scope"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathResource"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:resource"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathEnvironment"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:environment"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathCreatedBy"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:created_by"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathClientKeyCustom"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:client_key_custom"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathServiceIds"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:serviceids"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathAccountPlanMappingIds"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:accountplanmappingids"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathMasterkey_Flag"/>
+                    <L7p:XmlMsgSrc stringValue="client_info"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:masterkey_flag"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="PHZhbGlkYXRpb24geG1sbnM9Imh0dHA6Ly9ucy5sN3RlY2guY29tLzIwMTIvMTEvb3RrLW92cCI+DQogICA8cmVzdWx0PnZhbGlkPC9yZXN1bHQ+DQogICA8Y2xpZW50X2lkZW50PjwhW0NEQVRBWyR7eHBhdGhDbGllbnQucmVzdWx0fV1dPjwvY2xpZW50X2lkZW50Pg0KICAgPGNsaWVudF90eXBlPjwhW0NEQVRBWyR7eHBhdGhDbGllbnRUeXBlLnJlc3VsdH1dXT48L2NsaWVudF90eXBlPg0KICAgPGNsaWVudF9uYW1lPjwhW0NEQVRBWyR7eHBhdGhOYW1lLnJlc3VsdH1dXT48L2NsaWVudF9uYW1lPg0KICAgPHNjb3BlPjwhW0NEQVRBWyR7eHBhdGhTY29wZS5yZXN1bHR9XV0+PC9zY29wZT4NCiAgIDxyZXNvdXJjZT48IVtDREFUQVske3hwYXRoUmVzb3VyY2UucmVzdWx0fV1dPjwvcmVzb3VyY2U+DQogICA8ZW52aXJvbm1lbnQ+PCFbQ0RBVEFbJHt4cGF0aEVudmlyb25tZW50LnJlc3VsdH1dXT48L2Vudmlyb25tZW50Pg0KICAgPGNyZWF0ZWRfYnk+PCFbQ0RBVEFbJHt4cGF0aENyZWF0ZWRCeS5yZXN1bHR9XV0+PC9jcmVhdGVkX2J5Pg0KICAgPGNsaWVudF9jdXN0b20+PCFbQ0RBVEFbJHt4cGF0aENsaWVudEN1c3RvbS5yZXN1bHR9XV0+PC9jbGllbnRfY3VzdG9tPg0KICAgPGNsaWVudF9rZXlfY3VzdG9tPjwhW0NEQVRBWyR7eHBhdGhDbGllbnRLZXlDdXN0b20ucmVzdWx0fV1dPjwvY2xpZW50X2tleV9jdXN0b20+DQogICA8c2VydmljZWlkcz48IVtDREFUQVske3hwYXRoU2VydmljZUlkcy5yZXN1bHR9XV0+PC9zZXJ2aWNlaWRzPg0KICAgPGFjY291bnRwbGFubWFwcGluZ2lkcz48IVtDREFUQVske3hwYXRoQWNjb3VudFBsYW5NYXBwaW5nSWRzLnJlc3VsdH1dXT48L2FjY291bnRwbGFubWFwcGluZ2lkcz4NCiAgIDxtYXN0ZXJrZXlfZmxhZz48IVtDREFUQVske3hwYXRoTWFzdGVya2V5X0ZsYWcucmVzdWx0fV1dPjwvbWFzdGVya2V5X2ZsYWc+DQogICA8Y2xpZW50X3NlY3JldD48IVtDREFUQVske2NsaWVudF9zZWNyZXR9XV0+PC9jbGllbnRfc2VjcmV0PiAgIA0KICAgPG1UTFNfY2VydGlmaWNhdGVfdGh1bWJwcmludD48IVtDREFUQVske21UTFNfY2VydGlmaWNhdGVfdGh1bWJwcmludH1dXT48L21UTFNfY2VydGlmaWNhdGVfdGh1bWJwcmludD4NCiAgIDx0b2tlbl9lbmRwb2ludF9hdXRoX21ldGhvZD48IVtDREFUQVske3Rva2VuX2VuZHBvaW50X2F1dGhfbWV0aG9kfV1dPjwvdG9rZW5fZW5kcG9pbnRfYXV0aF9tZXRob2Q+DQo8L3ZhbGlkYXRpb24+"/>
+                    <L7p:ContentType stringValue="text/xml; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="resp"/>
+                </L7p:SetVariable>
+                <L7p:Encapsulated>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// [allClientValidationValuesCache]"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="e5ee8bcf-1796-4297-88dd-c838031a6f6a"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK Cache Store"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheID"/>
+                            <L7p:value stringValue="allClientValidationValuesCache"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheKey"/>
+                            <L7p:value stringValue="${xpathClientKey.result}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="doNotCacheSoapFaults"/>
+                            <L7p:value stringValue="true"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="maxEntries"/>
+                            <L7p:value stringValue="10000"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="maxEntryAge"/>
+                            <L7p:value stringValue="30"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="maxEntrySize"/>
+                            <L7p:value stringValue="100000"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="msg"/>
+                            <L7p:value stringValue="resp"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="xpath"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="build response"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="response"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="MjAw"/>
+            <L7p:VariableToSet stringValue="status"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

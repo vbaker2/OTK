@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK DB Maintenance - token revocation list"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Deletes all expired tokens from oauth_token_revocation_list"/>
+        </L7p:CommentAssertion>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="db047e91-52db-4176-a3eb-a43aa0c2c67c"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Storage Configuration"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="custom"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:DataType variableDataType="dateTime"/>
+            <L7p:DateOffsetExpression stringValue=""/>
+            <L7p:VariableToSet stringValue="now"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtnYXRld2F5Lm90ay50b2tlbl9yZXZvY2F0aW9uX2xpc3QuZW5hYmxlZH0="/>
+            <L7p:VariableToSet stringValue="token_revocation_list_enabled"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="QW4gZXJyb3Igb2NjdXJlZCB3aGVuIHNlYXJjaGluZyBmb3IgZXhwaXJlZCBzZXNzaW9ucw=="/>
+            <L7p:VariableToSet stringValue="status"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${token_revocation_list_enabled}"/>
+                <L7p:Expression2 stringValue="false"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${dbsystem}"/>
+                <L7p:ExpressionIsVariable booleanValue="false"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="cassandra"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:JdbcQuery>
+                        <L7p:AssertionComment assertionComment="included">
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Delete expired access tokens"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:AssertionComment>
+                        <L7p:AssertionFailureEnabled booleanValue="false"/>
+                        <L7p:ConnectionName stringValue="OAuth"/>
+                        <L7p:MaxRecords intValue="1000"/>
+                        <L7p:SqlQuery stringValueReference="inline"><![CDATA[DELETE FROM oauth_token_revocation_list
+                                WHERE expiration < ${now.seconds}]]></L7p:SqlQuery>
+                    </L7p:JdbcQuery>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${jdbcQuery.queryresult.count}"/>
+                            <L7p:ExpressionIsVariable booleanValue="false"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="0"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:AuditDetailAssertion>
+                            <L7p:CustomLoggerSuffix stringValue="otk"/>
+                            <L7p:Detail stringValue="Deleted (${jdbcQuery.queryresult.count}) expired access tokens"/>
+                            <L7p:LoggingOnly booleanValue="true"/>
+                        </L7p:AuditDetailAssertion>
+                    </wsp:OneOrMore>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:AuditDetailAssertion>
+                        <L7p:Detail stringValue="Could not delete expired tokens from the token revocation list"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="Q291bGQgbm90IGRlbGV0ZSBleHBpcmVkIHRva2VucyBmcm9tIHRoZSB0b2tlbiByZXZvY2F0aW9uIGxpc3Q="/>
+                        <L7p:VariableToSet stringValue="status"/>
+                    </L7p:SetVariable>
+                </wsp:All>
+            </wsp:OneOrMore>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === ***  THIS POLICY IS READ ONLY ***"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === If you have the need to customize this policy"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === please contact CA APIM Support so we can improve customization capability"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy can be found and should be used as 'Encapsulated Assertion'!"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="content-type"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="PHZhbHVlcz4NCjwvdmFsdWVzPg=="/>
+            <L7p:ContentType stringValue="text/xml;charset=UTF-8"/>
+            <L7p:DataType variableDataType="message"/>
+            <L7p:VariableToSet stringValue="resp"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="error.code"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="returnOffset"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${auth_req_id}"/>
+                    <L7p:Expression2 stringValue="getTemp"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue="getTemp"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:JdbcQuery>
+                    <L7p:AssertionFailureEnabled booleanValue="false"/>
+                    <L7p:ConnectionName stringValue="OAuth"/>
+                    <L7p:MaxRecords intValue="1000"/>
+                    <L7p:SqlQuery stringValueReference="inline"><![CDATA[SELECT auth_req_id, user_info, expiration, created, 
+  scope, resources, client_name, client_key, status, last_polled_time, auth_time, acr_values, custom
+  FROM oauth_ciba_initiate
+  WHERE auth_req_id = ${auth_req_id}]]></L7p:SqlQuery>
+                    <L7p:VariablePrefix stringValue="query"/>
+                </L7p:JdbcQuery>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MDAw"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${query.queryresult.count}"/>
+                    <L7p:Expression2 stringValue="0"/>
+                    <L7p:Operator operator="GT"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Operator operator="GT"/>
+                            <L7p:RightValue stringValue="0"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="PHZhbHVlcz4NCiAgICA8YXV0aF9yZXFfaWRzPjxhdXRoX3JlcV9pZD48IVtDREFUQVske3F1ZXJ5LmF1dGhfcmVxX2lkfF1dPjwvYXV0aF9yZXFfaWQ+PGF1dGhfcmVxX2lkPjwhW0NEQVRBW31dXT48L2F1dGhfcmVxX2lkPjwvYXV0aF9yZXFfaWRzPg0KICAgIDx1c2VyX2luZm9zPjx1c2VyX2luZm8+PCFbQ0RBVEFbJHtxdWVyeS51c2VyX2luZm98XV0+PC91c2VyX2luZm8+PHVzZXJfaW5mbz48IVtDREFUQVt9XV0+PC91c2VyX2luZm8+PC91c2VyX2luZm9zPg0KICAgIDxleHBpcmF0aW9ucz48ZXhwaXJhdGlvbj48IVtDREFUQVske3F1ZXJ5LmV4cGlyYXRpb258XV0+PC9leHBpcmF0aW9uPjxleHBpcmF0aW9uPjwhW0NEQVRBW31dXT48L2V4cGlyYXRpb24+PC9leHBpcmF0aW9ucz4NCiAgICA8Y3JlYXRlZHM+PGNyZWF0ZWQ+PCFbQ0RBVEFbJHtxdWVyeS5jcmVhdGVkfF1dPjwvY3JlYXRlZD48Y3JlYXRlZD48IVtDREFUQVt9XV0+PC9jcmVhdGVkPjwvY3JlYXRlZHM+DQogICAgPHNjb3Blcz48c2NvcGU+PCFbQ0RBVEFbJHtxdWVyeS5zY29wZXxdXT48L3Njb3BlPjxzY29wZT48IVtDREFUQVt9XV0+PC9zY29wZT48L3Njb3Blcz4NCiAgICA8cmVzb3VyY2VzPjxyZXNvdXJjZT48IVtDREFUQVske3F1ZXJ5LnJlc291cmNlc3xdXT48L3Jlc291cmNlPjxyZXNvdXJjZT48IVtDREFUQVt9XV0+PC9yZXNvdXJjZT48L3Jlc291cmNlcz4NCiAgICA8Y2xpZW50cz48Y2xpZW50X2tleT48IVtDREFUQVske3F1ZXJ5LmNsaWVudF9rZXl8XV0+PC9jbGllbnRfa2V5PjxjbGllbnRfa2V5PjwhW0NEQVRBW31dXT48L2NsaWVudF9rZXk+PC9jbGllbnRzPg0KICAgIDxjbGllbnROYW1lcz48Y2xpZW50X25hbWU+PCFbQ0RBVEFbJHtxdWVyeS5jbGllbnRfbmFtZXxdXT48L2NsaWVudF9uYW1lPjxjbGllbnRfbmFtZT48IVtDREFUQVt9XV0+PC9jbGllbnRfbmFtZT48L2NsaWVudE5hbWVzPg0KICAgIDxzdGF0dXNlcz48c3RhdHVzPjwhW0NEQVRBWyR7cXVlcnkuc3RhdHVzfF1dPjwvc3RhdHVzPjxzdGF0dXM+PCFbQ0RBVEFbfV1dPjwvc3RhdHVzPjwvc3RhdHVzZXM+DQogICAgPGxhc3RfcG9sbGVkX3RpbWVzPjxsYXN0X3BvbGxlZF90aW1lPjwhW0NEQVRBWyR7cXVlcnkubGFzdF9wb2xsZWRfdGltZXxdXT48L2xhc3RfcG9sbGVkX3RpbWU+PGxhc3RfcG9sbGVkX3RpbWU+PCFbQ0RBVEFbfV1dPjwvbGFzdF9wb2xsZWRfdGltZT48L2xhc3RfcG9sbGVkX3RpbWVzPg0KICAgIDxhdXRoX3RpbWVzPjxhdXRoX3RpbWU+PCFbQ0RBVEFbJHtxdWVyeS5hdXRoX3RpbWV8XV0+PC9hdXRoX3RpbWU+PGF1dGhfdGltZT48IVtDREFUQVt9XV0+PC9hdXRoX3RpbWU+PC9hdXRoX3RpbWVzPg0KICAgIDxhY3JfdmFsdWVzcz48YWNyX3ZhbHVlcz48IVtDREFUQVske3F1ZXJ5LmFjcl92YWx1ZXN8XV0+PC9hY3JfdmFsdWVzPjxhY3JfdmFsdWVzPjwhW0NEQVRBW31dXT48L2Fjcl92YWx1ZXM+PC9hY3JfdmFsdWVzcz4NCiAgICA8Y3VzdG9tcz48Y3VzdG9tPjwhW0NEQVRBWyR7cXVlcnkuY3VzdG9tfF1dPjwvY3VzdG9tPjxjdXN0b20+PCFbQ0RBVEFbfV1dPjwvY3VzdG9tPjwvY3VzdG9tcz4NCjwvdmFsdWVzPg=="/>
+                    <L7p:ContentType stringValue="text/xml;charset=UTF-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="resp"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <L7p:TrueAssertion/>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="transform jdbc result to xml"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:XslTransformation>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Generate xml with one root and one field for each token"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Direction intValue="-1"/>
+            <L7p:OtherTargetMessageVariable stringValue="resp"/>
+            <L7p:ResourceInfo staticResourceInfo="included">
+                <L7p:Document stringValueReference="inline"><![CDATA[<xsl:stylesheet version="1.0" xmlns:xls="http://www.w3.org/1999/XSL/Transform" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                <xsl:output encoding="UTF-8" indent="yes" method="xml"/>
+                <xsl:param name="returnOffset"/>
+                <xsl:template match="/values">
+                <xsl:element name="{name()}" xmlns="http://ns.l7tech.com/2012/11/otk-tokenstore">
+                <xsl:attribute name="offset"><xsl:value-of select="$returnOffset"/></xsl:attribute>
+                <xsl:for-each select="descendant::node()[node()][1]/child::node()[node()]">
+                <xsl:variable name="index">
+                <xsl:value-of select="position()"/>
+                </xsl:variable>
+                <value index="{$index}" xmlns="http://ns.l7tech.com/2012/11/otk-tokenstore">
+                <xsl:element name="{name()}" xmlns="http://ns.l7tech.com/2012/11/otk-tokenstore">
+                <xsl:value-of select="text()"/>
+                </xsl:element>
+                <xsl:for-each select="parent::node()/following-sibling::node()[node()]">
+                <xsl:for-each select="*[position()=$index]">
+                <xsl:copy-of select="self::node()"/>
+                </xsl:for-each>
+                </xsl:for-each>
+                </value>
+                </xsl:for-each>
+                </xsl:element>
+                </xsl:template>
+                </xsl:stylesheet>]]></L7p:Document>
+            </L7p:ResourceInfo>
+            <L7p:Target target="OTHER"/>
+            <L7p:TransformName stringValue=""/>
+            <L7p:XsltVersion stringValue="1.0"/>
+        </L7p:XslTransformation>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${format}"/>
+                    <L7p:Expression2 stringValue="json"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:RightValue stringValue="json"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:JsonTransformation>
+                    <L7p:DestinationMessageTarget MessageTarget="included">
+                        <L7p:OtherTargetMessageVariable stringValue="resp"/>
+                        <L7p:Target target="OTHER"/>
+                        <L7p:TargetModifiedByGateway booleanValue="true"/>
+                    </L7p:DestinationMessageTarget>
+                    <L7p:OtherTargetMessageVariable stringValue="resp"/>
+                    <L7p:PrettyPrint booleanValue="true"/>
+                    <L7p:RootTagString stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:JsonTransformation>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXNwLm1haW5wYXJ0fQ=="/>
+                    <L7p:VariableToSet stringValue="resp.mainpart"/>
+                </L7p:SetVariable>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="resp.mainpart"/>
+                    <L7p:Regex stringValue="&quot;xmlns&quot;:[\s]?&quot;http://ns.l7tech.com/2012/11/otk-tokenstore&quot;,\n"/>
+                    <L7p:RegexName stringValue="Remove Namespace"/>
+                    <L7p:Replace booleanValue="true"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="YXBwbGljYXRpb24vanNvbjtjaGFyc2V0PVVURi04"/>
+                    <L7p:VariableToSet stringValue="content-type"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXNwLm1haW5wYXJ0fQ=="/>
+                    <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="resp"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="dGV4dC94bWw7Y2hhcnNldD1VVEYtOA=="/>
+                <L7p:VariableToSet stringValue="content-type"/>
+            </L7p:SetVariable>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="transform to json if applicable"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

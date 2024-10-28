@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === ***  THIS POLICY IS READ ONLY ***"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === If you have the need to customize this policy"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === please contact CA APIM Support so we can improve customization capability"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy can be found and should be used as 'Encapsulated Assertion'!"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy validates client key custom metadata"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${token_endpoint_auth_method}"/>
+                <L7p:Expression2 stringValue="self_signed_tls_client_auth"/>
+                <L7p:Operator operator="NE"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="NE"/>
+                        <L7p:RightValue stringValue="self_signed_tls_client_auth"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:EncodeDecode>
+                    <L7p:CharacterEncoding stringValueNull="null"/>
+                    <L7p:SourceVariableName stringValue="client_cert_base64"/>
+                    <L7p:TargetDataType variableDataType="cert"/>
+                    <L7p:TargetVariableName stringValue="client_cert"/>
+                    <L7p:TransformType transformType="BASE64_DECODE"/>
+                </L7p:EncodeDecode>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWdpc3RlcmVkX2N1c3RvbX0="/>
+                    <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="client_key_custom_json"/>
+                </L7p:SetVariable>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:AssertionComment assertionComment="included">
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// array of keys"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:AssertionComment>
+                        <L7p:Expression stringValue="openid_registration.response.jwks.keys"/>
+                        <L7p:OtherTargetMessageVariable stringValue="client_key_custom_json"/>
+                        <L7p:Target target="OTHER"/>
+                        <L7p:VariablePrefix stringValue="jwks_keys"/>
+                    </L7p:EvaluateJsonPathExpressionV2>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// jwks_uri"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:Expression stringValue="openid_registration.response.jwks_uri"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_key_custom_json"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="jwks_uri"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${jwks_uri.result}"/>
+                            <L7p:Expression2 stringValue=""/>
+                            <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                            <L7p:Negate booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:Encapsulated>
+                            <L7p:EncapsulatedAssertionConfigGuid stringValue="fa287337-a4dd-49fc-9885-8e1050986296"/>
+                            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Lookup JWKs Keyset"/>
+                            <L7p:Parameters mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="client_id"/>
+                                    <L7p:value stringValue="${client_id}"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="client_jwks_uri"/>
+                                    <L7p:value stringValue="${jwks_uri.result}"/>
+                                </L7p:entry>
+                            </L7p:Parameters>
+                        </L7p:Encapsulated>
+                    </wsp:All>
+                </wsp:OneOrMore>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ForEachLoop L7p:Usage="Required"
+                        loopVariable="jwks_keys.results" variablePrefix="jwks_key">
+                        <wsp:OneOrMore wsp:Usage="Required">
+                            <wsp:All wsp:Usage="Required">
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="JHtqd2tzX2tleS5jdXJyZW50fQ=="/>
+                                    <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                                    <L7p:DataType variableDataType="message"/>
+                                    <L7p:VariableToSet stringValue="jwks_key_json"/>
+                                </L7p:SetVariable>
+                                <L7p:EvaluateJsonPathExpressionV2>
+                                    <L7p:AssertionComment assertionComment="included">
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="the first item in x5c is the client certificate"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                    </L7p:AssertionComment>
+                                    <L7p:Expression stringValue="x5c[0]"/>
+                                    <L7p:OtherTargetMessageVariable stringValue="jwks_key_json"/>
+                                    <L7p:Target target="OTHER"/>
+                                    <L7p:VariablePrefix stringValue="clientCertificate"/>
+                                </L7p:EvaluateJsonPathExpressionV2>
+                                <L7p:EncodeDecode>
+                                    <L7p:CharacterEncoding stringValueNull="null"/>
+                                    <L7p:SourceVariableName stringValue="clientCertificate.result"/>
+                                    <L7p:TargetDataType variableDataType="cert"/>
+                                    <L7p:TargetVariableName stringValue="clientX5Cert"/>
+                                    <L7p:TransformType transformType="BASE64_DECODE"/>
+                                </L7p:EncodeDecode>
+                                <L7p:CertificateAttributes>
+                                    <L7p:SourceVariable stringValue="clientX5Cert"/>
+                                    <L7p:SourceVariableEnabled booleanValue="true"/>
+                                </L7p:CertificateAttributes>
+                                <L7p:ComparisonAssertion>
+                                    <L7p:Expression1 stringValue="${certificate.thumbprintSHA256}"/>
+                                    <L7p:Expression2 stringValue="${client_cert.thumbprintSHA256}"/>
+                                    <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                                    <L7p:Predicates predicates="included">
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="${client_cert.thumbprintSHA256}"/>
+                                    </L7p:item>
+                                    </L7p:Predicates>
+                                </L7p:ComparisonAssertion>
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="dHJ1ZQ=="/>
+                                    <L7p:VariableToSet stringValue="certificateValidated"/>
+                                </L7p:SetVariable>
+                                <L7p:SetVariable>
+                                    <L7p:Base64Expression stringValue="dHJ1ZQ=="/>
+                                    <L7p:VariableToSet stringValue="jwks_key.break"/>
+                                </L7p:SetVariable>
+                            </wsp:All>
+                            <L7p:TrueAssertion>
+                                <L7p:AssertionComment assertionComment="included">
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="//never fail run each assertion"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:AssertionComment>
+                            </L7p:TrueAssertion>
+                        </wsp:OneOrMore>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// loop through all keys"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </L7p:ForEachLoop>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtjZXJ0aWZpY2F0ZS50aHVtYnByaW50U0hBMjU2fQ=="/>
+                        <L7p:VariableToSet stringValue="mTLS_certificate_thumbprint"/>
+                    </L7p:SetVariable>
+                    <L7p:Include>
+                        <L7p:PolicyGuid stringValue="ba76abfa-7db5-4591-a7a5-a3b0d9c39d3b"/>
+                        <L7p:PolicyName stringValue="#OTK Validate mTLS Extension"/>
+                    </L7p:Include>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${certificateValidated}"/>
+                            <L7p:Expression2 stringValue="true"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="true"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:FalseAssertion/>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="//set error code "/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:OneOrMore>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// given"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//extract jwks parameters if given"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${token_endpoint_auth_method}"/>
+                <L7p:Expression2 stringValue="tls_client_auth"/>
+                <L7p:Operator operator="NE"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="NE"/>
+                        <L7p:RightValue stringValue="tls_client_auth"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:EncodeDecode>
+                    <L7p:CharacterEncoding stringValueNull="null"/>
+                    <L7p:SourceVariableName stringValue="client_cert_base64"/>
+                    <L7p:TargetDataType variableDataType="cert"/>
+                    <L7p:TargetVariableName stringValue="client_cert"/>
+                    <L7p:TransformType transformType="BASE64_DECODE"/>
+                </L7p:EncodeDecode>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWdpc3RlcmVkX2N1c3RvbX0="/>
+                    <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="client_key_custom_json"/>
+                </L7p:SetVariable>
+                <wsp:All wsp:Usage="Required">
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="openid_registration.response.tls_client_auth_subject_dn"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_key_custom_json"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="subject_dn"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="openid_registration.response.tls_client_auth_san_dns"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_key_custom_json"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="san_dns"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="openid_registration.response.tls_client_auth_san_uri"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_key_custom_json"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="san_uri"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="openid_registration.response.tls_client_auth_san_ip"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_key_custom_json"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="san_ip"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="openid_registration.response.tls_client_auth_san_email"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_key_custom_json"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="san_email"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// only one paramter is expected to be present"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:OneOrMore>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${subject_dn.result}"/>
+                            <L7p:Expression2 stringValue="${client_cert.subject.dn}"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="${client_cert.subject.dn}"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${client_cert.subjectAltNameDNSs}"/>
+                            <L7p:Expression2 stringValue="${san_dns.result}"/>
+                            <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="${san_dns.result}"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${client_cert.subjectAltNameURIs}"/>
+                            <L7p:Expression2 stringValue="${san_uri.result}"/>
+                            <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="${san_uri.result}"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${client_cert.subjectAltNameIPs}"/>
+                            <L7p:Expression2 stringValue="${san_ip.result}"/>
+                            <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="${san_ip.result}"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${client_cert.subjectAltNameEmails}"/>
+                            <L7p:Expression2 stringValue="${san_email.result}"/>
+                            <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="${san_email.result}"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// expect only one type to be present to reduce checks . Either way, the first check one present will be considered"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:OneOrMore>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtjbGllbnRfY2VydC50aHVtYnByaW50U0hBMjU2fQ=="/>
+                        <L7p:VariableToSet stringValue="mTLS_certificate_thumbprint"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="dHJ1ZQ=="/>
+                        <L7p:VariableToSet stringValue="certificateValidated"/>
+                    </L7p:SetVariable>
+                    <L7p:Include>
+                        <L7p:PolicyGuid stringValue="ba76abfa-7db5-4591-a7a5-a3b0d9c39d3b"/>
+                        <L7p:PolicyName stringValue="#OTK Validate mTLS Extension"/>
+                    </L7p:Include>
+                    <wsp:OneOrMore wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${certificateValidated}"/>
+                            <L7p:Expression2 stringValue="true"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="true"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:FalseAssertion/>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="//set error code "/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:OneOrMore>
+                </wsp:All>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// given"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// extract PKI Paramters if given"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

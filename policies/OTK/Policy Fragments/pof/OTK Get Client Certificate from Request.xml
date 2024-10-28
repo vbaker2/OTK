@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:LookupDynamicContextVariables>
+                    <L7p:SourceVariable stringValue="request.ssl.clientCertificate"/>
+                    <L7p:TargetDataType variableDataType="cert"/>
+                </L7p:LookupDynamicContextVariables>
+                <L7p:EncodeDecode>
+                    <L7p:SourceVariableName stringValue="request.ssl.clientCertificate"/>
+                    <L7p:TargetDataType variableDataType="string"/>
+                    <L7p:TargetVariableName stringValue="client_cert_base64"/>
+                    <L7p:TransformType transformType="BASE64_ENCODE"/>
+                </L7p:EncodeDecode>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//extract from request"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${gateway.otk.oauth2.mtls.client_certificate_header}"/>
+                    <L7p:Expression2 stringValue="true"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue="true"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:LookupDynamicContextVariables>
+                    <L7p:SourceVariable stringValue="request.http.headervalues.${gateway.otk.oauth2.mtls.client_certificate_header}"/>
+                    <L7p:TargetDataType variableDataType="string"/>
+                    <L7p:TargetOutputVariablePrefix stringValue="clientCert"/>
+                </L7p:LookupDynamicContextVariables>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtjbGllbnRDZXJ0Lm91dHB1dH0="/>
+                    <L7p:VariableToSet stringValue="client_cert_base64"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//extract from request header"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue=""/>
+                <L7p:VariableToSet stringValue="client_cert_base64"/>
+            </L7p:SetVariable>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// extract client certificate if present"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

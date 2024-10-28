@@ -1,0 +1,2545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === ***  THIS POLICY IS READ ONLY ***"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === If you have the need to customize this policy"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === please contact CA APIM Support so we can improve customization capability"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This fragment shall only be used as encapsulated assertion which has the same name."/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This encapsulated assertion is used at the OAuth 2.0 authorization endpoint."/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="It validates the given parameters of the incoming response_type request."/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="The authorization endpoint will check the response, it will either be 'valid' or 'invalid'."/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="error.code"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="content-type"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:VariableToSet stringValue="error_redirect_uri"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+            <L7p:VariableToSet stringValue="given_redirect_uri"/>
+        </L7p:SetVariable>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="2e6e2ef3-a36f-4548-a2c4-7b369b7ae184"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Variable Configuration"/>
+        </L7p:Encapsulated>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="db047e91-52db-4176-a3eb-a43aa0c2c67c"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Storage Configuration"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="custom"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${client_key}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTAz"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="parameters"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="check for parameters"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="290511a8-b775-47a7-98ab-7be386da2105"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK Client GET"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="client_ident"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="client_key"/>
+                            <L7p:value stringValue="${client_key}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="environment"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="filterStatus"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="format"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="master"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="name"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="operation"/>
+                            <L7p:value stringValue="getAll"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="org"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="queryOffset"/>
+                            <L7p:value stringValue="0"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="registered_by"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:ResponseXpathAssertion>
+                        <L7p:AssertionComment assertionComment="included">
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Verify the client is not using a master key."/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:AssertionComment>
+                        <L7p:VariablePrefix stringValue="xpathMasterKeyFlag"/>
+                        <L7p:XmlMsgSrc stringValue="resp"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:masterkey_flag"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="ns"/>
+                                    <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:ResponseXpathAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${xpathMasterKeyFlag.result}"/>
+                        <L7p:Expression2 stringValue="0"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="0"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                </wsp:All>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathType"/>
+                    <L7p:XmlMsgSrc stringValue="resp"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:clients/ns:values/ns:value/ns:type/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathName"/>
+                    <L7p:XmlMsgSrc stringValue="resp"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:clients/ns:values/ns:value/ns:name/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathClientCustom"/>
+                    <L7p:XmlMsgSrc stringValue="resp"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:clients/ns:values/ns:value/ns:client_custom"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathCallback"/>
+                    <L7p:XmlMsgSrc stringValue="resp"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:callback/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathScope"/>
+                    <L7p:XmlMsgSrc stringValue="resp"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:scope/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathStatus"/>
+                    <L7p:XmlMsgSrc stringValue="resp"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:status/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathExpiration"/>
+                    <L7p:XmlMsgSrc stringValue="resp"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:expiration/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathClientKeyCustom"/>
+                    <L7p:XmlMsgSrc stringValue="resp"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:client_key_custom"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="xpathClientIdent"/>
+                    <L7p:XmlMsgSrc stringValue="resp"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:client_ident/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ResponseXpathAssertion>
+                        <L7p:VariablePrefix stringValue="xpathResource"/>
+                        <L7p:XmlMsgSrc stringValue="resp"/>
+                        <L7p:XpathExpression xpathExpressionValue="included">
+                            <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:resource/text()"/>
+                            <L7p:Namespaces mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="ns"/>
+                                    <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                </L7p:entry>
+                            </L7p:Namespaces>
+                            <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                        </L7p:XpathExpression>
+                    </L7p:ResponseXpathAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue=""/>
+                        <L7p:VariableToSet stringValue="xpathResource.result"/>
+                    </L7p:SetVariable>
+                </wsp:OneOrMore>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${xpathStatus.result}"/>
+                    <L7p:Expression2 stringValue="ENABLED"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:RightValue stringValue="ENABLED"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${xpathExpiration.result}"/>
+                        <L7p:Expression2 stringValue="0"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:RightValue stringValue="0"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${gateway.time.seconds}"/>
+                        <L7p:Expression2 stringValue="${xpathExpiration.result}"/>
+                        <L7p:Operator operator="LE"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Operator operator="LE"/>
+                                <L7p:RightValue stringValue="${xpathExpiration.result}"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="check expiration date"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHt4cGF0aENhbGxiYWNrLnJlc3VsdH0="/>
+                    <L7p:VariableToSet stringValue="callbacks"/>
+                </L7p:SetVariable>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="callbacks"/>
+                    <L7p:Regex stringValue="\s"/>
+                    <L7p:RegexName stringValue="Remove white spaces"/>
+                    <L7p:Replace booleanValue="true"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="Given client_id is invalid: '${client_key}'. It may be DISABLED or EXPIRED, status: '${xpathStatus.result}', or marked as 'Master Key' (client_id == client_secret)"/>
+                </L7p:AuditDetailAssertion>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${error.code}"/>
+                        <L7p:Expression2 stringValue=""/>
+                        <L7p:Negate booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Negated booleanValue="true"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="MjAx"/>
+                        <L7p:VariableToSet stringValue="error.code"/>
+                    </L7p:SetVariable>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="error.code"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Retrieve client details"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="And validate expiration the and status"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${is_par_request}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:RightValue stringValue="true"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="In PAR, redirect_uri is not validated against client registered redirect_uri"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//ignore redirect_uri validation for PAR"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:CommentAssertion>
+                    <L7p:Comment stringValue="If redirect_uri parameter is passed in, then it must match redirect_uri entered during client registration."/>
+                </L7p:CommentAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${redirect_uri}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${callbacks}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Split>
+                    <L7p:InputVariable stringValue="callbacks"/>
+                    <L7p:OutputVariable stringValue="callbacks"/>
+                    <L7p:SplitPattern stringValue=",|;"/>
+                </L7p:Split>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:Expression1 stringValue="${callbacks}"/>
+                        <L7p:Expression2 stringValue="${redirect_uri}"/>
+                        <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:RightValue stringValue="${redirect_uri}"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${allow_port_agnostic_redirect_uris}"/>
+                            <L7p:Expression2 stringValue="true"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="true"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                            <L7p:VariableToSet stringValue="port_agnostic_redirect_uri"/>
+                        </L7p:SetVariable>
+                        <L7p:Regex>
+                            <L7p:AutoTarget booleanValue="false"/>
+                            <L7p:OtherTargetMessageVariable stringValue="port_agnostic_redirect_uri"/>
+                            <L7p:Regex stringValue="^(http://(localhost|127[.]0[.]0[.]1|[\[]::1[\]])):[\d]+"/>
+                            <L7p:Replace booleanValue="true"/>
+                            <L7p:Replacement stringValue="$1:*"/>
+                            <L7p:Target target="OTHER"/>
+                        </L7p:Regex>
+                        <L7p:ComparisonAssertion>
+                            <L7p:Expression1 stringValue="${callbacks}"/>
+                            <L7p:Expression2 stringValue="${port_agnostic_redirect_uri}"/>
+                            <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="${port_agnostic_redirect_uri}"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="//port agnostic redirect uri comparison"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:All>
+                </wsp:OneOrMore>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="redirect_uri"/>
+                    <L7p:Regex stringValue="^[a-zA-Z][a-zA-Z\d+-.]{0,256}:/"/>
+                    <L7p:RegexName stringValue="Check that redirect_uri is an absolute URI"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:ComparisonAssertion>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="Check that redirect_uri does not include a fragment component"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression1 stringValue="${redirect_uri}"/>
+                    <L7p:Expression2 stringValue="#"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="CONTAINS"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="CONTAINS"/>
+                            <L7p:RightValue stringValue="#"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:CommentAssertion>
+                    <L7p:Comment stringValue="If redirect_uri parameter is not passed in, then use redirect_uri entered during client registration."/>
+                </L7p:CommentAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${redirect_uri}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtjYWxsYmFja3N9"/>
+                    <L7p:VariableToSet stringValue="redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${redirect_uri}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="redirect_uri"/>
+                    <L7p:Regex stringValue="^[a-zA-Z][a-zA-Z\d+-.]{0,256}:/"/>
+                    <L7p:RegexName stringValue="Check that redirect_uri is an absolute URI"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="redirect_uri"/>
+                    <L7p:ProceedIfPatternMatches booleanValue="false"/>
+                    <L7p:Regex stringValue=",[a-zA-Z][a-zA-Z\d+-.]{0,256}:/"/>
+                    <L7p:RegexName stringValue="Check that redirect_uri is just one absolute URI"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:ComparisonAssertion>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="Check that redirect_uri does not include a fragment component"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression1 stringValue="${redirect_uri}"/>
+                    <L7p:Expression2 stringValue="#"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="CONTAINS"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="CONTAINS"/>
+                            <L7p:RightValue stringValue="#"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${redirect_uri}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="|oob"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${callbacks}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="|oob"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="No redirect available"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:CommentAssertion>
+                    <L7p:Comment stringValue="If redirect_uri parameter is passed and none was registered use the one passed in"/>
+                </L7p:CommentAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${redirect_uri}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${callbacks}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="|oob"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="redirect_uri"/>
+                    <L7p:Regex stringValue="^[a-zA-Z][a-zA-Z\d+-.]{0,256}:/"/>
+                    <L7p:RegexName stringValue="Check that redirect_uri is an absolute URI"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="OPEN REDIRECT_URI! Should NOT be supported. Given: '${given_redirect_uri}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="Check that redirect_uri does not include a fragment component"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression1 stringValue="${redirect_uri}"/>
+                    <L7p:Expression2 stringValue="#"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="CONTAINS"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="CONTAINS"/>
+                            <L7p:RightValue stringValue="#"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:FalseAssertion>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="DISABLE"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="DISABLE TO SUPPORT OPEN REDIRECT_URIs. This is NOT recommended"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                </L7p:FalseAssertion>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="Open redirect"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="Mismatching redirect uri. Given: '${given_redirect_uri}', registered: '${callbacks}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTE0"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Validate redirect_uri"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${oauth2_profile.fapi_baseline}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${given_redirect_uri}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTAz"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="redirect_uri"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="FAPI requires redirect_uri"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${oauth2_profile.fapi_baseline}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:Regex>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// only https scheme accepted"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:AutoTarget booleanValue="false"/>
+                <L7p:IncludeEntireExpressionCapture booleanValue="false"/>
+                <L7p:OtherTargetMessageVariable stringValue="redirect_uri"/>
+                <L7p:Regex stringValue="^https://.*"/>
+                <L7p:Replacement stringValue=""/>
+                <L7p:Target target="OTHER"/>
+            </L7p:Regex>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="Mismatching redirect uri. Given: '${given_redirect_uri}', registered: '${callbacks}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTE0"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="redirect_uri"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="FAPI requires HTTPS scheme"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${oauth2_profile.fapi_advanced}"/>
+                <L7p:Expression2 stringValue="false"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:CustomAssertion>
+                <L7p:base64SerializedValue>rO0ABXNyADFjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uQ3VzdG9tQXNzZXJ0aW9uSG9sZGVyZtcreFwddTICAAlaAAxpc1VpQXV0b09wZW5MAApjYXRlZ29yaWVzdAAPTGphdmEvdXRpbC9TZXQ7TAAIY2F0ZWdvcnl0ACpMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DYXRlZ29yeTtMAA9jdXN0b21Bc3NlcnRpb250ADFMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DdXN0b21Bc3NlcnRpb247TAAUY3VzdG9tTW9kdWxlRmlsZU5hbWV0ABJMamF2YS9sYW5nL1N0cmluZztMAA9kZXNjcmlwdGlvblRleHRxAH4ABEwAD3BhbGV0dGVOb2RlTmFtZXEAfgAETAAOcG9saWN5Tm9kZU5hbWVxAH4ABEwAHnJlZ2lzdGVyZWRDdXN0b21GZWF0dXJlU2V0TmFtZXEAfgAEeHIAJWNvbS5sN3RlY2gucG9saWN5LmFzc2VydGlvbi5Bc3NlcnRpb27bX2OZPL2isQIAAloAB2VuYWJsZWRMABBhc3NlcnRpb25Db21tZW50dAAvTGNvbS9sN3RlY2gvcG9saWN5L2Fzc2VydGlvbi9Bc3NlcnRpb24kQ29tbWVudDt4cAFwAXNyABFqYXZhLnV0aWwuSGFzaFNldLpEhZWWuLc0AwAAeHB3DAAAAAI/QAAAAAAAAXNyAChjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uZXh0LkNhdGVnb3J5WrCcZaFE/jUCAAJJAAVteUtleUwABm15TmFtZXEAfgAEeHAAAAAHdAAfTWVzc2FnZVZhbGlkYXRpb25UcmFuc2Zvcm1hdGlvbnhwc3IAUGNvbS5sN3RlY2guY3VzdG9tLmNoZWNrcmVzcG9uc2V0eXBlc3VwcG9ydGVkLkNoZWNrUmVzcG9uc2VUeXBlU3VwcG9ydGVkQXNzZXJ0aW9uKyTM/B4g200CAAJMAA1yZXNwb25zZV90eXBlcQB+AARMABhyZXNwb25zZV90eXBlc19zdXBwb3J0ZWRxAH4ABHhwdAASIiR7cmVzcG9uc2VfdHlwZX0idAAYImNvZGUiLCJjb2RlIGlkX3Rva2Vu4oCddAA0MWMzMzNkYjE3YjAyNTY4N2IzYWExYmU0MTRmNTI2NTQxYjllM2JiOWNjOGU4MWM2LmphcnQAJUNoZWNrIGlmIGEgcmVzcG9uc2VfdHlwZSBpcyBzdXBwb3J0ZWRwcHA=</L7p:base64SerializedValue>
+            </L7p:CustomAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// Unsupported response_type"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Base64Expression stringValue="MTE2"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="response_type"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="/ FAPI advanced supports 'code' and 'code id_token' only"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${oauth2_profile.fapi_advanced}"/>
+                <L7p:Expression2 stringValue="false"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${response_type}"/>
+                <L7p:Expression2 stringValue="code"/>
+                <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                <L7p:Operator operator="NE"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Operator operator="NE"/>
+                        <L7p:RightValue stringValue="code"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${response_mode}"/>
+                <L7p:Expression2 stringValue="query.jwt"/>
+                <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="query.jwt"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="response_type=code in conjunction with response_mode=jwt"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Base64Expression stringValue="NDE4"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="response_type, jarm"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// FAPI advanced requires response_type=code in conjunction with response_mode=jwt"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${oauth2_profile.fapi_baseline}"/>
+                <L7p:ExpressionIsVariable booleanValue="false"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:Encapsulated>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="Look for openid scope, (fail if it does not exist)"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="f78f0f85-00e2-49b1-95e4-e520df255c9c"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="OTK SCOPE Verification"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="any"/>
+                        <L7p:value stringValue="true"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="custom"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="fail"/>
+                        <L7p:value stringValue="false"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="scope.granted"/>
+                        <L7p:value stringValue="${scope}"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="scope.required"/>
+                        <L7p:value stringValue="openid"/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${state}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTAz"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="state"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="FAPI requires state"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${oauth2_profile.fapi_baseline}"/>
+                <L7p:ExpressionIsVariable booleanValue="false"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:Encapsulated>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="Look for openid scope, (fail if exists)"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="f78f0f85-00e2-49b1-95e4-e520df255c9c"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="OTK SCOPE Verification"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="any"/>
+                        <L7p:value stringValue="false"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="custom"/>
+                        <L7p:value stringValue=""/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="fail"/>
+                        <L7p:value stringValue="true"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="scope.granted"/>
+                        <L7p:value stringValue="${scope}"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="scope.required"/>
+                        <L7p:value stringValue="openid"/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${nonce}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTAz"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="openid"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="FAPI requires nonce"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${codeChallenge}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:MultivaluedComparison multivaluedComparison="FAIL"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${codeChallenge}"/>
+                    <L7p:MultivaluedComparison multivaluedComparison="FAIL"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue=".{0}|[\w\d-_~.]{43,128}"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${codeChallengeMethod}"/>
+                        <L7p:Expression2 stringValue=""/>
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Operator operator="EMPTY"/>
+                                <L7p:RightValue stringValue=""/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${codeChallengeMethod}"/>
+                        <L7p:Expression2 stringValue="plain"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:RightValue stringValue="plain"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${codeChallengeMethod}"/>
+                        <L7p:Expression2 stringValue="s256"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:RightValue stringValue="s256"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                </wsp:OneOrMore>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTEy"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="PKCE"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// check for PKCE related values"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${oauth2_profile.fapi_baseline}"/>
+                <L7p:ExpressionIsVariable booleanValue="false"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${oauth2_profile.fapi_advanced}"/>
+                <L7p:ExpressionIsVariable booleanValue="false"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:RightValue stringValue="true"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${codeChallenge}"/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue="false"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${codeChallengeMethod}"/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:RightValue stringValue="S256"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTEy"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="PKCE"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="FAPI baseline requires code_challenge and code_challenge_method=S256"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:CommentAssertion>
+                    <L7p:Comment stringValue="Public clients must have registered redirect_uri"/>
+                </L7p:CommentAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${xpathType.result}"/>
+                    <L7p:Expression2 stringValue="public"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="public"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${callbacks}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${callbacks}"/>
+                    <L7p:Expression2 stringValue="oob"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:RightValue stringValue="oob"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:CommentAssertion>
+                    <L7p:Comment stringValue="Confidential clients utilizing implicit grant_type must have registered redirect_uri"/>
+                </L7p:CommentAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${xpathType.result}"/>
+                    <L7p:Expression2 stringValue="confidential"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="confidential"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${response_type}"/>
+                    <L7p:Expression2 stringValue="code"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:RightValue stringValue="code"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${callbacks}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${xpathType.result}"/>
+                    <L7p:Expression2 stringValue="confidential"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="confidential"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${response_type}"/>
+                    <L7p:Expression2 stringValue="code"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="code"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="The combination of client type and response_type requires a registered redirect_uri: client_id: '${client_key}', client_type: '${xpathType.result}', response_type: '${response_type}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTMw"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Client type"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="check on the client type. There is a difference between confidantial and public clients"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:CustomAssertion>
+                    <L7p:base64SerializedValue>rO0ABXNyADFjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uQ3VzdG9tQXNzZXJ0aW9uSG9sZGVyZtcreFwddTICAAlaAAxpc1VpQXV0b09wZW5MAApjYXRlZ29yaWVzdAAPTGphdmEvdXRpbC9TZXQ7TAAIY2F0ZWdvcnl0ACpMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DYXRlZ29yeTtMAA9jdXN0b21Bc3NlcnRpb250ADFMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DdXN0b21Bc3NlcnRpb247TAAUY3VzdG9tTW9kdWxlRmlsZU5hbWV0ABJMamF2YS9sYW5nL1N0cmluZztMAA9kZXNjcmlwdGlvblRleHRxAH4ABEwAD3BhbGV0dGVOb2RlTmFtZXEAfgAETAAOcG9saWN5Tm9kZU5hbWVxAH4ABEwAHnJlZ2lzdGVyZWRDdXN0b21GZWF0dXJlU2V0TmFtZXEAfgAEeHIAJWNvbS5sN3RlY2gucG9saWN5LmFzc2VydGlvbi5Bc3NlcnRpb27bX2OZPL2isQIAAloAB2VuYWJsZWRMABBhc3NlcnRpb25Db21tZW50dAAvTGNvbS9sN3RlY2gvcG9saWN5L2Fzc2VydGlvbi9Bc3NlcnRpb24kQ29tbWVudDt4cAFwAXNyABFqYXZhLnV0aWwuSGFzaFNldLpEhZWWuLc0AwAAeHB3DAAAAAI/QAAAAAAAAXNyAChjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uZXh0LkNhdGVnb3J5WrCcZaFE/jUCAAJJAAVteUtleUwABm15TmFtZXEAfgAEeHAAAAALdAAQQ3VzdG9tQXNzZXJ0aW9uc3hwc3IAMGNvbS5sN3RlY2guY3VzdG9tLmF1dGgyc2NvcGUuU2NvcGVJc3N1ZUFzc2VydGlvbi1huwlQ9D6wAgACTAAPc2NvcGVSZWdpc3RlcmVkcQB+AARMAA5zY29wZVJlcXVlc3RlZHEAfgAEeHB0ABQke3hwYXRoU2NvcGUucmVzdWx0fXQACCR7c2NvcGV9dAA0ZWYyYTMyZGY1OGVkZTQ1ZDI0MmM5ZmM5MzQwNmI3YmYwNjA3NDVjY2FkMmViZTVmLmphcnQAr1ZhbGlkYXRlcyB0aGUgcmVxdWVzdGVkIFNDT1BFIGFnYWluc3QgU0NPUEUncyB0aGF0IHdlcmUgcmVnaXN0ZXJlZCBmb3IgdGhlIGNsaWVudC4gSXQgb25seSBpc3N1ZXMgU0NPUEUncyB0aGF0IGFyZSBhIHN1YnNldCBvZiB0aGUgcmVnaXN0ZXJlZCBvbmVzLiBJdCB3aWxsIGZhaWwgaWYgbm9uZSBtYXRjaC50ABFPVEsgU0NPUEUgSXNzdWluZ3QAEU9USyBTQ09QRSBJc3N1aW5ncA==</L7p:base64SerializedValue>
+                </L7p:CustomAssertion>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${oauth2_token_type}"/>
+                        <L7p:Expression2 stringValue="BEARER"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item binary="included">
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:RightValue stringValue="BEARER"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="f78f0f85-00e2-49b1-95e4-e520df255c9c"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK SCOPE Verification"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="any"/>
+                                <L7p:value stringValue="false"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="fail"/>
+                                <L7p:value stringValue="true"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope.granted"/>
+                                <L7p:value stringValue="${scope.granted}"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="scope.required"/>
+                                <L7p:value stringValue="openid"/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="MAC"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="SCOPE openid is not valid for MAC token profile"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="Registered SCOPE: '${xpathScope.result}', Requested SCOPE: '${scope}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTE1"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Check SCOPE"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="00627d8a-396c-4274-a6f5-2119def8f354"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="OTK RESOURCE Issuing - Extended"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="resource.permitted"/>
+                        <L7p:value stringValue="${xpathResource.result}"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="resource.requested"/>
+                        <L7p:value stringValue="${resource}"/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="Registered RESOURCE: '${xpathResource.result}', Requested RESOURCE: '${resource}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTYw"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Check RESOURCE"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="f78f0f85-00e2-49b1-95e4-e520df255c9c"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK SCOPE Verification"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="any"/>
+                            <L7p:value stringValue="false"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="fail"/>
+                            <L7p:value stringValue="true"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="scope.granted"/>
+                            <L7p:value stringValue="${scope.granted}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="scope.required"/>
+                            <L7p:value stringValue="openid"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${given_redirect_uri}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// either not openid or redirect_uri not empty"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="Requested SCOPE includes openid but redirect_uri not given"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTAz"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="redirect_uri check"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// for openid scope only"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// nope"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${xpathClientKeyCustom.result}"/>
+                <L7p:Expression2 stringValue="openid_registration"/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Operator operator="CONTAINS"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:Operator operator="CONTAINS"/>
+                        <L7p:RightValue stringValue="openid_registration"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// if it does NOT contain oauth client, continue the remaining branch to check against open id parameters."/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${xpathClientKeyCustom.result}"/>
+                <L7p:Expression2 stringValue="oauth_client"/>
+                <L7p:Operator operator="CONTAINS"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Operator operator="CONTAINS"/>
+                        <L7p:RightValue stringValue="oauth_client"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHt4cGF0aENsaWVudEtleUN1c3RvbS5yZXN1bHR9"/>
+                    <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="clientKeyCustom"/>
+                </L7p:SetVariable>
+                <L7p:EvaluateJsonPathExpression>
+                    <L7p:Expression stringValue="$..openid_registration.response.response_types"/>
+                    <L7p:OtherTargetMessageVariable stringValue="clientKeyCustom"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="responseTypes"/>
+                </L7p:EvaluateJsonPathExpression>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="IiR7cmVzcG9uc2VUeXBlcy5yZXN1bHRzfSI="/>
+                    <L7p:VariableToSet stringValue="clientResponseTypes"/>
+                </L7p:SetVariable>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="clientResponseTypes"/>
+                    <L7p:Regex stringValue=",\s+"/>
+                    <L7p:Replace booleanValue="true"/>
+                    <L7p:Replacement stringValue="&quot;,&quot;"/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="clientResponseTypes"/>
+                    <L7p:PatternContainsVariables booleanValue="true"/>
+                    <L7p:Regex stringValue="&quot;${response_type}&quot;"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// found"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="unsupported response_type: '${response_type}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTE2"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Dynamic Registration"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// check if the client registered dynamically and verify the requested response_type is valid for it"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="ZnJhZ21lbnQ="/>
+            <L7p:VariableToSet stringValue="response_mode_default"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHt4cGF0aENsaWVudEtleUN1c3RvbS5yZXN1bHR9"/>
+            <L7p:VariableToSet stringValue="client_key_custom"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${response_type}"/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="code"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="ab11a00c-3860-45ea-8d73-1aead7d46914"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK openid response_types_supported"/>
+                </L7p:Encapsulated>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="response_types_supported"/>
+                    <L7p:Regex stringValue="&quot;code&quot;"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="cXVlcnk="/>
+                    <L7p:VariableToSet stringValue="response_mode_default"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="code"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${response_type}"/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="token"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="ab11a00c-3860-45ea-8d73-1aead7d46914"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK openid response_types_supported"/>
+                </L7p:Encapsulated>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="response_types_supported"/>
+                    <L7p:Regex stringValue="&quot;token&quot;"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="token"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${response_type}"/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="token.id_token|id_token.token"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${nonce}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="f78f0f85-00e2-49b1-95e4-e520df255c9c"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK SCOPE Verification"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="any"/>
+                            <L7p:value stringValue="false"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="fail"/>
+                            <L7p:value stringValue="false"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="scope.granted"/>
+                            <L7p:value stringValue="${scope.granted}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="scope.required"/>
+                            <L7p:value stringValue="openid"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="ab11a00c-3860-45ea-8d73-1aead7d46914"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK openid response_types_supported"/>
+                </L7p:Encapsulated>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="response_types_supported"/>
+                    <L7p:Regex stringValue="&quot;token id_token&quot;|&quot;id_token token&quot;"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="token id_token"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${response_type}"/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="code.id_token|id_token.code"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${nonce}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="f78f0f85-00e2-49b1-95e4-e520df255c9c"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK SCOPE Verification"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="any"/>
+                            <L7p:value stringValue="false"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="fail"/>
+                            <L7p:value stringValue="false"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="scope.granted"/>
+                            <L7p:value stringValue="${scope.granted}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="scope.required"/>
+                            <L7p:value stringValue="openid"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="ab11a00c-3860-45ea-8d73-1aead7d46914"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK openid response_types_supported"/>
+                </L7p:Encapsulated>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="response_types_supported"/>
+                    <L7p:Regex stringValue="&quot;code id_token&quot;|&quot;id_token code&quot;"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="code id_token"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${response_type}"/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="id_token"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${nonce}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="f78f0f85-00e2-49b1-95e4-e520df255c9c"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK SCOPE Verification"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="any"/>
+                            <L7p:value stringValue="false"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="fail"/>
+                            <L7p:value stringValue="false"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="scope.granted"/>
+                            <L7p:value stringValue="${scope.granted}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="scope.required"/>
+                            <L7p:value stringValue="openid"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="ab11a00c-3860-45ea-8d73-1aead7d46914"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK openid response_types_supported"/>
+                </L7p:Encapsulated>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="response_types_supported"/>
+                    <L7p:Regex stringValue="&quot;id_token&quot;"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="id_token"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${response_type}"/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="code.token|token.code"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${nonce}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="ab11a00c-3860-45ea-8d73-1aead7d46914"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK openid response_types_supported"/>
+                </L7p:Encapsulated>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="response_types_supported"/>
+                    <L7p:Regex stringValue="&quot;code token&quot;|&quot;token code&quot;"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="code token"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${response_type}"/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="code.id_token.token|code.token.id_token|id_token.code.token|id_token.token.code|token.code.id_token|token.id_token.code"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${nonce}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:ExpressionIsVariable booleanValue="false"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="f78f0f85-00e2-49b1-95e4-e520df255c9c"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK SCOPE Verification"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="any"/>
+                            <L7p:value stringValue="false"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="fail"/>
+                            <L7p:value stringValue="false"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="scope.granted"/>
+                            <L7p:value stringValue="${scope.granted}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="scope.required"/>
+                            <L7p:value stringValue="openid"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="ab11a00c-3860-45ea-8d73-1aead7d46914"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK openid response_types_supported"/>
+                </L7p:Encapsulated>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="response_types_supported"/>
+                    <L7p:Regex stringValue="&quot;code id_token token&quot;|&quot;code token id_token&quot;|&quot;token id_token code&quot;|&quot;token code id_token&quot;|&quot;id_token code token&quot;|&quot;id_token token code&quot;"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="code id_token token"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="OIDC Certification expects response_type to be token when nonce is missing"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${response_type}"/>
+                            <L7p:Expression2 stringValue="token"/>
+                            <L7p:Operator operator="CONTAINS"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="CONTAINS"/>
+                                    <L7p:RightValue stringValue="token"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${nonce}"/>
+                            <L7p:Expression2 stringValue=""/>
+                            <L7p:ExpressionIsVariable booleanValue="false"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item binary="included">
+                                    <L7p:CaseSensitive booleanValue="false"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="nonce not provided for response_type: '${response_type}'"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="MTAz"/>
+                            <L7p:VariableToSet stringValue="error.code"/>
+                        </L7p:SetVariable>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                            <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                        </L7p:SetVariable>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="nonce missing"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="unsupported response_type: '${response_type}'"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="MTE2"/>
+                            <L7p:VariableToSet stringValue="error.code"/>
+                        </L7p:SetVariable>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                            <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                        </L7p:SetVariable>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="invalid response_type"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="error type"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Validate response_type"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${response_mode}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue="&quot;&quot;"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZXNwb25zZV9tb2RlX2RlZmF1bHR9"/>
+                    <L7p:VariableToSet stringValue="response_mode"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// set default response mode"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${response_mode}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item regex="included">
+                            <L7p:Pattern stringValue="query|fragment|form_post|query.jwt|fragment.jwt|form_post.jwt|jwt"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="2a24ce58-fabf-4b80-a09a-0958dcd67fe0"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK openid response_modes_supported"/>
+                </L7p:Encapsulated>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="response_modes_supported"/>
+                    <L7p:PatternContainsVariables booleanValue="true"/>
+                    <L7p:Regex stringValue="&quot;${response_mode}&quot;"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="supported?"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="unsupported response_mode: '${response_mode}'"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTE2"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWRpcmVjdF91cml9"/>
+                    <L7p:VariableToSet stringValue="error_redirect_uri"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="validate response_mode"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="PHZhbGlkYXRpb24geG1sbnM9Imh0dHA6Ly9ucy5sN3RlY2guY29tLzIwMTIvMTEvb3RrLW92cCI+DQogICA8cmVzdWx0PnZhbGlkPC9yZXN1bHQ+DQogICA8Y2xpZW50TmFtZT48IVtDREFUQVske3hwYXRoTmFtZS5yZXN1bHR9XV0+PC9jbGllbnROYW1lPg0KICAgPHJlZGlyZWN0X3VyaT48IVtDREFUQVske3JlZGlyZWN0X3VyaX1dXT48L3JlZGlyZWN0X3VyaT4NCiAgIDxzY29wZT48IVtDREFUQVske3Njb3BlLmdyYW50ZWR9XV0+PC9zY29wZT4NCiAgIDxyZXNvdXJjZT48IVtDREFUQVske3Jlc291cmNlLmdyYW50ZWR9XV0+PC9yZXNvdXJjZT4NCiAgIDxyZXNwb25zZV90eXBlPjwhW0NEQVRBWyR7cmVzcG9uc2VfdHlwZX1dXT48L3Jlc3BvbnNlX3R5cGU+DQogICA8cmVzcG9uc2VfbW9kZT48IVtDREFUQVske3Jlc3BvbnNlX21vZGV9XV0+PC9yZXNwb25zZV9tb2RlPg0KICAgPGNsaWVudF90eXBlPjwhW0NEQVRBWyR7eHBhdGhUeXBlLnJlc3VsdH1dXT48L2NsaWVudF90eXBlPg0KICAgPGNsaWVudF9jdXN0b20+PCFbQ0RBVEFbJHt4cGF0aENsaWVudEN1c3RvbS5yZXN1bHR9XV0+PC9jbGllbnRfY3VzdG9tPg0KICAgPGNsaWVudF9rZXlfY3VzdG9tPjwhW0NEQVRBWyR7eHBhdGhDbGllbnRLZXlDdXN0b20ucmVzdWx0fV1dPjwvY2xpZW50X2tleV9jdXN0b20+DQogICA8Y2xpZW50X2lkZW50PjwhW0NEQVRBWyR7eHBhdGhDbGllbnRJZGVudC5yZXN1bHR9XV0+PC9jbGllbnRfaWRlbnQ+DQo8L3ZhbGlkYXRpb24+"/>
+            <L7p:ContentType stringValue="text/xml;charset=UTF-8"/>
+            <L7p:DataType variableDataType="message"/>
+            <L7p:VariableToSet stringValue="resp"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="dGV4dC94bWw7Y2hhcnNldD1VVEYtOA=="/>
+            <L7p:VariableToSet stringValue="content-type"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

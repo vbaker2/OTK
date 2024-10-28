@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="== Target Policy:  &quot;OTK Validate mTLS Extention&quot;"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="== Add any additional checks for mTLS. "/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="== When you add your checks ensure that they are for jwks and/or pki based validation"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="All errors from this policy are handled in OTK Client validation with error code 204"/>
+        </L7p:CommentAssertion>
+        <wsp:All wsp:Usage="Required">
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${token_endpoint_auth_method}"/>
+                    <L7p:Expression2 stringValue="self_signed_tls_client_auth"/>
+                    <L7p:Operator operator="NE"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Operator operator="NE"/>
+                            <L7p:RightValue stringValue="self_signed_tls_client_auth"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//ensure this check is always done to ensure we "/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression1 stringValue="${certificateValidated}"/>
+                    <L7p:Expression2 stringValue="true"/>
+                    <L7p:Operator operator="NE"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Operator operator="NE"/>
+                            <L7p:RightValue stringValue="true"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:TrueAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="// client certificate check (from jwks)"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${token_endpoint_auth_method}"/>
+                    <L7p:Expression2 stringValue="tls_client_auth"/>
+                    <L7p:Operator operator="NE"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Operator operator="NE"/>
+                            <L7p:RightValue stringValue="tls_client_auth"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${certificateValidated}"/>
+                    <L7p:Expression2 stringValue="true"/>
+                    <L7p:Operator operator="NE"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Operator operator="NE"/>
+                            <L7p:RightValue stringValue="true"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:ValidateCertificate>
+                    <L7p:SourceVariable stringValue="client_cert"/>
+                    <L7p:ValidationType certificateValidation="PATH_VALIDATION"/>
+                </L7p:ValidateCertificate>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="//pki parameter checks"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:OneOrMore>
+        </wsp:All>
+    </wsp:All>
+</wsp:Policy>

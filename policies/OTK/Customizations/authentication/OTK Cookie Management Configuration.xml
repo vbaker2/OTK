@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="The value of cookieKey is used to created a signed cookie"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Change"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue="ZTdkMTI1YTUtYWZkNC00NjJhLWI3NWQtYTA2YjJmMTI0NmNj"/>
+            <L7p:VariableToSet stringValue="cookieKey"/>
+        </L7p:SetVariable>
+        <L7p:ExportVariables>
+            <L7p:ExportedVars stringArrayValue="included">
+                <L7p:item stringValue="cookieKey"/>
+                <L7p:item stringValue="cookieName"/>
+            </L7p:ExportedVars>
+        </L7p:ExportVariables>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK id_token Allowed Custom Claims"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="== Target Policy:  &quot;OTK id_token Validation&quot;"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="== A list of allowed custom claims for id_token can be set before OpenID Decode"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="== It should be a comma seperated list containing the names of the claims needs to set within ${allowed_claims}"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// Add CSV of claims Example: claim1,claim2"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue="bWF5X2FjdA=="/>
+            <L7p:VariableToSet stringValue="allowed_custom_claims"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

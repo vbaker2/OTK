@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #Portal Look Up API Key Cache"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=====Portal APIKey Cache lookup logic====="/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=====Looks APIKey in GW cache. Expects CWPs cluster.otk.portalapikeylookup.cacheid, cluster.otk.portalapikeylookup.cache.ag_s====="/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=====24-03-2023====="/>
+        </L7p:CommentAssertion>
+        <wsp:All wsp:Usage="Required">
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="apikey going through cache"/>
+                <L7p:Level stringValue="WARNING"/>
+            </L7p:AuditDetailAssertion>
+            <L7p:CacheLookup>
+                <L7p:CacheEntryKey stringValue="${apikey}_${serviceid}"/>
+                <L7p:CacheId stringValue="${gateway.cluster.otk.portalapikeylookup.cacheid}"/>
+                <L7p:ContentTypeOverride stringValue=""/>
+                <L7p:MaxEntryAgeSeconds stringValue="${gateway.cluster.otk.portalapikeylookup.cache.age_s}"/>
+                <L7p:OtherTargetMessageVariable stringValue="resp"/>
+                <L7p:Target target="OTHER"/>
+            </L7p:CacheLookup>
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${resp.mainpart}"/>
+                <L7p:Expression2 stringValue="value"/>
+                <L7p:Operator operator="CONTAINS"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="CONTAINS"/>
+                        <L7p:RightValue stringValue="value"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:AuditDetailAssertion>
+                <L7p:Detail stringValue="apikey completed going through cache"/>
+                <L7p:Level stringValue="WARNING"/>
+            </L7p:AuditDetailAssertion>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="cache lookup"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:All>
+    </wsp:All>
+</wsp:Policy>

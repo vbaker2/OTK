@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Configuration Status"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy is unused."/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="The cluster properties are referenced here so that exporting the custom policies would include them as well."/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="----cwps: begin"/>
+        </L7p:CommentAssertion>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.access_token.enable_intended_audience_check"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.access_token.enable_jwt"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.access_token.enable_jwt.query_db"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.allow_port_agnostic_redirect_uris"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.allowed_host_header_values"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.authorization_request_object.lookup_cache_lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.authorization_server.logo"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.authorization_server.name"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.cache.default_max_entries"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.cache.default_max_entry_age_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.cache.default_max_entry_size"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.client_credential.jwt.cache_lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.dbsystem"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.default_permitted_resources"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.device_verification.session.lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.enable_anonymous_client_export"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.enable_auditing"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.enable_client_export"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.enforce_dcr_software_statement"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.expose_client_secret"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.fapi_advanced.enabled"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.fapi_baseline.enabled"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.fapi.dcr_override"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.hashed_secret.algorithm"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.hashed_secret.enable"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.health.apikey"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.id_token.kid"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.id_token.lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.id_token.signing_algorithm"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.id_token.subject_type"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.jwks.lookup_cache_lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.manager.app_name"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.manager.brand_logo"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.manager.session.lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.max_oauth_token_behaviour"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.max_oauth_token_count"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.access_token.lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.auth_code.lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.client_id.lifetime_SDK_m"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.client_id.lifetime_m"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.device_auth_code.lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.par_reference_uri.lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.ciba_user_auth.max_lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.mtls.client_certificate_header"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.mtls.enable_thumbprint_validation"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.refresh_id_token"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.refresh_token.lifetime_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oauth2.token_type"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.open_banking_directory.jwks_url"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.oracle.partition_interval"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.ovp.reuse_refresh_expiration"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.ovp.reuse_refresh_token"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.persist_dcr_software_statement"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.port"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.port.health"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.refresh_token_deletion_strategy"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.separate_schemas"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.session_id.cache.age_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.session_logout.enforce_client_authentication"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.token_endpoint_polling_interval_s"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.token_include_partition_key"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.token_purging_iterations"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.token_purging_limit"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.otk.token_revocation_list.enabled"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="otk.enforce_ratelimit"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="otk.oauth2.registration_token.lifetime_d"/>
+            <L7p:TargetVariableName stringValue="otk_cwps"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.cluster.otk.portalapikeylookup.cache.age_s"/>
+            <L7p:TargetVariableName stringValue="0"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.cluster.otk.portalapikeylookup.cache.maxentries"/>
+            <L7p:TargetVariableName stringValue="10000"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.cluster.otk.portalapikeylookup.cache.sizeinbytes"/>
+            <L7p:TargetVariableName stringValue="0"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:ManipulateMultiValuedVariable>
+            <L7p:SourceVariableName stringValue="gateway.cluster.otk.portalapikeylookup.cacheid"/>
+            <L7p:TargetVariableName stringValue="apikeylookup"/>
+        </L7p:ManipulateMultiValuedVariable>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="----cwps: end"/>
+        </L7p:CommentAssertion>
+    </wsp:All>
+</wsp:Policy>

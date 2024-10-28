@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK CIBA Backchannel Response"/>
+        </L7p:CommentAssertion>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="6dbc70f9-bb40-4a69-a0ec-88fae4f35300"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Generate OAuth Token"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="ac"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="art"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="at"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="cid"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="cidm"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="curid"/>
+                    <L7p:value stringValue="true"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="custom"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="dac"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="ock"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="ot"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="req_expiry"/>
+                    <L7p:value stringValue="${req_expiration}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="reqExpiry"/>
+                    <L7p:value stringValue="0"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="rft"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="urt"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtnZW5Ub2tlbn0tJHtnYXRld2F5LnJhbmRvbS44LmludGVnZXJ9"/>
+            <L7p:VariableToSet stringValue="user_req_id"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtnZW5FeHBpcmF0aW9ufQ=="/>
+            <L7p:VariableToSet stringValue="expiration"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtsaWZldGltZX0="/>
+            <L7p:DataType variableDataType="int"/>
+            <L7p:VariableToSet stringValue="expires_in"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="ew0KICJjbGllbnRfY3VzdG9tIjogJHtjdXN0b219DQp9"/>
+            <L7p:VariableToSet stringValue="custom_data"/>
+        </L7p:SetVariable>
+        <L7p:Include>
+            <L7p:PolicyGuid stringValue="28c22a8c-8109-460f-a2bf-84fc07897c65"/>
+            <L7p:PolicyName stringValue="#OTK CIBA Initiate User Authentication"/>
+        </L7p:Include>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="5aad0d36-bba0-4aa4-bfb2-400ea6035738"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Token Write (ciba)"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="acr_values"/>
+                    <L7p:value stringValue="${acr_values}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="auth_req_id"/>
+                    <L7p:value stringValue="${user_req_id}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="auth_time"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="client_key"/>
+                    <L7p:value stringValue="${client_key}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="client_name"/>
+                    <L7p:value stringValue="${client_name}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="custom"/>
+                    <L7p:value stringValue="${custom_data}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="expiration"/>
+                    <L7p:value stringValue="${expiration}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="operation"/>
+                    <L7p:value stringValue="store"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="resource"/>
+                    <L7p:value stringValue="${resources}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="scope"/>
+                    <L7p:value stringValue="${scope}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="status"/>
+                    <L7p:value stringValue="${status}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="update_last_polled_time"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="user_info"/>
+                    <L7p:value stringValue="${user_info}"/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Generate JWT Authorization Response"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// Issuer Identifier (including protocol and port)"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue="aHR0cHM6Ly8ke2dhdGV3YXkuY2x1c3Rlci5ob3N0bmFtZX06JHtnYXRld2F5Lm90ay5wb3J0fQ=="/>
+            <L7p:VariableToSet stringValue="iss"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// 10 minutes [recommended]"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:DataType variableDataType="dateTime"/>
+            <L7p:DateFormat stringValue="&lt;Second Timestamp>"/>
+            <L7p:DateOffsetExpression stringValue="600"/>
+            <L7p:VariableToSet stringValue="exp"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtwYXlsb2FkfQ=="/>
+            <L7p:VariableToSet stringValue="partial_payload"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="ew0KICAiaXNzIjogIiR7aXNzfSIsDQogICJpYXQiOiR7Z2F0ZXdheS50aW1lLnNlY29uZHN9LA0KICAiZXhwIjoke2V4cC5zZWNvbmRzfSwNCiAgImF1ZCI6ICIke2NsaWVudF9pZH0iLA0KICAke3BhcnRpYWxfcGF5bG9hZH0NCn0="/>
+            <L7p:VariableToSet stringValue="payload"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:Include>
+                <L7p:PolicyGuid stringValue="1860a080-d9ac-44a2-b941-267ce46cac5f"/>
+                <L7p:PolicyName stringValue="#OTK Generate JWT Authorization Response"/>
+            </L7p:Include>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="ew0KICAiaXNzIjogIiR7aXNzfSIsDQogICJpYXQiOiR7Z2F0ZXdheS50aW1lLnNlY29uZHN9LA0KICAiZXhwIjoke2V4cC5zZWNvbmRzfSwNCiAgImF1ZCI6ICIke2NsaWVudF9pZH0iLA0KICAiZXJyb3IiOiAiaW50ZXJuYWxfZXJyb3IiLA0KICAiZXJyb3JfZGVzY3JpcHRpb24iOiAiVW5leHBlY3RlZCBlcnJvciBlbmNvdW50ZXJlZCB3aGlsZSBwcmVwYXJpbmcgdGhlIGF1dGhvcml6YXRpb24gcmVzcG9uc2UgSldUIg0KfQ=="/>
+                    <L7p:VariableToSet stringValue="payload"/>
+                </L7p:SetVariable>
+                <L7p:EncodeDecode>
+                    <L7p:SourceVariableName stringValue="payload"/>
+                    <L7p:TargetDataType variableDataType="string"/>
+                    <L7p:TargetVariableName stringValue="payload"/>
+                    <L7p:TransformType transformType="BASE64_ENCODE"/>
+                </L7p:EncodeDecode>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="bed74d70-cc8b-46b8-8efc-f5a8a995b2f3"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK Encode base64url"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="base64_encoded"/>
+                            <L7p:value stringValue="${payload}"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="ZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKdWIyNWxJbjAuJHtiYXNlNjR1cmxfZW5jb2RlZH0="/>
+                    <L7p:VariableToSet stringValue="authz_response_jwt"/>
+                </L7p:SetVariable>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="unexpected error"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="compose error response as JWT with alg=none"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

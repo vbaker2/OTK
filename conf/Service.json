@@ -1,0 +1,2956 @@
+{
+    "service": [
+        {
+            "serviceDetail": {
+                "folderId": "179717febe0e5ae0526cd27fa90013bb",
+                "name": "\/auth\/oauth\/configuration",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/configuration",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "179717febe0e5ae0526cd27fa8fff392"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Configuration\/\/auth\/oauth\/configuration.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "179717febe0e5ae0526cd27fa8fff392"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fc7d8",
+                "name": "portal\/storage",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/portal\/storage",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "ba5d77ae8e5eda3c555695253a754c40"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/SecureZone - Storage\/portal\/storage.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "ba5d77ae8e5eda3c555695253a754c40"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fc7d8",
+                "name": "oauth\/clients",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/clientstore\/*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fcb4b"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/SecureZone - Storage\/oauth\/clients.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fcb4b"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fc7d8",
+                "name": "oauth\/tokenstore",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/tokenstore\/*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fcf0c"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/SecureZone - Storage\/oauth\/tokenstore.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fcf0c"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fc7d8",
+                "name": "oauth\/session",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/session\/*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fead2"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/SecureZone - Storage\/oauth\/session.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fead2"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf4e",
+                "name": "oauth\/validation\/validate\/v2\/refreshtoken",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/validation\/validate\/v2\/refreshtoken",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fd35e"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/SecureZone - OVP\/oauth\/validation\/validate\/v2\/refreshtoken.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd35e"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf4e",
+                "name": "oauth\/validation\/validate\/v2\/idtoken",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/validation\/validate\/v2\/idtoken",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fd3a0"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/SecureZone - OVP\/oauth\/validation\/validate\/v2\/idtoken.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd3a0"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf4e",
+                "name": "oauth\/validation\/v2\/revocation",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/validation\/v2\/revocation",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fd3e2"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/SecureZone - OVP\/oauth\/validation\/v2\/revocation.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd3e2"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf4e",
+                "name": "oauth\/validation\/v2\/client",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/validation\/v2\/client",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fd424"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/SecureZone - OVP\/oauth\/validation\/v2\/client.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd424"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf4e",
+                "name": "oauth\/validation\/validate\/v2\/token",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/validation\/validate\/v2\/token",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fd466"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/SecureZone - OVP\/oauth\/validation\/validate\/v2\/token.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd466"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe445",
+                "name": "OAuth 2.0 Client - authorization_code",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/v2\/client\/authcode*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fe62e"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth 2.0 Test Clients\/OAuth 2.0 Client - authorization_code.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe62e"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe445",
+                "name": "OAuth 2.0 Client - Implicit",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/v2\/client\/implicit*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fe670"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth 2.0 Test Clients\/OAuth 2.0 Client - Implicit.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe670"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe445",
+                "name": "OAuth 2.0 Client - ropc",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/v2\/client\/ropc*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fe6b3"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth 2.0 Test Clients\/OAuth 2.0 Client - ropc.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe6b3"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe445",
+                "name": "OAuth 2.0 Client - client_credentials",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/v2\/client\/clientcreds*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fe6f5"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth 2.0 Test Clients\/OAuth 2.0 Client - client_credentials.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe6f5"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe445",
+                "name": "OAuth 2.0 Client Helper - REST STS",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/v2\/samlTokenServer*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fe738"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth 2.0 Test Clients\/OAuth 2.0 Client Helper - REST STS.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe738"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe445",
+                "name": "OAuth 2.0 Client - SAML-Bearer",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/v2\/client\/saml*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fe77a"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth 2.0 Test Clients\/OAuth 2.0 Client - SAML-Bearer.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe77a"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe445",
+                "name": "OAuth 2.0 - Clients",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/v2\/client",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fe7bc"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth 2.0 Test Clients\/OAuth 2.0 - Clients.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe7bc"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe445",
+                "name": "OpenID Connect Client - ICP",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/v2\/client\/icp",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fe7fe"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth 2.0 Test Clients\/OpenID Connect Client - ICP.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe7fe"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe445",
+                "name": "OpenID Connect Client - BCP",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/v2\/client\/bcp",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fe840"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth 2.0 Test Clients\/OpenID Connect Client - BCP.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe840"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe883",
+                "name": "oauth\/manager\/tokens",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/manager\/tokens",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fea0c"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth Manager\/oauth\/manager\/tokens.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fea0c"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe883",
+                "name": "oauth\/manager",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/manager",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fea4e"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth Manager\/oauth\/manager.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fea4e"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fe883",
+                "name": "oauth\/manager\/clients",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/manager\/clients",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fea90"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Tools\/OAuth Manager\/oauth\/manager\/clients.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fea90"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "f2b26bfeaabb0821a8089e0054454132",
+                "name": "\/apidocs\/oauth\/storage",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/apidocs\/oauth\/storage\/*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "f2b26bfeaabb0821a8089e005445417a"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/Internal\/Documentation\/\/apidocs\/oauth\/storage.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "f2b26bfeaabb0821a8089e005445417a"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "69354892160d5ec1adefbad3f1d7e50b",
+                "name": "\/auth\/oauth\/health",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/health",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "69354892160d5ec1adefbad3f1d7e550"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/Health\/\/auth\/oauth\/health.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "69354892160d5ec1adefbad3f1d7e550"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "auth\/oauth\/v2\/par",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/par",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "0588126d933376165773d2f9b86845bd"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/auth\/oauth\/v2\/par.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "0588126d933376165773d2f9b86845bd"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "auth\/oauth\/v2\/device-authorization",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/device-authorization",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "3a67a49ec14016d3a6c333f952ee361b"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/auth\/oauth\/v2\/device-authorization.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "3a67a49ec14016d3a6c333f952ee361b"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "auth\/oauth\/v2\/bc-authorize",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/bc-authorize",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "604c1b4e0d1763891f599dabd2f6f853"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/auth\/oauth\/v2\/bc-authorize.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "604c1b4e0d1763891f599dabd2f6f853"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "jwks_uri",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/openid\/connect\/jwks.json",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "83fd2534ef7918b71010530c536b7af1"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/jwks_uri.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "83fd2534ef7918b71010530c536b7af1"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "openid-client-register",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/openid\/connect\/register",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "83fd2534ef7918b71010530c536b7b5b"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/openid-client-register.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "83fd2534ef7918b71010530c536b7b5b"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "openid-client-register-configuration",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/openid\/connect\/register\/*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "83fd2534ef7918b71010530c536b7bc5"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/openid-client-register-configuration.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "83fd2534ef7918b71010530c536b7bc5"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "openid-configuration",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/.well-known\/openid-configuration",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "83fd2534ef7918b71010530c536b7c21"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/openid-configuration.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "83fd2534ef7918b71010530c536b7c21"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "auth\/oauth\/v2\/device-verification",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/device-verification",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "cc1863dcc6f56bcbae9ab4c8b10f7ffe"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/auth\/oauth\/v2\/device-verification.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "cc1863dcc6f56bcbae9ab4c8b10f7ffe"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "auth\/oauth\/v2\/authorize",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/authorize",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fdec5"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/auth\/oauth\/v2\/authorize.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fdec5"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "connect\/session\/logout",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/connect\/session\/logout",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fdf49"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/connect\/session\/logout.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fdf49"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "oauth-token-revocation-list",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/token-revocation-list",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e1168ac712849b6ecf8330b1c84c26d6"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/oauth-token-revocation-list.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e1168ac712849b6ecf8330b1c84c26d6"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "auth\/oauth\/v2\/authorize\/login",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/authorize\/login",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e73aa375c92bf77a0b52a366672b02c5"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/auth\/oauth\/v2\/authorize\/login.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e73aa375c92bf77a0b52a366672b02c5"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "af166f3fe1c8bff95a5fff928eace0ac",
+                "name": "auth\/oauth\/v2\/authorize\/consent",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/authorize\/consent",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e73aa375c92bf77a0b52a366672b0306"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/AuthorizationServer\/auth\/oauth\/v2\/authorize\/consent.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e73aa375c92bf77a0b52a366672b0306"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fd5a8",
+                "name": "protected resource",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/oauth\/v2\/protectedapi*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fde83"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/ResourceServer\/demo\/protected resource.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fde83"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fd568",
+                "name": "openid\/connect\/v1\/userinfo",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/openid\/connect\/v1\/userinfo",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fde41"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/ResourceServer\/openid\/connect\/v1\/userinfo.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fde41"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e001cfd0c1c1ffaa18e187b5e72fd568",
+                "name": "connect\/session\/status",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/connect\/session\/status",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fdf07"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/ResourceServer\/connect\/session\/status.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fdf07"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e7dbb9b46e8f153f8653b0b7210568a0",
+                "name": "auth\/oauth\/v2\/introspect",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/introspect",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "5766caac28ac40977dfd11c32e067180"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/TokenServer\/auth\/oauth\/v2\/introspect.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "5766caac28ac40977dfd11c32e067180"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e7dbb9b46e8f153f8653b0b7210568a0",
+                "name": "auth\/oauth\/v2\/client\/export",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/client\/export",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "d014cea15f9229bac8e17b74bc86f7a6"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/TokenServer\/auth\/oauth\/v2\/client\/export.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "d014cea15f9229bac8e17b74bc86f7a6"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e7dbb9b46e8f153f8653b0b7210568a0",
+                "name": "auth\/oauth\/v2\/token",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/token",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fdd38"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/TokenServer\/auth\/oauth\/v2\/token.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fdd38"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "e7dbb9b46e8f153f8653b0b7210568a0",
+                "name": "auth\/oauth\/v2\/token\/revoke",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/auth\/oauth\/v2\/token\/revoke",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "PATCH",
+                                "DELETE",
+                                "HEAD",
+                                "OPTIONS",
+                                "OTHER"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "e001cfd0c1c1ffaa18e187b5e72fdd7a"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/TokenServer\/auth\/oauth\/v2\/token\/revoke.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "e001cfd0c1c1ffaa18e187b5e72fdd7a"
+        },
+        {
+            "serviceDetail": {
+                "folderId": "efc6a765ba66b41f4bb7b1fc58c526b3",
+                "name": "\/apidocs\/auth\/oauth\/v2\/*",
+                "enabled": "true",
+                "serviceMappings": {
+                    "httpMapping": {
+                        "urlPattern": "\/apidocs\/auth\/oauth\/v2\/*",
+                        "verbs": {
+                            "verb": [
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE",
+                                "OPTIONS"
+                            ]
+                        }
+                    }
+                },
+                "properties": {
+                    "property": [
+                        {
+                            "key": "hasRouting",
+                            "booleanValue": "true"
+                        },
+                        {
+                            "key": "internal",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "policyRevision",
+                            "longValue": "1"
+                        },
+                        {
+                            "key": "soap",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "tracingEnabled",
+                            "booleanValue": "false"
+                        },
+                        {
+                            "key": "wssProcessingEnabled",
+                            "booleanValue": "false"
+                        }
+                    ]
+                },
+                "id": "efc6a765ba66b41f4bb7b1fc58c5226f"
+            },
+            "resources": {
+                "resourceSet": [
+                    {
+                        "tag": "policy",
+                        "resource": [
+                            {
+                                "type": "policy",
+                                "content": "OTK\/Server\/DMZ\/OAuth 2.0\/documentation\/\/apidocs\/auth\/oauth\/v2\/*.xml"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "id": "efc6a765ba66b41f4bb7b1fc58c5226f"
+        }
+    ]
+}

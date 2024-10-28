@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: # OTK Validate Post Logout Redirect Uri"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Customize this policy to validate request post logout redirect uri"/>
+        </L7p:CommentAssertion>
+        <L7p:ResponseXpathAssertion>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// select the client key custom"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:VariablePrefix stringValue="xpathClientKeyCustom"/>
+            <L7p:XmlMsgSrc stringValue="client_resp"/>
+            <L7p:XpathExpression xpathExpressionValue="included">
+                <L7p:Expression stringValue="/ns:values/ns:keys/ns:values/ns:value/ns:client_key_custom"/>
+                <L7p:Namespaces mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="ns"/>
+                        <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-clientstore"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="s"/>
+                        <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                    </L7p:entry>
+                </L7p:Namespaces>
+                <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+            </L7p:XpathExpression>
+        </L7p:ResponseXpathAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHt4cGF0aENsaWVudEtleUN1c3RvbS5yZXN1bHR9"/>
+            <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+            <L7p:DataType variableDataType="message"/>
+            <L7p:VariableToSet stringValue="clientKeyCustom"/>
+        </L7p:SetVariable>
+        <L7p:EvaluateJsonPathExpression>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// post_logout_redirect_uris(s) exist?"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Expression stringValue="$..response.post_logout_redirect_uris"/>
+            <L7p:OtherTargetMessageVariable stringValue="clientKeyCustom"/>
+            <L7p:Target target="OTHER"/>
+            <L7p:VariablePrefix stringValue="post_logout_redirect_uris"/>
+        </L7p:EvaluateJsonPathExpression>
+        <L7p:ComparisonAssertion>
+            <L7p:CaseSensitive booleanValue="false"/>
+            <L7p:Expression1 stringValue="${post_logout_redirect_uris.results}"/>
+            <L7p:Expression2 stringValue="${req_post_logout_redirect_uri}"/>
+            <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+            <L7p:Predicates predicates="included">
+                <L7p:item binary="included">
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:RightValue stringValue="${req_post_logout_redirect_uri}"/>
+                </L7p:item>
+            </L7p:Predicates>
+        </L7p:ComparisonAssertion>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK Validate Subject Token (id_token)"/>
+        </L7p:CommentAssertion>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="f330bc51-c1fb-44bd-a07a-93baf86adad2"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK id_token Validation"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="azp"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="check_expiration"/>
+                    <L7p:value stringValue="true"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="custom"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="jwt"/>
+                    <L7p:value stringValue="${subject_token}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="resource_owner"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="salt"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="shared_secret"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="shared_secret_alg"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+        <L7p:ResponseXpathAssertion>
+            <L7p:VariablePrefix stringValue="xpathSubject"/>
+            <L7p:XmlMsgSrc stringValue="resp"/>
+            <L7p:XpathExpression xpathExpressionValue="included">
+                <L7p:Expression stringValue="/ns:validation/ns:sub/text()"/>
+                <L7p:Namespaces mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="ns"/>
+                        <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-ovp"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="s"/>
+                        <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                    </L7p:entry>
+                </L7p:Namespaces>
+                <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+            </L7p:XpathExpression>
+        </L7p:ResponseXpathAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHt4cGF0aFN1YmplY3QucmVzdWx0fQ=="/>
+            <L7p:VariableToSet stringValue="owner"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

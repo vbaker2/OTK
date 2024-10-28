@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Software Statement Configuration"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === ***  THIS POLICY IS READ ONLY ***"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === Required changes can be implemented in policies in the 'Customizations' folder "/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === The policies within that folder will have the same name as this policy but "/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === either prefixed with '#' or suffixed with 'Extensions'"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === Prefixed policies can be used to overwrite variables of this policy"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === Suffixed policies can be used to extend functionality"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === If you find you cannot add your customizations using the policies in the 'Customizations' folder"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === please contact CA APIM Support so we can improve customization capability"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy can be found and should be used as 'Encapsulated Assertion'!"/>
+        </L7p:CommentAssertion>
+        <wsp:All wsp:Usage="Required">
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV9jbGllbnRfbmFtZQ=="/>
+                <L7p:VariableToSet stringValue="client_name_json_path"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV9jbGllbnRfZGVzY3JpcHRpb24="/>
+                <L7p:VariableToSet stringValue="client_description_json_path"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV9yZWRpcmVjdF91cmlz"/>
+                <L7p:VariableToSet stringValue="redirect_uris_json_path"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV9sb2dvX3VyaQ=="/>
+                <L7p:VariableToSet stringValue="logo_uri_json_path"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV9jbGllbnRfdXJp"/>
+                <L7p:VariableToSet stringValue="client_uri_json_path"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV9wb2xpY3lfdXJp"/>
+                <L7p:VariableToSet stringValue="policy_uri_json_path"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV90b3NfdXJp"/>
+                <L7p:VariableToSet stringValue="tos_uri_json_path"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV9yb2xlcw=="/>
+                <L7p:VariableToSet stringValue="roles_json_path"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV9pZA=="/>
+                <L7p:VariableToSet stringValue="software_id_json_path"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV92ZXJzaW9u"/>
+                <L7p:VariableToSet stringValue="software_version_json_path"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV9qd2tzX2VuZHBvaW50"/>
+                <L7p:VariableToSet stringValue="software_jwks_endpoint_json_path"/>
+            </L7p:SetVariable>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//Client properties"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:All>
+        <wsp:All wsp:Usage="Required">
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JC5zb2Z0d2FyZV9pZA=="/>
+                <L7p:VariableToSet stringValue="transport_cert_cn_json_path"/>
+            </L7p:SetVariable>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//Transport Certificate Properties"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:All>
+        <L7p:Include>
+            <L7p:PolicyGuid stringValue="9a0989e9-df18-45e5-8066-3a98664a0ef3"/>
+            <L7p:PolicyName stringValue="#OTK Software Statement Configuration"/>
+        </L7p:Include>
+    </wsp:All>
+</wsp:Policy>

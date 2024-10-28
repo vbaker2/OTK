@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Target Configuration Policy: &quot;OTK openid request_object_encryption_alg_values_supported&quot;"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Add OpenID Support for request_object_encryption_alg_values_supported"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Specify the algorithm value indicating support."/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Example: &quot;value01&quot;, &quot;value02&quot;"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=== Set custom values for Context Variables below ==="/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=== Add any new Context Variables or extensions below ==="/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="dHJ1ZQ=="/>
+            <L7p:VariableToSet stringValue="discovery.endpoint.enabled"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

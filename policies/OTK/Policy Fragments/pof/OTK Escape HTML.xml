@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Escape HTML"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === ***  THIS POLICY IS READ ONLY ***"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === please contact CA APIM Support so we can improve customization capability"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This fragment should be used as an encapsulated assertion"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This fragment will escape HTML characters in the input string"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtpbnB1dH0="/>
+            <L7p:VariableToSet stringValue="escaped_output"/>
+        </L7p:SetVariable>
+        <L7p:Regex>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="replace &amp; with &amp;amp;"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:AutoTarget booleanValue="false"/>
+            <L7p:OtherTargetMessageVariable stringValue="escaped_output"/>
+            <L7p:Regex stringValue="&amp;"/>
+            <L7p:Replace booleanValue="true"/>
+            <L7p:Replacement stringValue="&amp;amp;"/>
+            <L7p:Target target="OTHER"/>
+        </L7p:Regex>
+        <L7p:Regex>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="replace open angle bracket with &amp;lt;"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:AutoTarget booleanValue="false"/>
+            <L7p:OtherTargetMessageVariable stringValue="escaped_output"/>
+            <L7p:Regex stringValue="&lt;"/>
+            <L7p:Replace booleanValue="true"/>
+            <L7p:Replacement stringValue="&amp;lt;"/>
+            <L7p:Target target="OTHER"/>
+        </L7p:Regex>
+        <L7p:Regex>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="replace closing angle bracket with &amp;gt;"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:AutoTarget booleanValue="false"/>
+            <L7p:OtherTargetMessageVariable stringValue="escaped_output"/>
+            <L7p:Regex stringValue=">"/>
+            <L7p:Replace booleanValue="true"/>
+            <L7p:Replacement stringValue="&amp;gt;"/>
+            <L7p:Target target="OTHER"/>
+        </L7p:Regex>
+        <L7p:Regex>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="replace double quotes with &amp;quot;"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:AutoTarget booleanValue="false"/>
+            <L7p:OtherTargetMessageVariable stringValue="escaped_output"/>
+            <L7p:Regex stringValue="\&quot;"/>
+            <L7p:Replace booleanValue="true"/>
+            <L7p:Replacement stringValue="&amp;quot;"/>
+            <L7p:Target target="OTHER"/>
+        </L7p:Regex>
+        <L7p:Regex>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="replace single quotes with &amp;#39;"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:AutoTarget booleanValue="false"/>
+            <L7p:OtherTargetMessageVariable stringValue="escaped_output"/>
+            <L7p:Regex stringValue="\'"/>
+            <L7p:Replace booleanValue="true"/>
+            <L7p:Replacement stringValue="&amp;#39;"/>
+            <L7p:Target target="OTHER"/>
+        </L7p:Regex>
+    </wsp:All>
+</wsp:Policy>

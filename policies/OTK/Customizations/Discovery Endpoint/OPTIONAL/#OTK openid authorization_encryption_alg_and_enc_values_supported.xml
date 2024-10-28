@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK openid authorization_encryption_alg_and_enc_values_supported"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Target Configuration Policy: &quot;OTK openid authorization_encryption_alg_and_enc_values_supported&quot;"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Add context variable 'authorization_encryption_alg_values_supported' with supported authorization encryption algorithms (alg values)  "/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Add context variable 'authorization_encryption_enc_values_supported' with supported authorization encryption algorithms (enc values) "/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Specify a comma separated list of values with each value within double-quotes"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Example: &quot;value01&quot;, &quot;value02&quot;"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=== Set custom values for Context Variables below ==="/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="=== Add any new Context Variables or extensions below ==="/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// Disabled the discovery for authorization encryption alg and enc parameters"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue="ZmFsc2U="/>
+            <L7p:VariableToSet stringValue="discovery.endpoint.enabled"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

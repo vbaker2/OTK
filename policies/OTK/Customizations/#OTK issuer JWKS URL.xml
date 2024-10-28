@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK issuer JWKS URL"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="input: issuer"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="output: jwks_url"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="output: jwks"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="NOTE: Ensure setting jwks when jwks_url is not defined."/>
+        </L7p:CommentAssertion>
+        <L7p:MapValue>
+            <L7p:InputExpr stringValue="${issuer}"/>
+            <L7p:Mappings nameValuePairArray="included">
+                <L7p:item nameValuePair="included">
+                    <L7p:Key stringValue="https://${gateway.cluster.hostname}:${gateway.otk.port}"/>
+                    <L7p:Value stringValue="https://${gateway.cluster.hostname}:${gateway.otk.port}/openid/connect/jwks.json"/>
+                </L7p:item>
+            </L7p:Mappings>
+            <L7p:OutputVar stringValue="jwks_url"/>
+        </L7p:MapValue>
+    </wsp:All>
+</wsp:Policy>

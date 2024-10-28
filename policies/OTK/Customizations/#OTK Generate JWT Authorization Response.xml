@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK Generate JWT Authorization Response"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Target policy: OTK Generate JWT Authorization Response"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtjbGllbnRfa2V5X2N1c3RvbX0="/>
+            <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+            <L7p:DataType variableDataType="message"/>
+            <L7p:VariableToSet stringValue="client_key_custom"/>
+        </L7p:SetVariable>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="sign authz response: begin"/>
+        </L7p:CommentAssertion>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="bd55a51e-d50a-488d-a2eb-ce7d7a4084f3"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK openid authorization_signing_alg_values_supported"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="custom"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:Expression stringValue="openid_registration.response.authorization_signed_response_alg"/>
+                    <L7p:OtherTargetMessageVariable stringValue="client_key_custom"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="registered_authz_signed_response_alg"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtyZWdpc3RlcmVkX2F1dGh6X3NpZ25lZF9yZXNwb25zZV9hbGcucmVzdWx0fQ=="/>
+                    <L7p:VariableToSet stringValue="authz_signing_alg"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="UFMyNTY="/>
+                <L7p:VariableToSet stringValue="authz_signing_alg"/>
+            </L7p:SetVariable>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="authz_sign_alg"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${authorization_signing_alg_values_supported}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="CONTAINS"/>
+                        <L7p:RightValue stringValue="&quot;${authz_signing_alg}&quot;"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="authorization signing algorithm (${authz_signing_alg}) is unsupported"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MTIy"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// is signing algorithm in the supported list?"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${authz_signing_alg}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="PS256"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:SetVariable>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// the value for the JWT header"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Base64Expression stringValue="eyJraWQiOiJkZWZhdWx0X3NzbF9rZXkifQ=="/>
+                    <L7p:VariableToSet stringValue="kid_header"/>
+                </L7p:SetVariable>
+                <L7p:EncodeJsonWebToken>
+                    <L7p:EncryptionSourceType intValue="2"/>
+                    <L7p:HeaderAction stringValue="Merge to Generated Header"/>
+                    <L7p:KeyGoid goidValue="0000000000000000ffffffffffffffff"/>
+                    <L7p:SignPayload booleanValue="true"/>
+                    <L7p:SignatureAlgorithm stringValue="PS256"/>
+                    <L7p:SignatureSourceType intValue="1"/>
+                    <L7p:SourceHeaders stringValue="${kid_header}"/>
+                    <L7p:SourceVariable stringValue="${payload}"/>
+                    <L7p:TargetVariable stringValue="jwt"/>
+                </L7p:EncodeJsonWebToken>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="PS256"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="Unexpected error encountered while signing the authz response JWT, selected alg=${authz_signing_alg}"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="sign"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="sign authz response: end"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="encrypt authz response: begin"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="ZmFsc2U="/>
+            <L7p:VariableToSet stringValue="is_encryption_required"/>
+        </L7p:SetVariable>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="b947cc3f-786e-4972-8344-af233f4f94a4"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK openid authorization_encryption_alg_and_enc_values_supported"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="custom_data"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${discovery.endpoint.enabled}"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:RightValue stringValue="true"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtqd3QuY29tcGFjdH0="/>
+                    <L7p:VariableToSet stringValue="payload"/>
+                </L7p:SetVariable>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:Expression stringValue="openid_registration.response.authorization_encrypted_response_alg"/>
+                        <L7p:OtherTargetMessageVariable stringValue="client_key_custom"/>
+                        <L7p:Target target="OTHER"/>
+                        <L7p:VariablePrefix stringValue="registered_authorization_encrypted_response_alg"/>
+                    </L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtyZWdpc3RlcmVkX2F1dGhvcml6YXRpb25fZW5jcnlwdGVkX3Jlc3BvbnNlX2FsZy5yZXN1bHR9"/>
+                        <L7p:VariableToSet stringValue="authz_enc_alg"/>
+                    </L7p:SetVariable>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="dHJ1ZQ=="/>
+                        <L7p:VariableToSet stringValue="is_encryption_required"/>
+                    </L7p:SetVariable>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="authz_enc_alg"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// decide whether encryption is required or not"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="openid_registration.response.authorization_encrypted_response_enc"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_key_custom"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="registered_authorization_encrypted_response_enc"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtyZWdpc3RlcmVkX2F1dGhvcml6YXRpb25fZW5jcnlwdGVkX3Jlc3BvbnNlX2VuYy5yZXN1bHR9"/>
+                            <L7p:VariableToSet stringValue="authz_enc_enc"/>
+                        </L7p:SetVariable>
+                    </wsp:All>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="QTI1NkNCQy1IUzUxMg=="/>
+                        <L7p:VariableToSet stringValue="authz_enc_enc"/>
+                    </L7p:SetVariable>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="authz_enc_enc"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${authorization_encryption_alg_values_supported}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="string"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:RightValue stringValue="&quot;${authz_enc_alg}&quot;"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${authorization_encryption_enc_values_supported}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item dataType="included">
+                                <L7p:Type variableDataType="string"/>
+                            </L7p:item>
+                            <L7p:item binary="included">
+                                <L7p:Operator operator="CONTAINS"/>
+                                <L7p:RightValue stringValue="&quot;${authz_enc_enc}&quot;"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="authorization encryption algorithm (${authz_enc_alg}/${authz_enc_enc}) is unsupported"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="MTIy"/>
+                            <L7p:VariableToSet stringValue="error.code"/>
+                        </L7p:SetVariable>
+                        <L7p:FalseAssertion/>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// is encryption algorithm in the supported list?"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="openid_registration.response.jwks"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_key_custom"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="registered_client_jwks"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtyZWdpc3RlcmVkX2NsaWVudF9qd2tzLnJlc3VsdH0="/>
+                            <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                            <L7p:DataType variableDataType="message"/>
+                            <L7p:VariableToSet stringValue="client_jwks"/>
+                        </L7p:SetVariable>
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="$.keys[?(@.use=='enc')]"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_jwks"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="keyPath"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtrZXlQYXRoLnJlc3VsdH0="/>
+                            <L7p:VariableToSet stringValue="client_jwks_key"/>
+                        </L7p:SetVariable>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="Key for encryption use is not found in the registered client jwks"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:FalseAssertion/>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="error"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="client_jwks_key"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${authz_enc_alg}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="RSA-OAEP-256"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${authz_enc_enc}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="A256CBC-HS512"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:SetVariable>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// this needs to be set for clients to interpret during decoding"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:Base64Expression stringValue="eyAiY3R5IiA6ICJKV1QifQ=="/>
+                            <L7p:VariableToSet stringValue="cty_header"/>
+                        </L7p:SetVariable>
+                        <L7p:EncodeJsonWebToken>
+                            <L7p:ContentEncryptionAlgorithm stringValue="A256CBC-HS512"/>
+                            <L7p:EncryptPayload booleanValue="true"/>
+                            <L7p:EncryptionKey stringValue="${client_jwks_key}"/>
+                            <L7p:EncryptionKeyType stringValue="JSON Web Key"/>
+                            <L7p:EncryptionSourceType intValue="2"/>
+                            <L7p:HeaderAction stringValue="Merge to Generated Header"/>
+                            <L7p:KeyManagementAlgorithm stringValue="RSA-OAEP"/>
+                            <L7p:SignatureAlgorithm stringValueNull="null"/>
+                            <L7p:SignatureSourceType intValue="1"/>
+                            <L7p:SourceHeaders stringValue="${cty_header}"/>
+                            <L7p:SourceVariable stringValue="${payload}"/>
+                            <L7p:TargetVariable stringValue="jwt"/>
+                        </L7p:EncodeJsonWebToken>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="Unexpected error encountered while encrypting the authz response JWT, selected alg=${authz_enc_alg}, enc=${authz_enc_enc}"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:FalseAssertion/>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="error"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="encrypt"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${is_encryption_required}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="false"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+            </wsp:All>
+        </wsp:OneOrMore>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="encrypt authz response: end"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtqd3QuY29tcGFjdH0="/>
+            <L7p:VariableToSet stringValue="authz_response_jwt"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

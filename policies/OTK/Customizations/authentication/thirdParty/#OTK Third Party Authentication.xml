@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK Third Party Authentication"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="***************************************************************"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Initializes an OAuth 2.0 authentication flow"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Input:"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="    'client_id' - The client id."/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="    'state' - SessionID"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Output:"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="    'code' - authorization_code"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="***************************************************************"/>
+        </L7p:CommentAssertion>
+        <L7p:Include>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Retrieve third-party OIDC configuration"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Enabled booleanValue="false"/>
+            <L7p:PolicyGuid stringValue="a45e324c-eb67-43fc-81da-c34c16937214"/>
+            <L7p:PolicyName stringValue="#OTK Third Party Configuration"/>
+        </L7p:Include>
+        <L7p:Encapsulated>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="//socialLoginAuthorizeCache"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Enabled booleanValue="false"/>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="dd360775-0fec-47db-8b45-059d995b262d"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Session - Store"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="cacheAge"/>
+                    <L7p:value stringValue="300"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="cacheId"/>
+                    <L7p:value stringValue="socialLoginAuthorizeCache"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="cacheKey"/>
+                    <L7p:value stringValue="${sessionID[0]}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="cacheMaxEntries"/>
+                    <L7p:value stringValue="10000"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="cacheMaxSize"/>
+                    <L7p:value stringValue="10000"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="custom"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="dbAge"/>
+                    <L7p:value stringValue="300"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="value"/>
+                    <L7p:value stringValue="${jwt_session.compact}"/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+        <L7p:SetVariable>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// Compose the third party OIDC authrorization request URL; Use ${sessionID[0]} for state parameter."/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Base64Expression stringValue="JHt0aGlyZF9wYXJ0eV9vaWRjLmF1dGhvcml6YXRpb25fZW5kcG9pbnR9P3Jlc3BvbnNlX3R5cGU9Y29kZSZjbGllbnRfaWQ9JHt0aGlyZF9wYXJ0eV9vaWRjLmNsaWVudF9pZH0mc2NvcGU9JHt0aGlyZF9wYXJ0eV9vaWRjLnNjb3BlX2VuY29kZWR9JnN0YXRlPSR7c2Vzc2lvbklEWzBdfSZyZWRpcmVjdF91cmk9JHt0aGlyZF9wYXJ0eV9vaWRjLnJlZGlyZWN0X3VyaV9lbmNvZGVkfQ=="/>
+            <L7p:Enabled booleanValue="false"/>
+            <L7p:VariableToSet stringValue="third_party_oidc_request_url"/>
+        </L7p:SetVariable>
+        <L7p:AddHeader>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Override the Location header"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Enabled booleanValue="false"/>
+            <L7p:HeaderName stringValue="Location"/>
+            <L7p:HeaderValue stringValue="${third_party_oidc_request_url}"/>
+            <L7p:RemoveExisting booleanValue="true"/>
+            <L7p:Target target="RESPONSE"/>
+        </L7p:AddHeader>
+    </wsp:All>
+</wsp:Policy>

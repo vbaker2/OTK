@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK DB Maintenance - miscellaneous tokens"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Deletes all expired tokens from oauth_device_initiate, oauth_ciba_initiate"/>
+        </L7p:CommentAssertion>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="db047e91-52db-4176-a3eb-a43aa0c2c67c"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Storage Configuration"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="custom"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue=""/>
+            <L7p:DataType variableDataType="dateTime"/>
+            <L7p:DateOffsetExpression stringValue=""/>
+            <L7p:VariableToSet stringValue="now"/>
+        </L7p:SetVariable>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="Q29tcGxldGU="/>
+            <L7p:VariableToSet stringValue="status"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${dbsystem}"/>
+                <L7p:ExpressionIsVariable booleanValue="false"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="cassandra"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:JdbcQuery>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Delete expired DAG requests."/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:AssertionFailureEnabled booleanValue="false"/>
+                            <L7p:ConnectionName stringValue="OAuth"/>
+                            <L7p:MaxRecords intValue="1000"/>
+                            <L7p:SqlQuery stringValueReference="inline"><![CDATA[DELETE FROM oauth_device_initiate
+                                WHERE expiration < ${now.seconds}]]></L7p:SqlQuery>
+                            <L7p:VariablePrefix stringValue="dagQuery"/>
+                        </L7p:JdbcQuery>
+                        <wsp:OneOrMore wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${dagQuery.queryresult.count}"/>
+                                <L7p:ExpressionIsVariable booleanValue="false"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="0"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:CustomLoggerSuffix stringValue="otk"/>
+                                <L7p:Detail stringValue="Deleted (${dagQuery.queryresult.count}) expired records from oauth_device_initiate"/>
+                                <L7p:LoggingOnly booleanValue="true"/>
+                            </L7p:AuditDetailAssertion>
+                        </wsp:OneOrMore>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="Could not delete expired records from the oauth_device_initiate"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="Q291bGQgbm90IGRlbGV0ZSBleHBpcmVkIHJlY29yZHMgZnJvbSB0aGUgb2F1dGhfZGV2aWNlX2luaXRpYXRl"/>
+                            <L7p:VariableToSet stringValue="status"/>
+                        </L7p:SetVariable>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="DAG"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:JdbcQuery>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Delete expired CIBA initiate requests."/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:AssertionFailureEnabled booleanValue="false"/>
+                            <L7p:ConnectionName stringValue="OAuth"/>
+                            <L7p:MaxRecords intValue="1000"/>
+                            <L7p:SqlQuery stringValueReference="inline"><![CDATA[DELETE FROM oauth_ciba_initiate
+                                WHERE expiration < ${now.seconds}]]></L7p:SqlQuery>
+                            <L7p:VariablePrefix stringValue="cibaQuery"/>
+                        </L7p:JdbcQuery>
+                        <wsp:OneOrMore wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${cibaQuery.queryresult.count}"/>
+                                <L7p:ExpressionIsVariable booleanValue="false"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="0"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:CustomLoggerSuffix stringValue="otk"/>
+                                <L7p:Detail stringValue="Deleted (${cibaQuery.queryresult.count}) expired records from oauth_ciba_initiate"/>
+                                <L7p:LoggingOnly booleanValue="true"/>
+                            </L7p:AuditDetailAssertion>
+                        </wsp:OneOrMore>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="Could not delete expired records from the oauth_ciba_initiate"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="Q291bGQgbm90IGRlbGV0ZSBleHBpcmVkIHJlY29yZHMgZnJvbSB0aGUgb2F1dGhfY2liYV9pbml0aWF0ZQ=="/>
+                            <L7p:VariableToSet stringValue="status"/>
+                        </L7p:SetVariable>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="CIBA"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:JdbcQuery>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Delete expired PAR requests."/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:AssertionFailureEnabled booleanValue="false"/>
+                            <L7p:ConnectionName stringValue="OAuth"/>
+                            <L7p:MaxRecords intValue="1000"/>
+                            <L7p:SqlQuery stringValueReference="inline"><![CDATA[DELETE FROM oauth_par_initiate
+                                WHERE expiration < ${now.seconds}]]></L7p:SqlQuery>
+                            <L7p:VariablePrefix stringValue="parQuery"/>
+                        </L7p:JdbcQuery>
+                        <wsp:OneOrMore wsp:Usage="Required">
+                            <L7p:ComparisonAssertion>
+                                <L7p:CaseSensitive booleanValue="false"/>
+                                <L7p:Expression1 stringValue="${parQuery.queryresult.count}"/>
+                                <L7p:ExpressionIsVariable booleanValue="false"/>
+                                <L7p:Operator operatorNull="null"/>
+                                <L7p:Predicates predicates="included">
+                                    <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="int"/>
+                                    </L7p:item>
+                                    <L7p:item binary="included">
+                                    <L7p:RightValue stringValue="0"/>
+                                    </L7p:item>
+                                </L7p:Predicates>
+                            </L7p:ComparisonAssertion>
+                            <L7p:AuditDetailAssertion>
+                                <L7p:CustomLoggerSuffix stringValue="otk"/>
+                                <L7p:Detail stringValue="Deleted (${parQuery.queryresult.count}) expired records from oauth_par_initiate"/>
+                                <L7p:LoggingOnly booleanValue="true"/>
+                            </L7p:AuditDetailAssertion>
+                        </wsp:OneOrMore>
+                    </wsp:All>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="Could not delete expired records from the oauth_par_initiate"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="Q291bGQgbm90IGRlbGV0ZSBleHBpcmVkIHJlY29yZHMgZnJvbSB0aGUgb2F1dGhfcGFyX2luaXRpYXRl"/>
+                            <L7p:VariableToSet stringValue="status"/>
+                        </L7p:SetVariable>
+                    </wsp:All>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="PAR"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+            </wsp:All>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Token Suffix"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy appends token expiration as suffix to the access token"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${dbsystem}"/>
+                <L7p:ExpressionIsVariable booleanValue="false"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:RightValue stringValue="oracle"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${gateway.otk.token_include_partition_key}"/>
+                <L7p:ExpressionIsVariable booleanValue="false"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="boolean"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHt0b2tlbl9leHBpcmF0aW9ufQ=="/>
+                    <L7p:VariableToSet stringValue="epochSeconds"/>
+                </L7p:SetVariable>
+                <L7p:JavaScript>
+                    <L7p:ExecutionTimeout stringValue=""/>
+                    <L7p:Name stringValue=""/>
+                    <L7p:Script stringValueReference="inline"><![CDATA[var epoch = context.getVariable("epochSeconds")
+var partition_interval = context.getVariable("gateway.otk.oracle.partition_interval")
+var exp_interval = Math.round(epoch/(partition_interval*60))
+context.setVariable("exp_interval", exp_interval);]]></L7p:Script>
+                </L7p:JavaScript>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHthY2Nlc3NfdG9rZW59LSR7ZXhwX2ludGVydmFsfQ=="/>
+                    <L7p:VariableToSet stringValue="access_token"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// append token suffix for oracle dbsystem"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

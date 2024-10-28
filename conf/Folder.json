@@ -1,0 +1,379 @@
+{
+    "folder": [
+        {
+            "folderId": "0000000000000000ffffffffffffec76",
+            "name": "OTK",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fc718"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc718",
+            "name": "Customizations",
+            "id": "161861da3a78c5dcdc62696d16914781"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "caching",
+            "id": "161861da3a78c5dcdc62696d169147d0"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "Configuration",
+            "id": "179717febe0e5ae0526cd27fa90029b7"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "Authorization Server",
+            "id": "24e6fd7c5b6fb3a96690246c8ac49170"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "oauth manager",
+            "id": "24e6fd7c5b6fb3a96690246c8ac4922c"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "persistence",
+            "id": "75d97bfe87badb85dee9ea06efceffda"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "Tools",
+            "id": "798f19000dd25ef4d6d8ff59a60eec6b"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "Discovery Endpoint",
+            "id": "83fd2534ef7918b71010530c536a70ca"
+        },
+        {
+            "folderId": "83fd2534ef7918b71010530c536a70ca",
+            "name": "OPTIONAL",
+            "id": "83fd2534ef7918b71010530c536a746f"
+        },
+        {
+            "folderId": "83fd2534ef7918b71010530c536a70ca",
+            "name": "RECOMMENDED",
+            "id": "83fd2534ef7918b71010530c536a7561"
+        },
+        {
+            "folderId": "83fd2534ef7918b71010530c536a70ca",
+            "name": "REQUIRED",
+            "id": "83fd2534ef7918b71010530c536a75aa"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "JWKs Endpoint",
+            "id": "83fd2534ef7918b71010530c536a7114"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "id_token",
+            "id": "bc9a31b7578652a08a514d7d4fef25f3"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "authentication",
+            "id": "bc9a31b7578652a08a514d7d4fef309b"
+        },
+        {
+            "folderId": "bc9a31b7578652a08a514d7d4fef309b",
+            "name": "thirdParty",
+            "id": "e5bae5339f26208b6f26dad4e83cc966"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "Token Server",
+            "id": "bc9a31b7578652a08a514d7d4fef346c"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "grant_types",
+            "id": "e04ad90cfcec38e51fbe3ed9fe092aef"
+        },
+        {
+            "folderId": "161861da3a78c5dcdc62696d16914781",
+            "name": "cors",
+            "id": "e04ad90cfcec38e51fbe3ed9fe093acd"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc718",
+            "name": "Server",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fc758"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc758",
+            "name": "Configuration",
+            "id": "179717febe0e5ae0526cd27fa90013bb"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc758",
+            "name": "Internal",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fc798"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc798",
+            "name": "SecureZone - Storage",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fc7d8"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc798",
+            "name": "SecureZone - OVP",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fcf4e"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc798",
+            "name": "Tools",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fedd0"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fedd0",
+            "name": "OAuth 2.0 Test Clients",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe445"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fe445",
+            "name": "configuration",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe505"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fedd0",
+            "name": "OAuth Manager",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe883"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc798",
+            "name": "Documentation",
+            "id": "f2b26bfeaabb0821a8089e0054454132"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc758",
+            "name": "DMZ",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd4a8"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fd4a8",
+            "name": "OAuth 2.0",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd4e8"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fd4e8",
+            "name": "Health",
+            "id": "69354892160d5ec1adefbad3f1d7e50b"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fd4e8",
+            "name": "AuthorizationServer",
+            "id": "af166f3fe1c8bff95a5fff928eace0ac"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fd4e8",
+            "name": "ResourceServer",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd568"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fd568",
+            "name": "demo",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd5a8"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fd4e8",
+            "name": "TokenServer",
+            "id": "e7dbb9b46e8f153f8653b0b7210568a0"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fd4e8",
+            "name": "documentation",
+            "id": "efc6a765ba66b41f4bb7b1fc58c526b3"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc718",
+            "name": "Policy Fragments",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fc818"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "caching",
+            "id": "161861da3a78c5dcdc62696d1691481a"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "maintenance",
+            "id": "c4bc0de10c1b6cad6bdb4e564db836fa"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "configuration",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fc858"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc858",
+            "name": "JWKs Endpoint",
+            "id": "620c4be582d79f371cd50591a082f0d0"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc858",
+            "name": "Discovery Endpoint",
+            "id": "83fd2534ef7918b71010530c536a71d6"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc858",
+            "name": "oauth manager",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fe8c3"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc858",
+            "name": "Authorization Server",
+            "id": "e7dbb9b46e8f153f8653b0b72105685c"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "pof",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fc898"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "persistence",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fc8d8"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc8d8",
+            "name": "par",
+            "id": "44456a7ffb5e659f10fac58b6798d467"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc8d8",
+            "name": "maintenance",
+            "id": "cf2fff86949d540e60591e1f6a714b2a"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc8d8",
+            "name": "client",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fc918"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc8d8",
+            "name": "id_token",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fcb8d"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc8d8",
+            "name": "token",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fcbcd"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc8d8",
+            "name": "session",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd6a8"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc8d8",
+            "name": "trl",
+            "id": "e1168ac712849b6ecf8330b1c84e7db9"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc8d8",
+            "name": "apiKey",
+            "id": "f6b0867f9dd395f4d60fd72224830039"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "manage",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fcf8e"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf8e",
+            "name": "par",
+            "id": "44456a7ffb5e659f10fac58b6798d3f8"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf8e",
+            "name": "analyse",
+            "id": "5144b40049f43558c0c65f8a32de55de"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf8e",
+            "name": "token",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fcfce"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf8e",
+            "name": "id_token",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd00e"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf8e",
+            "name": "client",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd04e"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf8e",
+            "name": "session",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd5e8"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf8e",
+            "name": "trl",
+            "id": "e1168ac712849b6ecf8330b1c84eea76"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fcf8e",
+            "name": "apiKey",
+            "id": "f6b0867f9dd395f4d60fd7222482f315"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "validation - verification",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd08e"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "response_types",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd628"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "grant_types",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd668"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "authentication",
+            "id": "e001cfd0c1c1ffaa18e187b5e72fd6e8"
+        },
+        {
+            "folderId": "e001cfd0c1c1ffaa18e187b5e72fc818",
+            "name": "manager",
+            "id": "e14f301db8b58e742466dc49801add1f"
+        },
+        {
+            "folderId": "e14f301db8b58e742466dc49801add1f",
+            "name": "manage",
+            "id": "e14f301db8b58e742466dc49801add87"
+        },
+        {
+            "folderId": "e14f301db8b58e742466dc49801add87",
+            "name": "token",
+            "id": "ace8cb8325144efc97fea34285da4b19"
+        },
+        {
+            "folderId": "e14f301db8b58e742466dc49801add87",
+            "name": "client",
+            "id": "e14f301db8b58e742466dc49801aedef"
+        },
+        {
+            "folderId": "e14f301db8b58e742466dc49801add1f",
+            "name": "persistence",
+            "id": "e14f301db8b58e742466dc49801addc9"
+        },
+        {
+            "folderId": "e14f301db8b58e742466dc49801addc9",
+            "name": "token",
+            "id": "ace8cb8325144efc97fea34285da4b5d"
+        },
+        {
+            "folderId": "e14f301db8b58e742466dc49801addc9",
+            "name": "client",
+            "id": "e14f301db8b58e742466dc49801aee38"
+        }
+    ]
+}

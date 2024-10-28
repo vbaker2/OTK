@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK CIBA Update User Authentication Status"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="ew0KICJjbGllbnRfY3VzdG9tIjogJHtjdXN0b219DQp9"/>
+            <L7p:VariableToSet stringValue="custom_data"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${status}"/>
+                <L7p:Expression2 stringValue="ACCEPTED"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="ACCEPTED"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue="${status}"/>
+                <L7p:Expression2 stringValue="REJECTED"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:RightValue stringValue="REJECTED"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="status"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="~ check if the status is ACCEPTED or REJECTED. "/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:Encapsulated>
+            <L7p:EncapsulatedAssertionConfigGuid stringValue="5aad0d36-bba0-4aa4-bfb2-400ea6035738"/>
+            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Token Write (ciba)"/>
+            <L7p:Parameters mapValue="included">
+                <L7p:entry>
+                    <L7p:key stringValue="auth_req_id"/>
+                    <L7p:value stringValue="${user_req_id}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="auth_time"/>
+                    <L7p:value stringValue="${auth_time}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="client_key"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="client_name"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="custom"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="expiration"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="operation"/>
+                    <L7p:value stringValue="update"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="resource"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="scope"/>
+                    <L7p:value stringValue=""/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="status"/>
+                    <L7p:value stringValue="${status}"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="update_last_polled_time"/>
+                    <L7p:value stringValue="false"/>
+                </L7p:entry>
+                <L7p:entry>
+                    <L7p:key stringValue="user_info"/>
+                    <L7p:value stringValue="${user_info}"/>
+                </L7p:entry>
+            </L7p:Parameters>
+        </L7p:Encapsulated>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK CIBA User Authentication Status"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Fetch and update the  User Auth Status. This policy is called from 'OTK CIBA Auth Request ID Validation' as part of the /v2/token service flow."/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Auth Status ctx variable - authStatus (INITIATED/EXPIRED/REJECTED/ACCEPTED)"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Auth Time ctx variable - auth_time (optional - epoch time)"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Optionally also set - acr_values, response_type, scope_granted, state, salt, nonce"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Please ref to 'OTK CIBA Auth Request ID Validation' for the context variables available here."/>
+        </L7p:CommentAssertion>
+    </wsp:All>
+</wsp:Policy>

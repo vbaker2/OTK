@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #OTK DAG Consent Display Details"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:Expression stringValue="$.values.value.custom"/>
+                    <L7p:OtherTargetMessageVariable stringValue="resp"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="custom_data.jsonPath"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${custom_data.jsonPath.found}"/>
+                    <L7p:Expression2 stringValue="true"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="true"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtjdXN0b21fZGF0YS5qc29uUGF0aC5yZXN1bHR9"/>
+                    <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="custom_data"/>
+                </L7p:SetVariable>
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:Expression stringValue="$.device_metadata"/>
+                    <L7p:OtherTargetMessageVariable stringValue="custom_data"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="device_metadata.jsonPath"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${device_metadata.jsonPath.found}"/>
+                    <L7p:Expression2 stringValue="true"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="true"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtkZXZpY2VfbWV0YWRhdGEuanNvblBhdGgucmVzdWx0fQ=="/>
+                    <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="device_metadata"/>
+                </L7p:SetVariable>
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:Expression stringValue="$.name"/>
+                    <L7p:OtherTargetMessageVariable stringValue="device_metadata"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="device_name.jsonPath"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${device_name.jsonPath.found}"/>
+                    <L7p:Expression2 stringValue="true"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="true"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="PHRyPjx0ZD48Yj5EZXZpY2UgbmFtZSA6PC9iPjwvdGQ+PHRkPiR7ZGV2aWNlX25hbWUuanNvblBhdGgucmVzdWx0fTwvdGQ+PC90cj4NCjx0cj48dGQ+PGI+Q29kZSA6PC9iPjwvdGQ+PHRkPiR7dXNlcmNvZGV9PC90ZD48L3RyPg=="/>
+                    <L7p:VariableToSet stringValue="device_display_details"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="PHRyPjx0ZD48Yj5Db2RlIDo8L2I+PC90ZD48dGQ+JHt1c2VyY29kZX08L3RkPjwvdHI+"/>
+                <L7p:VariableToSet stringValue="device_display_details"/>
+            </L7p:SetVariable>
+        </wsp:OneOrMore>
+        <L7p:EvaluateJsonPathExpressionV2>
+            <L7p:Expression stringValue="$.values.value.client_name"/>
+            <L7p:OtherTargetMessageVariable stringValue="resp"/>
+            <L7p:Target target="OTHER"/>
+            <L7p:VariablePrefix stringValue="client_name.jsonPath"/>
+        </L7p:EvaluateJsonPathExpressionV2>
+        <L7p:EvaluateJsonPathExpressionV2>
+            <L7p:Expression stringValue="$.values.value.resource"/>
+            <L7p:OtherTargetMessageVariable stringValue="resp"/>
+            <L7p:Target target="OTHER"/>
+            <L7p:VariablePrefix stringValue="resources.jsonPath"/>
+        </L7p:EvaluateJsonPathExpressionV2>
+        <L7p:EvaluateJsonPathExpressionV2>
+            <L7p:Expression stringValue="$.values.value.scope"/>
+            <L7p:OtherTargetMessageVariable stringValue="resp"/>
+            <L7p:Target target="OTHER"/>
+            <L7p:VariablePrefix stringValue="scope.jsonPath"/>
+        </L7p:EvaluateJsonPathExpressionV2>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="PHA+V2VsY29tZSA8Yj4ke2N1cnJlbnQudXNlcm5hbWV9PC9iPjwvcD4NCjxwPg0KQSBjbGllbnQgcnVubmluZyBvbiB0aGUgPGI+JHtkZXZpY2VfbmFtZS5qc29uUGF0aC5yZXN1bHR9PC9iPiBkZXZpY2Ugd2l0aCB0aGUgZm9sbG93aW5nIHByb3BlcnRpZXMgaXMgc2Vla2luZyBhY2Nlc3MgdG8gcmVzb3VyY2VzOg0KPC9wPg0KPHRhYmxlPg0KPHRyPjx0ZD48Yj5DbGllbnQgTmFtZTo8L2I+PC90ZD48dGQ+JHtjbGllbnRfbmFtZS5qc29uUGF0aC5yZXN1bHR9PC90ZD48L3RyPg0KPHRyPjx0ZD48Yj5TQ09QRSAocGVybWlzc2lvbnMpOjwvYj48L3RkPjx0ZD4ke3Njb3BlLmpzb25QYXRoLnJlc3VsdH08L3RkPjwvdHI+DQo8dHI+PHRkPjxiPlJlc291cmNlczo8L2I+PC90ZD48dGQ+JHtyZXNvdXJjZXMuanNvblBhdGgucmVzdWx0fTwvdGQ+PC90cj4NCiR7ZGV2aWNlX2Rpc3BsYXlfZGV0YWlsc30NCjwvdGFibGU+DQo8cD5QbGVhc2UgZ3JhbnQgb3IgZGVueSB0aGUgcmVxdWVzdDwvcD4NCjxmb3JtIGFjdGlvbj0iJHtvcmlnaW5hbFJlcXVlc3RVcmx9IiBtZXRob2Q9IlBPU1QiPg0KICA8aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJzZXNzaW9uSUQiIHZhbHVlPSIke3Nlc3Npb25JRH0iPg0KICA8aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJzZXNzaW9uRGF0YSIgdmFsdWU9IiR7c2Vzc2lvbkRhdGFKV1R9Ij4NCiA8dGFibGU+DQogPHRyPg0KIDx0ZD48YnV0dG9uIHR5cGU9InN1Ym1pdCIgY2xhc3M9ImJ0biBidG4tcHJpbWFyeSBwdWxsLXJpZ2h0IiBuYW1lPSJhY3Rpb24iIHZhbHVlPSJkZW55IiBzdHlsZT0ibWFyZ2luLWxlZnQ6IDJlbTsiPkRlbnk8L2J1dHRvbj48L3RkPg0KICA8dGQ+PGJ1dHRvbiB0eXBlPSJzdWJtaXQiIGNsYXNzPSJidG4gYnRuLXByaW1hcnkgcHVsbC1yaWdodCIgbmFtZT0iYWN0aW9uIiB2YWx1ZT0iZ3JhbnQiIHN0eWxlPSJtYXJnaW4tbGVmdDogMmVtOyI+R3JhbnQ8L2J1dHRvbj48L3RkPg0KIDwvdHI+DQogPC90YWJsZT4NCjwvZm9ybT4="/>
+            <L7p:VariableToSet stringValue="userCodeConfirmation"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

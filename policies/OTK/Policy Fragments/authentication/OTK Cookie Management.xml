@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Handles cookie validation. Also creates cookies"/>
+        </L7p:CommentAssertion>
+        <L7p:Include>
+            <L7p:PolicyGuid stringValue="08572488-58f3-4e40-babd-623926c306ec"/>
+            <L7p:PolicyName stringValue="OTK Cookie Management Configuration"/>
+        </L7p:Include>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtjb29raWVOYW1lfT07IEV4cGlyZXM9VGh1LCAwMSBKYW4gMTk3MCAwMDowMDowMCBHTVQ7IFBhdGg9LzsgU2VjdXJlOyBIdHRwT25seQ=="/>
+            <L7p:VariableToSet stringValue="setCookieDelete"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${task}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="boolean"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:RightValue stringValue="false"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:CaptureVar stringValue="authUserCookie"/>
+                    <L7p:OtherTargetMessageVariable stringValue="cookie"/>
+                    <L7p:PatternContainsVariables booleanValue="true"/>
+                    <L7p:Regex stringValue="${cookieName}=([a-zA-Z0-9-_/%]{1,128})"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHthdXRoVXNlckNvb2tpZVsxXX0="/>
+                    <L7p:VariableToSet stringValue="cookieContent"/>
+                </L7p:SetVariable>
+                <L7p:EncodeDecode>
+                    <L7p:SourceVariableName stringValue="cookieContent"/>
+                    <L7p:TargetDataType variableDataType="string"/>
+                    <L7p:TargetVariableName stringValue="cookieContent"/>
+                    <L7p:TransformType transformType="URL_DECODE"/>
+                </L7p:EncodeDecode>
+                <L7p:Split>
+                    <L7p:InputVariable stringValue="cookieContent"/>
+                    <L7p:OutputVariable stringValue="userSession"/>
+                    <L7p:SplitPattern stringValue="|"/>
+                    <L7p:SplitPatternRegEx booleanValue="false"/>
+                </L7p:Split>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHt1c2VyU2Vzc2lvblswXX0="/>
+                    <L7p:VariableToSet stringValue="cookieID"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHt1c2VyU2Vzc2lvblsxXX0="/>
+                    <L7p:VariableToSet stringValue="expiration"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHt1c2VyU2Vzc2lvblsyXX0="/>
+                    <L7p:VariableToSet stringValue="signature"/>
+                </L7p:SetVariable>
+                <L7p:AuditDetailAssertion>
+                    <L7p:Detail stringValue="expiration:  '${expiration}', now: '${gateway.time.seconds}', content: '${cookieContent}', cookie: '${cookie}'"/>
+                    <L7p:Enabled booleanValue="false"/>
+                </L7p:AuditDetailAssertion>
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${expiration}"/>
+                    <L7p:Expression2 stringValue="${gateway.time.seconds}"/>
+                    <L7p:Operator operator="GT"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Operator operator="GT"/>
+                            <L7p:RightValue stringValue="${gateway.time.seconds}"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:GenerateSecurityHash>
+                    <L7p:Base64Data stringValue="JHtjb29raWVJRH18JHtleHBpcmF0aW9ufXw="/>
+                    <L7p:KeyText stringValue="${cookieKey}"/>
+                    <L7p:LineBreak lineBreak="CR-LF"/>
+                    <L7p:TargetOutputVariable stringValue="actualHash"/>
+                </L7p:GenerateSecurityHash>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="actualHash"/>
+                    <L7p:Regex stringValue="[ =+/]"/>
+                    <L7p:Replace booleanValue="true"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${actualHash}"/>
+                    <L7p:Expression2 stringValue="${signature}"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:RightValue stringValue="${signature}"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="4e4bc164-3fa2-4b15-ba65-31cef45b84b0"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK Session GET"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheAge"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheId"/>
+                            <L7p:value stringValue="userSessionIDCacheV2"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheKey"/>
+                            <L7p:value stringValue="${cookieID}"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="cookieValue"/>
+                    <L7p:XmlMsgSrc stringValue="resp"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="/ns:found/ns:value/text()"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="ns"/>
+                                <L7p:value stringValue="http://ns.l7tech.com/2012/11/otk-session"/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:EncodeDecode>
+                    <L7p:SourceVariableName stringValue="cookieValue.result"/>
+                    <L7p:TargetDataType variableDataType="string"/>
+                    <L7p:TargetVariableName stringValue="cookieValue"/>
+                    <L7p:TransformType transformType="URL_DECODE"/>
+                </L7p:EncodeDecode>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="validate"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${task}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="boolean"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:RightValue stringValue="true"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:UUIDGenerator>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// sessionID"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:MaximumQuantity intValue="1"/>
+                    <L7p:TargetVariable stringValue="cookieID"/>
+                </L7p:UUIDGenerator>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue=""/>
+                    <L7p:DataType variableDataType="dateTime"/>
+                    <L7p:DateOffsetExpression stringValue="${lifetime}"/>
+                    <L7p:VariableToSet stringValue="expiration"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtjb29raWVJRFswXX18JHtleHBpcmF0aW9uLnNlY29uZHN9fA=="/>
+                    <L7p:VariableToSet stringValue="cookieContent"/>
+                </L7p:SetVariable>
+                <L7p:GenerateSecurityHash>
+                    <L7p:Base64Data stringValue="JHtjb29raWVDb250ZW50fQ=="/>
+                    <L7p:KeyText stringValue="${cookieKey}"/>
+                    <L7p:LineBreak lineBreak="CR-LF"/>
+                    <L7p:TargetOutputVariable stringValue="actualHash"/>
+                </L7p:GenerateSecurityHash>
+                <L7p:Regex>
+                    <L7p:AutoTarget booleanValue="false"/>
+                    <L7p:OtherTargetMessageVariable stringValue="actualHash"/>
+                    <L7p:Regex stringValue="[ =+/]"/>
+                    <L7p:Replace booleanValue="true"/>
+                    <L7p:Replacement stringValue=""/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:Regex>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtjb29raWVDb250ZW50fSR7YWN0dWFsSGFzaH0="/>
+                    <L7p:VariableToSet stringValue="cookieContent"/>
+                </L7p:SetVariable>
+                <L7p:EncodeDecode>
+                    <L7p:SourceVariableName stringValue="cookieContent"/>
+                    <L7p:TargetDataType variableDataType="string"/>
+                    <L7p:TargetVariableName stringValue="cookieContent"/>
+                    <L7p:TransformType transformType="URL_ENCODE"/>
+                </L7p:EncodeDecode>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="dd360775-0fec-47db-8b45-059d995b262d"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK Session - Store"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheAge"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheId"/>
+                            <L7p:value stringValue="userSessionIDCacheV2"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheKey"/>
+                            <L7p:value stringValue="${cookieID}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheMaxEntries"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="cacheMaxSize"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="dbAge"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="value"/>
+                            <L7p:value stringValue="${cookieValue}"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="create"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MjAy"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// create or validate"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtjb29raWVOYW1lfT0ke2Nvb2tpZUNvbnRlbnR9OyBQYXRoPS87IFNlY3VyZTsgSHR0cE9ubHk="/>
+            <L7p:VariableToSet stringValue="setCookie"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: String_to_JSON_array"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${string}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="W10="/>
+                    <L7p:VariableToSet stringValue="output_json"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:Split>
+                    <L7p:IgnoreEmptyValues booleanValue="true"/>
+                    <L7p:InputVariable stringValue="string"/>
+                    <L7p:OutputVariable stringValue="string.tokens"/>
+                    <L7p:SplitPattern stringValue=" |,"/>
+                </L7p:Split>
+                <L7p:Join>
+                    <L7p:InputVariable stringValue="string.tokens"/>
+                    <L7p:JoinSubstring stringValue="&quot;, &quot;"/>
+                    <L7p:OutputVariable stringValue="string.temp"/>
+                </L7p:Join>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="WyIke3N0cmluZy50ZW1wfSJd"/>
+                    <L7p:VariableToSet stringValue="output_json"/>
+                </L7p:SetVariable>
+            </wsp:All>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

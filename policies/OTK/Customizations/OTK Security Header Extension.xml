@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="These HTTP headers will always be added to a response from all services"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Authorization Server and OAuth Manager Security Header Extension policies will override values set here for their respective services"/>
+        </L7p:CommentAssertion>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtnYXRld2F5Lm90ay5hbGxvd2VkX2hvc3RfaGVhZGVyX3ZhbHVlc30="/>
+            <L7p:VariableToSet stringValue="allowed_host_header_values"/>
+        </L7p:SetVariable>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${allowed_host_header_values}"/>
+                <L7p:Expression2 stringValue=""/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue=""/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:AssertionComment assertionComment="included">
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="~ ensure that the allowed host header values are strictly delimited by comma (,) character alone."/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:AssertionComment>
+                <L7p:CaseSensitive booleanValue="false"/>
+                <L7p:Expression1 stringValue=",${allowed_host_header_values},"/>
+                <L7p:ExpressionIsVariable booleanValue="false"/>
+                <L7p:Operator operatorNull="null"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item dataType="included">
+                        <L7p:Type variableDataType="string"/>
+                    </L7p:item>
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="CONTAINS"/>
+                        <L7p:RightValue stringValue=",${request.url.host},"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:CustomizeErrorResponse>
+                    <L7p:Content stringValue="${error.msg}"/>
+                    <L7p:ContentType stringValue="${content-type}"/>
+                    <L7p:ExtraHeaders nameValuePairArray="included">
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="Cache-Control"/>
+                            <L7p:Value stringValue="no-store"/>
+                        </L7p:item>
+                        <L7p:item nameValuePair="included">
+                            <L7p:Key stringValue="Pragma"/>
+                            <L7p:Value stringValue="no-cache"/>
+                        </L7p:item>
+                    </L7p:ExtraHeaders>
+                    <L7p:HttpStatus stringValue="${status}"/>
+                </L7p:CustomizeErrorResponse>
+                <L7p:Encapsulated>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="LEFT.COMMENT"/>
+                                <L7p:value stringValue="207"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="56bd8147-3ab4-4d09-9460-8b2de02b7a9e"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="OTK Fail with error message"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="apiPrefix"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="custom"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="givenErrorCode"/>
+                            <L7p:value stringValue="207"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="~ error response"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="~ inspect HOST header"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <L7p:AddHeader>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="HTTPS only"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Inform the browser to only accept SSL connections"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:HeaderName stringValue="Content-Security-Policy"/>
+            <L7p:HeaderValue stringValue="default-src 'self'; img-src * data:; style-src 'unsafe-inline'; font-src * data:; require-trusted-types-for 'script'; object-src 'none';"/>
+            <L7p:RemoveExisting booleanValue="true"/>
+            <L7p:Target target="RESPONSE"/>
+        </L7p:AddHeader>
+        <L7p:AddHeader>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="HTTPS only"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Inform the browser to only accept SSL connections"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:HeaderName stringValue="X-Content-Type-Options"/>
+            <L7p:HeaderValue stringValue="nosniff"/>
+            <L7p:RemoveExisting booleanValue="true"/>
+            <L7p:Target target="RESPONSE"/>
+        </L7p:AddHeader>
+        <L7p:AddHeader>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="HTTPS only"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Inform the browser to only accept SSL connections"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:HeaderName stringValue="X-XSS-Protection"/>
+            <L7p:HeaderValue stringValue="1"/>
+            <L7p:RemoveExisting booleanValue="true"/>
+            <L7p:Target target="RESPONSE"/>
+        </L7p:AddHeader>
+        <L7p:AddHeader>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="HTTPS only"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Inform the browser to only accept SSL connections"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:HeaderName stringValue="Strict-Transport-Security"/>
+            <L7p:HeaderValue stringValue="max-age=31536000; includeSubDomains; preload"/>
+            <L7p:RemoveExisting booleanValue="true"/>
+            <L7p:Target target="RESPONSE"/>
+        </L7p:AddHeader>
+        <L7p:AddHeader>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Referrer"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Instruct the browser to not send the Referer header"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Enabled booleanValue="false"/>
+            <L7p:HeaderName stringValue="Referrer-Policy"/>
+            <L7p:HeaderValue stringValue="no-referrer"/>
+            <L7p:RemoveExisting booleanValue="true"/>
+            <L7p:Target target="RESPONSE"/>
+        </L7p:AddHeader>
+        <L7p:AddHeader>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Permissions"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Diasble specific features"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Enabled booleanValue="false"/>
+            <L7p:HeaderName stringValue="Feature-Policy"/>
+            <L7p:HeaderValue stringValue="geolocation=(), microphone=()"/>
+            <L7p:RemoveExisting booleanValue="true"/>
+            <L7p:Target target="RESPONSE"/>
+        </L7p:AddHeader>
+        <L7p:AddHeader>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="ClickJacking"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Do not allow overlapping of frames"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Enabled booleanValue="false"/>
+            <L7p:HeaderName stringValue="X-Frame-Options"/>
+            <L7p:HeaderValue stringValue="Deny"/>
+            <L7p:RemoveExisting booleanValue="true"/>
+            <L7p:Target target="RESPONSE"/>
+        </L7p:AddHeader>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK JWT Extraction"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Extract and export values contained inside a JWT"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// to allow json value evaluation"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Base64Expression stringValue="ew0KCSJoZWFkZXIiOiAke2p3dF9oZWFkZXJ9LA0KCSJwYXlsb2FkIjogJHtqd3RfcGF5bG9hZH0NCn0="/>
+                    <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                    <L7p:DataType variableDataType="message"/>
+                    <L7p:VariableToSet stringValue="jwt_json"/>
+                </L7p:SetVariable>
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// extract hashing algorithm "/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression stringValue="header.alg"/>
+                    <L7p:OtherTargetMessageVariable stringValue="jwt_json"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="jwt_alg"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// extract Issuer (&quot;iss&quot;) from payload"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression stringValue="payload.iss"/>
+                    <L7p:OtherTargetMessageVariable stringValue="jwt_json"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="jwt_iss"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// extract Subject (&quot;sub&quot;) from payload"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression stringValue="payload.sub"/>
+                    <L7p:OtherTargetMessageVariable stringValue="jwt_json"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="jwt_sub"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// extract Expiration (&quot;exp&quot;) from payload"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression stringValue="payload.exp"/>
+                    <L7p:OtherTargetMessageVariable stringValue="jwt_json"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="jwt_exp"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// extract JWT ID (&quot;jti&quot;) from payload"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression stringValue="payload.jti"/>
+                    <L7p:OtherTargetMessageVariable stringValue="jwt_json"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="jwt_jti"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// extract Audience (&quot;aud&quot;) from payload"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Expression stringValue="payload.aud"/>
+                    <L7p:OtherTargetMessageVariable stringValue="jwt_json"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="jwt_aud"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtqd3RfYWxnLnJlc3VsdH0="/>
+                    <L7p:VariableToSet stringValue="jwt_alg"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtqd3RfaXNzLnJlc3VsdH0="/>
+                    <L7p:VariableToSet stringValue="iss"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtqd3Rfc3ViLnJlc3VsdH0="/>
+                    <L7p:VariableToSet stringValue="sub"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtqd3RfZXhwLnJlc3VsdH0="/>
+                    <L7p:VariableToSet stringValue="exp"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtqd3RfanRpLnJlc3VsdH0="/>
+                    <L7p:VariableToSet stringValue="jti"/>
+                </L7p:SetVariable>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtqd3RfYXVkLnJlc3VsdHN9"/>
+                    <L7p:VariableToSet stringValue="aud"/>
+                </L7p:SetVariable>
+                <L7p:Split>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// can be an array of values"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:IgnoreEmptyValues booleanValue="true"/>
+                    <L7p:InputVariable stringValue="aud"/>
+                    <L7p:OutputVariable stringValue="aud"/>
+                    <L7p:SplitPatternRegEx booleanValue="false"/>
+                </L7p:Split>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="extract"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:AssertionComment assertionComment="included">
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="// invalid jwt"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:AssertionComment>
+                    <L7p:Base64Expression stringValue="MTIx"/>
+                    <L7p:VariableToSet stringValue="error.code"/>
+                </L7p:SetVariable>
+                <L7p:FalseAssertion/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="error"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

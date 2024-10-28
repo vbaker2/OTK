@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK DCR - Compose Request"/>
+        </L7p:CommentAssertion>
+        <L7p:Include>
+            <L7p:PolicyGuid stringValue="34e781cb-8047-4531-9ab0-0e0df2bf08d2"/>
+            <L7p:PolicyName stringValue="#OTK DCR - Compose Request"/>
+        </L7p:Include>
+        <L7p:SetVariable>
+            <L7p:Base64Expression stringValue="JHtkY3JfanNvbi5yZXN1bHR9"/>
+            <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+            <L7p:DataType variableDataType="message"/>
+            <L7p:VariableToSet stringValue="client_request"/>
+        </L7p:SetVariable>
+    </wsp:All>
+</wsp:Policy>

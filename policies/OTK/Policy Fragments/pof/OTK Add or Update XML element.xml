@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Add or Update XML element"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${ssa_element_json_path}"/>
+                <L7p:Expression2 stringValue="false"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:EvaluateJsonPathExpressionV2>
+                <L7p:Expression stringValue="${ssa_element_json_path}"/>
+                <L7p:OtherTargetMessageVariable stringValue="ssa_json"/>
+                <L7p:Target target="OTHER"/>
+                <L7p:VariablePrefix stringValue="ssa_element"/>
+            </L7p:EvaluateJsonPathExpressionV2>
+            <L7p:TrueAssertion/>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${ssa_element.found}"/>
+                <L7p:Expression2 stringValue="false"/>
+                <L7p:Operator operator="EMPTY"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Operator operator="EMPTY"/>
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${ssa_element.found}"/>
+                <L7p:Expression2 stringValue="false"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:RightValue stringValue="false"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtlbGVtZW50X3BhcmVudF9wYXRofS8ke2VsZW1lbnRfbmFtZX0="/>
+                            <L7p:VariableToSet stringValue="elementPath"/>
+                        </L7p:SetVariable>
+                        <L7p:ResponseXpathAssertion>
+                            <L7p:VariablePrefix stringValue="elementXpath"/>
+                            <L7p:XmlMsgSrc stringValue="xml"/>
+                            <L7p:XpathExpression xpathExpressionValue="included">
+                                <L7p:Expression stringValue="${elementPath}"/>
+                                <L7p:Namespaces mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="s"/>
+                                    <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                                    </L7p:entry>
+                                </L7p:Namespaces>
+                                <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                            </L7p:XpathExpression>
+                        </L7p:ResponseXpathAssertion>
+                        <L7p:RemoveElement>
+                            <L7p:ElementFromVariable stringValue="elementXpath.elements[0]"/>
+                            <L7p:ElementToInsertVariable stringValue=""/>
+                            <L7p:OtherTargetMessageVariable stringValue="xml"/>
+                            <L7p:Target target="OTHER"/>
+                        </L7p:RemoveElement>
+                    </wsp:All>
+                    <L7p:TrueAssertion/>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="//Remove element if present"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:OneOrMore>
+                <L7p:ResponseXpathAssertion>
+                    <L7p:VariablePrefix stringValue="parentXpath"/>
+                    <L7p:XmlMsgSrc stringValue="xml"/>
+                    <L7p:XpathExpression xpathExpressionValue="included">
+                        <L7p:Expression stringValue="${element_parent_path}"/>
+                        <L7p:Namespaces mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="s"/>
+                                <L7p:value stringValue="http://schemas.xmlsoap.org/soap/envelope/"/>
+                            </L7p:entry>
+                        </L7p:Namespaces>
+                        <L7p:XpathVersion xpathVersion="XPATH_1_0"/>
+                    </L7p:XpathExpression>
+                </L7p:ResponseXpathAssertion>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="PCR7ZWxlbWVudF9uYW1lfT4ke3NzYV9lbGVtZW50LnJlc3VsdH08LyR7ZWxlbWVudF9uYW1lfT4="/>
+                    <L7p:VariableToSet stringValue="addXML"/>
+                </L7p:SetVariable>
+                <L7p:RemoveElement>
+                    <L7p:ElementFromVariable stringValue="parentXpath.elements[0]"/>
+                    <L7p:ElementToInsertVariable stringValue="addXML"/>
+                    <L7p:InsertedElementLocation insertedElementLocation="FIRST_CHILD"/>
+                    <L7p:OtherTargetMessageVariable stringValue="xml"/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:RemoveElement>
+            </wsp:All>
+        </wsp:OneOrMore>
+        <L7p:ExportVariables>
+            <L7p:ExportedVars stringArrayValue="included">
+                <L7p:item stringValue="xml"/>
+            </L7p:ExportedVars>
+        </L7p:ExportVariables>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: OTK Inspect JWT"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${jwks}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Split>
+                    <L7p:IgnoreEmptyValues booleanValue="true"/>
+                    <L7p:InputVariable stringValue="jwt"/>
+                    <L7p:OutputVariable stringValue="jwt_parts"/>
+                    <L7p:SplitPattern stringValue="."/>
+                    <L7p:SplitPatternRegEx booleanValue="false"/>
+                </L7p:Split>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtqd3RfcGFydHNbMV19"/>
+                    <L7p:VariableToSet stringValue="jwt_payload"/>
+                </L7p:SetVariable>
+                <L7p:EncodeDecode>
+                    <L7p:SourceVariableName stringValue="jwt_payload"/>
+                    <L7p:TargetDataType variableDataType="string"/>
+                    <L7p:TargetVariableName stringValue="jwt_payload"/>
+                    <L7p:TransformType transformType="BASE64_DECODE"/>
+                </L7p:EncodeDecode>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHtqd3RfcGFydHNbMF19"/>
+                    <L7p:VariableToSet stringValue="jwt_header"/>
+                </L7p:SetVariable>
+                <L7p:EncodeDecode>
+                    <L7p:SourceVariableName stringValue="jwt_header"/>
+                    <L7p:TargetDataType variableDataType="string"/>
+                    <L7p:TargetVariableName stringValue="jwt_header"/>
+                    <L7p:TransformType transformType="BASE64_DECODE"/>
+                </L7p:EncodeDecode>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="~ decode jwt, no validation"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${jwks}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:Include>
+                    <L7p:PolicyGuid stringValue="5dc639cd-a251-4b60-8285-65d71a6dd824"/>
+                    <L7p:PolicyName stringValue="#OTK Inspect JWT"/>
+                </L7p:Include>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="~ decode jwt, validate signature"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="~ inspect jwt"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

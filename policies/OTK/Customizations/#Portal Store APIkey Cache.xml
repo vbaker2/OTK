@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Policy Fragment: #Portal Store APIkey In Cache"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:ComparisonAssertion>
+                    <L7p:CaseSensitive booleanValue="false"/>
+                    <L7p:Expression1 stringValue="${resp.mainpart}"/>
+                    <L7p:Operator operatorNull="null"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item dataType="included">
+                            <L7p:Type variableDataType="string"/>
+                        </L7p:item>
+                        <L7p:item binary="included">
+                            <L7p:Operator operator="CONTAINS"/>
+                            <L7p:RightValue stringValue="key"/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:CacheStorage>
+                    <L7p:CacheEntryKey stringValue="${apikey}_${serviceid}"/>
+                    <L7p:CacheId stringValue="${gateway.cluster.otk.portalapikeylookup.cacheid}"/>
+                    <L7p:MaxEntries stringValue="${gateway.cluster.otk.portalapikeylookup.cache.maxentries}"/>
+                    <L7p:MaxEntryAgeSeconds stringValue="${gateway.cluster.otk.portalapikeylookup.cache.age_s}"/>
+                    <L7p:MaxEntrySizeBytes stringValue="${gateway.cluster.otk.portalapikeylookup.cache.sizeinbytes}"/>
+                    <L7p:OtherTargetMessageVariable stringValue="resp"/>
+                    <L7p:Target target="OTHER"/>
+                </L7p:CacheStorage>
+            </wsp:All>
+            <L7p:TrueAssertion/>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="Add to cache if key is found"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>

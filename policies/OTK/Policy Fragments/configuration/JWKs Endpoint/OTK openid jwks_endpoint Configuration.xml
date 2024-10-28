@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Multiple RSA keys can be specified"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="OTK uses the default SSL key by default"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="It is recommended to replace that key with a key made for this environment"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="It is also recommeded to update the key_id's (kid)"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="After updating 'kid' here update it also in 'OTK id_token Signing Algorithm - CUSTOM'"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="After updating 'kid' here update it also in 'OTK id_token Validation - CUSTOM'"/>
+        </L7p:CommentAssertion>
+        <L7p:CreateJsonWebKey>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="// Add the private keys to be used with signing JWT (id_token)"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+            <L7p:Keys keys="included">
+                <L7p:item key="included">
+                    <L7p:KeyId stringValue="default_ssl_key"/>
+                    <L7p:PublicKeyUse stringValue="Signature"/>
+                    <L7p:SourceKeyGoid goidValue="0000000000000000ffffffffffffffff"/>
+                </L7p:item>
+            </L7p:Keys>
+            <L7p:TargetVariable stringValue="jwks"/>
+        </L7p:CreateJsonWebKey>
+        <L7p:Include>
+            <L7p:PolicyGuid stringValue="b92f063c-57b1-4cae-a47c-27700af012a0"/>
+            <L7p:PolicyName stringValue="#OTK openid jwks_endpoint Configuration"/>
+        </L7p:Include>
+        <L7p:ExportVariables>
+            <L7p:ExportedVars stringArrayValue="included">
+                <L7p:item stringValue="jwks"/>
+            </L7p:ExportedVars>
+        </L7p:ExportVariables>
+    </wsp:All>
+</wsp:Policy>

@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === ***  THIS POLICY IS READ ONLY ***"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === If you have the need to customize this policy"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" === please contact CA APIM Support so we can improve customization capability"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue=" ============================================"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy can be found and should be used as 'Encapsulated Assertion'!"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="This policy validates client key custom metadata"/>
+        </L7p:CommentAssertion>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <wsp:All wsp:Usage="Required">
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:Expression stringValue="token_endpoint_auth_method"/>
+                    <L7p:OtherTargetMessageVariable stringValue="client_metadata"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="auth_method"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="JHthdXRoX21ldGhvZC5yZXN1bHR9"/>
+                    <L7p:VariableToSet stringValue="registered_auth_method"/>
+                </L7p:SetVariable>
+            </wsp:All>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue=""/>
+                <L7p:VariableToSet stringValue="registered_auth_method"/>
+            </L7p:SetVariable>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Find registered auth method"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${registered_auth_method}"/>
+                <L7p:Expression2 stringValue="self_signed_tls_client_auth"/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:RightValue stringValue="self_signed_tls_client_auth"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:Expression stringValue="jwks_uri"/>
+                    <L7p:OtherTargetMessageVariable stringValue="client_metadata"/>
+                    <L7p:Target target="OTHER"/>
+                    <L7p:VariablePrefix stringValue="jwks_uri"/>
+                </L7p:EvaluateJsonPathExpressionV2>
+                <L7p:ComparisonAssertion>
+                    <L7p:Expression1 stringValue="${jwks_uri.result}"/>
+                    <L7p:Expression2 stringValue=""/>
+                    <L7p:MultivaluedComparison multivaluedComparison="ANY"/>
+                    <L7p:Negate booleanValue="true"/>
+                    <L7p:Operator operator="EMPTY"/>
+                    <L7p:Predicates predicates="included">
+                        <L7p:item binary="included">
+                            <L7p:Negated booleanValue="true"/>
+                            <L7p:Operator operator="EMPTY"/>
+                            <L7p:RightValue stringValue=""/>
+                        </L7p:item>
+                    </L7p:Predicates>
+                </L7p:ComparisonAssertion>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="x5c is required in every public key present in the JWKS set"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <wsp:OneOrMore wsp:Usage="Required">
+                <wsp:All wsp:Usage="Required">
+                    <L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:Expression stringValue="jwks.keys"/>
+                        <L7p:OtherTargetMessageVariable stringValue="client_metadata"/>
+                        <L7p:Target target="OTHER"/>
+                        <L7p:VariablePrefix stringValue="jwks_keys"/>
+                    </L7p:EvaluateJsonPathExpressionV2>
+                    <L7p:ForEachLoop L7p:Usage="Required"
+                        loopVariable="jwks_keys.results" variablePrefix="jwks_key">
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtqd2tzX2tleS5jdXJyZW50fQ=="/>
+                            <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                            <L7p:DataType variableDataType="message"/>
+                            <L7p:VariableToSet stringValue="jwks_key_json"/>
+                        </L7p:SetVariable>
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="x5c[0]"/>
+                            <L7p:OtherTargetMessageVariable stringValue="jwks_key_json"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="clientCertificate"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtjbGllbnRDZXJ0aWZpY2F0ZS5yZXN1bHR9"/>
+                            <L7p:VariableToSet stringValue="registered_client_certificate"/>
+                        </L7p:SetVariable>
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${registered_client_certificate}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue="self_signed_tls_client_auth"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                    </L7p:ForEachLoop>
+                    <L7p:assertionComment>
+                        <L7p:Properties mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="RIGHT.COMMENT"/>
+                                <L7p:value stringValue="x5c is required in every public key present in the JWKS set"/>
+                            </L7p:entry>
+                        </L7p:Properties>
+                    </L7p:assertionComment>
+                </wsp:All>
+                <wsp:All wsp:Usage="Required">
+                    <L7p:AuditDetailAssertion>
+                        <L7p:Detail stringValue="JWKS client certificate is missing in the field 'key_custom'"/>
+                    </L7p:AuditDetailAssertion>
+                    <L7p:Encapsulated>
+                        <L7p:AssertionComment assertionComment="included">
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="310"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:AssertionComment>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="56bd8147-3ab4-4d09-9460-8b2de02b7a9e"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="OTK Fail with error message"/>
+                        <L7p:Parameters mapValue="included">
+                            <L7p:entry>
+                                <L7p:key stringValue="apiPrefix"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="custom"/>
+                                <L7p:value stringValue=""/>
+                            </L7p:entry>
+                            <L7p:entry>
+                                <L7p:key stringValue="givenErrorCode"/>
+                                <L7p:value stringValue="310"/>
+                            </L7p:entry>
+                        </L7p:Parameters>
+                    </L7p:Encapsulated>
+                </wsp:All>
+            </wsp:OneOrMore>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Validate jwks metadata for self signed tls client auth"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:ComparisonAssertion>
+                <L7p:Expression1 stringValue="${registered_auth_method}"/>
+                <L7p:Expression2 stringValue="tls_client_auth"/>
+                <L7p:Negate booleanValue="true"/>
+                <L7p:Predicates predicates="included">
+                    <L7p:item binary="included">
+                        <L7p:Negated booleanValue="true"/>
+                        <L7p:RightValue stringValue="tls_client_auth"/>
+                    </L7p:item>
+                </L7p:Predicates>
+            </L7p:ComparisonAssertion>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="MQ=="/>
+                    <L7p:DataType variableDataType="int"/>
+                    <L7p:VariableToSet stringValue="pki"/>
+                </L7p:SetVariable>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="tls_client_auth_subject_dn"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_metadata"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="subject_dn"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtzdWJqZWN0X2RuLnJlc3VsdH0="/>
+                            <L7p:VariableToSet stringValue="registered_subject_dn"/>
+                        </L7p:SetVariable>
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${registered_subject_dn}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue="self_signed_tls_client_auth"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ManipulateMultiValuedVariable>
+                            <L7p:SourceVariableName stringValue="pki"/>
+                            <L7p:TargetVariableName stringValue="pki_params"/>
+                        </L7p:ManipulateMultiValuedVariable>
+                    </wsp:All>
+                    <L7p:TrueAssertion/>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="tls_client_auth_san_dns"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_metadata"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="san_dns"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtzYW5fZG5zLnJlc3VsdH0="/>
+                            <L7p:VariableToSet stringValue="registered_san_dns"/>
+                        </L7p:SetVariable>
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${registered_san_dns}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue="self_signed_tls_client_auth"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ManipulateMultiValuedVariable>
+                            <L7p:SourceVariableName stringValue="pki"/>
+                            <L7p:TargetVariableName stringValue="pki_params"/>
+                        </L7p:ManipulateMultiValuedVariable>
+                    </wsp:All>
+                    <L7p:TrueAssertion/>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="tls_client_auth_san_uri"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_metadata"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="san_uri"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtzYW5fdXJpLnJlc3VsdH0="/>
+                            <L7p:VariableToSet stringValue="registered_san_uri"/>
+                        </L7p:SetVariable>
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${registered_san_uri}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue="self_signed_tls_client_auth"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ManipulateMultiValuedVariable>
+                            <L7p:SourceVariableName stringValue="pki"/>
+                            <L7p:TargetVariableName stringValue="pki_params"/>
+                        </L7p:ManipulateMultiValuedVariable>
+                    </wsp:All>
+                    <L7p:TrueAssertion/>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="tls_client_auth_san_ip"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_metadata"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="san_ip"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtzYW5faXAucmVzdWx0fQ=="/>
+                            <L7p:VariableToSet stringValue="registered_san_ip"/>
+                        </L7p:SetVariable>
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${registered_san_ip}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue="self_signed_tls_client_auth"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ManipulateMultiValuedVariable>
+                            <L7p:SourceVariableName stringValue="pki"/>
+                            <L7p:TargetVariableName stringValue="pki_params"/>
+                        </L7p:ManipulateMultiValuedVariable>
+                    </wsp:All>
+                    <L7p:TrueAssertion/>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:EvaluateJsonPathExpressionV2>
+                            <L7p:Expression stringValue="tls_client_auth_san_email"/>
+                            <L7p:OtherTargetMessageVariable stringValue="client_metadata"/>
+                            <L7p:Target target="OTHER"/>
+                            <L7p:VariablePrefix stringValue="san_email"/>
+                        </L7p:EvaluateJsonPathExpressionV2>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="JHtzYW5fZW1haWwucmVzdWx0fQ=="/>
+                            <L7p:VariableToSet stringValue="registered_san_email"/>
+                        </L7p:SetVariable>
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${registered_san_email}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue="self_signed_tls_client_auth"/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:ManipulateMultiValuedVariable>
+                            <L7p:SourceVariableName stringValue="pki"/>
+                            <L7p:TargetVariableName stringValue="pki_params"/>
+                        </L7p:ManipulateMultiValuedVariable>
+                    </wsp:All>
+                    <L7p:TrueAssertion/>
+                </wsp:OneOrMore>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:ComparisonAssertion>
+                        <L7p:CaseSensitive booleanValue="false"/>
+                        <L7p:Expression1 stringValue="${pki_params}"/>
+                        <L7p:Operator operatorNull="null"/>
+                        <L7p:Predicates predicates="included">
+                            <L7p:item cardinality="included">
+                                <L7p:Max intValue="1"/>
+                                <L7p:Min intValue="1"/>
+                            </L7p:item>
+                        </L7p:Predicates>
+                    </L7p:ComparisonAssertion>
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:AuditDetailAssertion>
+                            <L7p:Detail stringValue="Exactly one PKI metadata param is required in the field 'key_custom'"/>
+                        </L7p:AuditDetailAssertion>
+                        <L7p:Encapsulated>
+                            <L7p:AssertionComment assertionComment="included">
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="311"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:AssertionComment>
+                            <L7p:EncapsulatedAssertionConfigGuid stringValue="56bd8147-3ab4-4d09-9460-8b2de02b7a9e"/>
+                            <L7p:EncapsulatedAssertionConfigName stringValue="OTK Fail with error message"/>
+                            <L7p:Parameters mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="apiPrefix"/>
+                                    <L7p:value stringValue=""/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="custom"/>
+                                    <L7p:value stringValue=""/>
+                                </L7p:entry>
+                                <L7p:entry>
+                                    <L7p:key stringValue="givenErrorCode"/>
+                                    <L7p:value stringValue="311"/>
+                                </L7p:entry>
+                            </L7p:Parameters>
+                        </L7p:Encapsulated>
+                        <L7p:assertionComment>
+                            <L7p:Properties mapValue="included">
+                                <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="// error 311"/>
+                                </L7p:entry>
+                            </L7p:Properties>
+                        </L7p:assertionComment>
+                    </wsp:All>
+                </wsp:OneOrMore>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="RIGHT.COMMENT"/>
+                            <L7p:value stringValue="Exactly one PKI parameter is required"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Validate PKI metadata for tls client auth"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>
